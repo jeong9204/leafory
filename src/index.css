@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-cream: #f7f4eb;
+  --color-sage: #9daf91;
+  --color-forest: #516b50;
+  --color-peach: #cdaa91;
+  --color-brown: #756655;
+  --font-sans:
+    'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply m-0 bg-cream font-sans text-brown antialiased;
+    min-width: 320px;
+    min-height: 100dvh;
+  }
+
+  a:focus-visible {
+    @apply rounded outline-2 outline-offset-4 outline-forest;
+  }
+}
