@@ -1,41 +1,37 @@
-import { Leaf } from 'lucide-react'
-import { Link, Outlet } from 'react-router'
+import { Link, Outlet, useLocation, useMatch } from 'react-router'
+import { BottomNavigation } from '../components/BottomNavigation'
 
 export function AppLayout() {
+  const pathname = useLocation().pathname
+  const isHome = pathname === '/'
+  const isDetail =
+    Boolean(useMatch('/plants/:id')) && pathname !== '/plants/new'
+  const isEdit = Boolean(useMatch('/plants/:id/edit'))
+  const isCare = Boolean(useMatch('/plants/:id/care/*'))
+  const isForm = isEdit || pathname === '/plants/new' || isCare
+  const hasOwnHeader = isHome || isDetail || isForm
   return (
-    <div className="mx-auto max-w-lg px-5 pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))]">
-      <header className="mb-8">
-        <Link
-          to="/"
-          className="inline-flex min-h-11 items-center gap-2 font-semibold text-forest"
-        >
-          <Leaf size={22} aria-hidden="true" />
-          Leafory
-        </Link>
-        <nav
-          aria-label="기본 탐색"
-          className="mt-4 flex flex-wrap gap-x-5 gap-y-2"
-        >
-          <Link to="/" className="inline-flex min-h-11 items-center underline">
-            홈
-          </Link>
+    <div className={`app-shell ${isForm ? 'form-shell' : ''}`}>
+      <a href="#main-content" className="skip-link">
+        본문으로 건너뛰기
+      </a>
+      {!hasOwnHeader && (
+        <header className="px-5 pt-6">
           <Link
-            to="/plants/new"
-            className="inline-flex min-h-11 items-center underline"
+            to="/"
+            className="inline-flex min-h-11 items-center font-semibold text-forest"
           >
+            ← Leafory
+          </Link>
+          <Link to="/plants/new" className="ml-6 underline">
             식물 등록
           </Link>
-          <Link
-            to="/records"
-            className="inline-flex min-h-11 items-center underline"
-          >
-            기록 목록
-          </Link>
-        </nav>
-      </header>
-      <main id="main-content">
+        </header>
+      )}
+      <main id="main-content" className={hasOwnHeader ? '' : 'px-5 py-6'}>
         <Outlet />
       </main>
+      {!isForm && <BottomNavigation />}
     </div>
   )
 }

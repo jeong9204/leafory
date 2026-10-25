@@ -6,12 +6,22 @@
   --color-forest: #516b50;
   --color-peach: #cdaa91;
   --color-brown: #756655;
-  --font-sans:
-    'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
-    system-ui, sans-serif;
+  --font-sans: 'Pretendard Variable', Pretendard, sans-serif;
 }
 
 @layer base {
+  html {
+    font-family: var(--font-sans);
+    font-weight: 400;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+
   body {
     @apply m-0 bg-cream font-sans text-brown antialiased;
     min-width: 320px;
@@ -20,5 +30,448 @@
 
   a:focus-visible {
     @apply rounded outline-2 outline-offset-4 outline-forest;
+  }
+}
+
+@layer components {
+  .app-shell {
+    @apply relative mx-auto max-w-lg;
+    --bottom-nav-height: 76px;
+    min-height: 100dvh;
+    padding-bottom: calc(
+      var(--bottom-nav-height) + env(safe-area-inset-bottom) + 24px
+    );
+    background: #f7f4ed;
+  }
+  .skip-link {
+    @apply fixed top-2 left-2 z-50 -translate-y-24 rounded bg-white px-4 py-3 text-forest focus:translate-y-0;
+  }
+  .surface {
+    background: rgb(255 253 249 / 94%);
+    box-shadow: 0 5px 18px #75665506;
+  }
+  .home-hero {
+    @apply relative isolate;
+    height: 202px;
+    padding: calc(31px + env(safe-area-inset-top)) 24px 0;
+  }
+  .home-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 -12px;
+    z-index: -1;
+    background:
+      linear-gradient(90deg, #f7f4ed 0%, #f7f4edcc 32%, #f7f4ed10 74%),
+      linear-gradient(0deg, #f7f4ed 0%, transparent 38%),
+      url('/images/home-hero.jpg') 65% 46% / cover;
+  }
+  .hero-date {
+    @apply text-brown;
+    font-size: 13px;
+  }
+  .hero-copy h1 {
+    @apply mt-2 text-forest;
+    font-family: var(--font-sans);
+    font-size: clamp(27px, 7.7vw, 39px);
+    font-weight: 700;
+    letter-spacing: -0.055em;
+    line-height: 1.45;
+  }
+  .hero-greeting {
+    @apply mt-1 flex items-center gap-1.5 text-brown;
+    font-size: 13px;
+    letter-spacing: -0.04em;
+  }
+  .hero-greeting svg {
+    width: 16px;
+    height: 16px;
+    color: #6c8a4c;
+    fill: #6c8a4c;
+  }
+  .hero-note {
+    @apply absolute text-brown;
+    right: 18px;
+    top: 29px;
+    font-family: var(--font-sans);
+    font-size: 9px;
+    padding: 5px 7px;
+    background: #f3ead5bb;
+    border-radius: 2px;
+    line-height: 1.9;
+    letter-spacing: 0.1em;
+    transform: rotate(-4deg);
+  }
+  .hero-note span {
+    letter-spacing: 0.5em;
+  }
+  .home-content {
+    @apply relative px-4;
+    margin-top: -43px;
+  }
+  .summary-card {
+    @apply grid grid-cols-2 rounded-2xl;
+    padding: 19px 0;
+  }
+  .summary-item {
+    @apply flex min-w-0 items-center justify-center gap-3;
+    padding: 0 10px;
+  }
+  .summary-item + .summary-item {
+    border-left: 1px solid #ede8df;
+  }
+  .summary-icon {
+    @apply flex shrink-0 items-center justify-center rounded-full;
+    width: 41px;
+    height: 41px;
+  }
+  .summary-icon svg {
+    width: 23px;
+    height: 23px;
+    stroke-width: 1.5;
+  }
+  .summary-icon.plants {
+    background: #f0f2e5;
+    color: #6b7e46;
+  }
+  .summary-icon.plants svg {
+    fill: #6b7e46;
+  }
+  .summary-icon.records {
+    background: #f5ede2;
+    color: #896947;
+  }
+  .summary-label {
+    @apply block;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #655e51;
+  }
+  .summary-value {
+    @apply mt-1.5 flex items-center gap-1.5 text-forest;
+  }
+  .summary-value strong {
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .summary-value svg {
+    width: 15px;
+    height: 15px;
+    stroke-width: 1.4;
+    color: #756655;
+  }
+  .home-section {
+    margin-top: 12px;
+    scroll-margin-top: 16px;
+  }
+  .section-heading {
+    @apply mb-1.5 flex items-center justify-between px-1;
+  }
+  .section-heading h2 {
+    font-family: var(--font-sans);
+    color: #171f19;
+    font-size: 21px;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+  }
+  .section-heading > a {
+    @apply flex min-h-7 items-center gap-1 text-brown;
+    font-size: 12px;
+  }
+  .section-heading > a svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 1.5;
+  }
+  .plant-list {
+    @apply grid gap-3;
+  }
+  .plant-card {
+    @apply relative grid items-center rounded-2xl;
+    grid-template-columns: 80px minmax(0, 1fr) 86px;
+    column-gap: 12px;
+    padding: 22px 12px 14px;
+    min-height: 154px;
+  }
+  .plant-photo-link {
+    @apply block overflow-hidden rounded-xl;
+    height: 114px;
+  }
+  .plant-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .plant-name {
+    @apply text-forest;
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+  }
+  .scientific-name {
+    margin-top: 4px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-style: italic;
+    color: #797467;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .plant-status {
+    font-weight: 500;
+    @apply inline-flex max-w-full items-center gap-1 rounded-full;
+    margin-top: 8px;
+    padding: 3px 8px;
+    background: #eef1e2;
+    color: #35472d;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .plant-status svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    fill: #5c853a;
+    color: #5c853a;
+  }
+  .plant-light {
+    @apply flex items-center gap-1.5;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #34342c;
+  }
+  .plant-light svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 1.4;
+    color: #846b54;
+    flex-shrink: 0;
+  }
+  .light-label {
+    color: #82776a;
+  }
+  .watering-area {
+    @apply relative flex flex-col;
+    gap: 10px;
+    padding: 0 0 0 10px;
+    border-left: 1px solid #eee8df;
+  }
+  .plant-more {
+    @apply absolute;
+    right: 12px;
+    top: 5px;
+    color: #756655;
+  }
+  .plant-more svg {
+    width: 20px;
+    height: 20px;
+  }
+  .watering-date {
+    @apply flex min-w-0 flex-col;
+  }
+  .watering-label {
+    margin-bottom: 5px;
+    color: #756c62;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .watering-date time {
+    color: #19251c;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    white-space: nowrap;
+    letter-spacing: -0.025em;
+  }
+  .elapsed-days {
+    margin-top: 4px;
+    color: #756655;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .water-button {
+    @apply flex shrink-0 items-center justify-center gap-1 rounded-xl;
+    width: 100%;
+    min-height: 44px;
+    padding: 6px 4px;
+    background: #e3ebd5;
+    color: #354f32;
+    cursor: not-allowed;
+    border: 1px solid #d2dec2;
+    opacity: 1;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .water-preview-note {
+    display: block;
+    margin-top: 4px;
+    text-align: center;
+    color: #756655;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  .water-button svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.5;
+  }
+  .recent-section {
+    margin-top: 12px;
+  }
+  .recent-list {
+    @apply grid gap-1.5;
+  }
+  .record-card {
+    @apply grid items-center gap-3 rounded-2xl;
+    grid-template-columns: 57px minmax(0, 1fr) 13px;
+    padding: 6px 12px 6px 9px;
+    min-height: 64px;
+  }
+  .record-photo {
+    @apply rounded-xl;
+    width: 57px;
+    height: 51px;
+    object-fit: cover;
+  }
+  .record-card time {
+    display: block;
+    line-height: 1.2;
+    font-size: 10px;
+    color: #817468;
+  }
+  .record-card h3 {
+    @apply mt-0.5 font-semibold;
+    line-height: 1.35;
+    font-size: 14px;
+    color: #19251c;
+  }
+  .record-card p {
+    @apply mt-0.5;
+    font-size: 11px;
+    color: #75695e;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+  .record-chevron {
+    width: 15px;
+    height: 20px;
+    stroke-width: 1.3;
+  }
+  .bottom-navigation {
+    @apply fixed inset-x-0 bottom-0 z-20 mx-auto grid max-w-lg grid-cols-3;
+    height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+    padding: 7px 20px calc(7px + env(safe-area-inset-bottom));
+    border-top: 1px solid #e8e2d8;
+    background: rgb(255 253 249 / 97%);
+    backdrop-filter: blur(12px);
+  }
+  .bottom-nav-item {
+    font-weight: 500;
+    @apply flex min-w-0 flex-col items-center justify-center gap-1;
+    color: #756655;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .bottom-nav-item svg {
+    box-sizing: content-box;
+    width: 26px;
+    height: 26px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    stroke-width: 1.6;
+  }
+  .bottom-nav-item.active {
+    color: #365835;
+    font-weight: 700;
+  }
+  .bottom-nav-item.active svg {
+    fill: #405e40;
+    background: #e8efdf;
+    stroke-width: 1.9;
+  }
+  .bottom-nav-item:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+  @media (min-width: 440px) {
+    .plant-card {
+      grid-template-columns: 89px minmax(0, 1fr) 96px;
+      column-gap: 16px;
+      padding: 22px 16px 16px;
+    }
+    .plant-photo-link {
+      height: 120px;
+    }
+    .scientific-name {
+      font-size: 13px;
+    }
+    .watering-date time {
+      font-size: 16px;
+    }
+  }
+  @media (max-width: 359px) {
+    .home-hero {
+      padding-left: 18px;
+    }
+    .hero-note {
+      display: none;
+    }
+    .hero-greeting {
+      font-size: 12px;
+    }
+    .home-content {
+      padding-inline: 10px;
+    }
+    .summary-item {
+      gap: 8px;
+      padding-inline: 8px;
+    }
+    .summary-icon {
+      width: 34px;
+      height: 34px;
+    }
+    .summary-label {
+      font-size: 12px;
+    }
+    .plant-card {
+      grid-template-columns: 68px minmax(0, 1fr) 78px;
+      column-gap: 10px;
+      padding: 22px 10px 14px;
+    }
+    .plant-name {
+      font-size: 19px;
+    }
+    .plant-status {
+      padding-inline: 6px;
+      font-size: 11px;
+    }
+    .watering-area {
+      padding-left: 8px;
+    }
+    .watering-date time {
+      font-size: 14px;
+    }
+    .watering-label {
+      font-size: 10px;
+    }
+    .water-button {
+      gap: 2px;
+      font-size: 11px;
+    }
+    .water-button svg {
+      width: 16px;
+      height: 16px;
+    }
+    .record-card {
+      gap: 8px;
+    }
   }
 }
