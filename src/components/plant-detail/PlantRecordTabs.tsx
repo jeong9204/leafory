@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 import type { PlantTimelineEntry } from '../../app/plant-service'
@@ -83,6 +84,14 @@ export function PlantRecordTabs({
                     width="160"
                     height="160"
                   />
+                  {entry.diaryEntryId && plantId && (
+                    <Link
+                      className="diary-gallery-link"
+                      to={`/plants/${plantId}/diary/${entry.diaryEntryId}`}
+                    >
+                      일기 보기
+                    </Link>
+                  )}
                   <figcaption>
                     <time dateTime={entry.date}>{fullDate(entry.date)}</time>
                     <span>{entry.title}</span>

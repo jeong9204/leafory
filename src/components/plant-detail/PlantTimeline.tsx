@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { DeleteCareButton } from './DeleteCareButton'
 import type { PlantTimelineEntry } from '../../app/plant-service'
 import { PlantPhoto } from '../plants/PlantPhoto'
+import { conditionLabels } from '../../app/diary-service'
 import { fullDate } from '../../lib/dates'
 
 const eventIcons = {
@@ -57,9 +58,38 @@ export function PlantTimeline({
                   {entry.occurredAt &&
                     ` · ${new Date(entry.occurredAt).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', hour12: false })}`}
                 </time>
-                <h3>{entry.title}</h3>
+                <h3>
+                  {entry.diaryEntryId && plantId ? (
+                    <Link
+                      to={`/plants/${plantId}/diary/${entry.diaryEntryId}`}
+                      aria-label={`${entry.title} 일기 보기`}
+                    >
+                      {entry.title}
+                    </Link>
+                  ) : (
+                    entry.title
+                  )}
+                </h3>
+                {entry.condition && (
+                  <p className="diary-timeline-meta">
+                    {conditionLabels[entry.condition]} · 사진{' '}
+                    {entry.photoCount ?? 0}장
+                  </p>
+                )}
                 <p>{entry.description}</p>
               </div>
+              {entry.diaryEntryId && plantId && (
+                <div className="care-event-actions">
+                  <Link to={`/plants/${plantId}/diary/${entry.diaryEntryId}`}>
+                    일기 보기
+                  </Link>
+                  <Link
+                    to={`/plants/${plantId}/diary/${entry.diaryEntryId}/edit`}
+                  >
+                    수정
+                  </Link>
+                </div>
+              )}
               {entry.careEventId && plantId && (
                 <div className="care-event-actions">
                   <Link

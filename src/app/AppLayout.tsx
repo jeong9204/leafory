@@ -8,7 +8,8 @@ export function AppLayout() {
     Boolean(useMatch('/plants/:id')) && pathname !== '/plants/new'
   const isEdit = Boolean(useMatch('/plants/:id/edit'))
   const isCare = Boolean(useMatch('/plants/:id/care/*'))
-  const isForm = isEdit || pathname === '/plants/new' || isCare
+  const isDiary = Boolean(useMatch('/plants/:id/diary/*'))
+  const isForm = isEdit || pathname === '/plants/new' || isCare || isDiary
   const hasOwnHeader = isHome || isDetail || isForm
   return (
     <div className={`app-shell ${isForm ? 'form-shell' : ''}`}>

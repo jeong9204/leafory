@@ -1,4 +1,4 @@
-import type { Plant, DiaryPhoto, CareEvent } from '../domain/models'
+import type { Plant, DiaryPhoto, CareEvent, DiaryEntry } from '../domain/models'
 import type { Repositories } from '../domain/repositories'
 import { RepositoryError } from '../domain/errors'
 import { localDateKey } from '../domain/calendar'
@@ -13,6 +13,9 @@ export const statusLabels: Record<Plant['status'], string> = {
 }
 export interface PlantTimelineEntry {
   id: string
+  diaryEntryId?: string
+  condition?: DiaryEntry['condition']
+  photoCount?: number
   careEventId?: string
   occurredAt?: string
   kind: 'growth' | 'watering' | 'light' | 'repotting' | 'fertilizing'
@@ -86,9 +89,15 @@ export async function loadPlant(
   }
   const entries: PlantTimelineEntry[] = [
     ...diaries.map((entry) => {
-      const image = photos.find((p) => p.entryId === entry.id)
+      const attached = photos
+        .filter((p) => p.entryId === entry.id)
+        .sort((a, b) => a.sortOrder - b.sortOrder || a.id.localeCompare(b.id))
+      const image = attached[0]
       return {
         id: `diary:${entry.id}`,
+        diaryEntryId: entry.id,
+        condition: entry.condition,
+        photoCount: attached.length,
         kind: 'growth' as const,
         date: entry.entryDate,
         title: entry.title || '식물 일기',
@@ -126,9 +135,12 @@ export async function loadPlant(
     recordCount: diaries.length + care.length,
     entries,
     gallery: photos.map((photo) => ({
+      diaryEntryId: photo.entryId,
       id: photo.id,
       kind: 'growth',
-      date: localDateKey(new Date(photo.capturedAt)),
+      date:
+        diaries.find((e) => e.id === photo.entryId)?.entryDate ??
+        localDateKey(new Date(photo.capturedAt)),
       title: photo.id === plant.coverPhotoId ? '대표 사진' : '식물 사진',
       description: '',
       image: photo.blob,

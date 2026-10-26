@@ -63,7 +63,10 @@ describe('식물 상세 화면', () => {
       'href',
       `/plants/${fixtureIds[0]}/care/new`,
     )
-    expect(screen.getByRole('button', { name: '일기 쓰기' })).toBeDisabled()
+    expect(screen.getByRole('link', { name: '일기 쓰기' })).toHaveAttribute(
+      'href',
+      `/plants/${fixtureIds[0]}/diary/new`,
+    )
     expect(screen.getByRole('link', { name: '수정하기' })).toHaveAttribute(
       'href',
       `/plants/${fixtureIds[0]}/edit`,

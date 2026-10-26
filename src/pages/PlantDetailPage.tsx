@@ -109,14 +109,11 @@ export function PlantDetailPage() {
           <Pencil aria-hidden="true" />
           빠른 기록
         </Link>
-        <button type="button" disabled aria-describedby="detail-actions-note">
+        <Link to={`/plants/${plant.id}/diary/new`}>
           <NotebookText aria-hidden="true" />
           일기 쓰기
-        </button>
+        </Link>
       </div>
-      <p id="detail-actions-note" className="detail-action-note">
-        사진 일기 작성 기능은 준비 중이에요.
-      </p>
       <PlantRecordTabs
         key={plant.id}
         plantId={plant.id}

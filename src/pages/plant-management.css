@@ -459,3 +459,121 @@
     appearance: none;
   }
 }
+
+@layer components {
+  .diary-photo-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-block: 18px;
+    text-align: left;
+  }
+  .diary-photo-list li {
+    min-width: 0;
+  }
+  .diary-photo-preview {
+    width: 100%;
+    aspect-ratio: 1;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  .diary-photo-number {
+    display: block;
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #516b50;
+  }
+  .diary-photo-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+  }
+  .diary-photo-controls button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33.33%;
+    min-height: 44px;
+    cursor: pointer;
+    color: #516b50;
+  }
+  .diary-photo-controls button:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+  .diary-photo-controls svg {
+    width: 17px;
+    height: 17px;
+  }
+  .diary-photo-empty {
+    margin: 24px 0;
+    color: #817568;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .diary-detail-body {
+    padding: 18px;
+    border-radius: 18px;
+  }
+  .diary-detail-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+    color: #817568;
+  }
+  .diary-detail-meta .plant-status {
+    margin: 0;
+  }
+  .diary-observation {
+    margin-block: 22px;
+    font-size: 15px;
+    line-height: 1.85;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .diary-detail-photos {
+    display: grid;
+    gap: 18px;
+  }
+  .diary-full-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+  .diary-detail-photos p {
+    text-align: center;
+    margin-top: 6px;
+    font-size: 11px;
+    color: #817568;
+  }
+  .diary-detail-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .diary-detail-actions > button {
+    color: #995f4c;
+  }
+  .diary-detail-actions svg {
+    width: 18px;
+    height: 18px;
+  }
+  .diary-detail-page h1 {
+    overflow-wrap: anywhere;
+  }
+  .diary-gallery-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 44px;
+    font-size: 12px;
+    color: #516b50;
+  }
+}
