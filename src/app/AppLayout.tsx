@@ -10,7 +10,12 @@ export function AppLayout() {
   const isCare = Boolean(useMatch('/plants/:id/care/*'))
   const isDiary = Boolean(useMatch('/plants/:id/diary/*'))
   const isForm = isEdit || pathname === '/plants/new' || isCare || isDiary
-  const hasOwnHeader = isHome || isDetail || isForm || pathname === '/backup'
+  const hasOwnHeader =
+    isHome ||
+    isDetail ||
+    isForm ||
+    pathname === '/backup' ||
+    pathname === '/calendar'
   return (
     <div className={`app-shell ${isForm ? 'form-shell' : ''}`}>
       <a href="#main-content" className="skip-link">

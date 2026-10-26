@@ -54,6 +54,7 @@ src/
 │   ├── DiaryEditorPage.tsx # 사진 일기 작성·수정
 │   ├── DiaryDetailPage.tsx # 사진 일기 보기·삭제
 │   ├── BackupPage.tsx      # ZIP 백업·전체 교체 복원
+│   ├── CalendarPage.tsx    # 월별 관리 캘린더와 식물 필터
 │   └── SetupPage.tsx       # 후속 단계 자리표시자
 ├── lib/                   # 한국 시간 날짜 계산과 테스트
 ├── domain/                # 도메인 타입·계약·검증·로컬 날짜
@@ -88,6 +89,7 @@ DB는 `main.tsx`에서 생성하고 Provider로 Repository 계약을 주입합�
 | `/plants/:id/diary/:entryId/edit` | 일기 수정        |
 | `/records`                        | 기록 목록        |
 | `/backup`                         | 데이터 백업·복원 |
+| `/calendar`                       | 월별 관리 캘린더 |
 | 그 외                             | 페이지 없음      |
 
 `createBrowserRouter`와 `RouterProvider`를 사용합니다. 작성 중인 폼은 `useBlocker`로 화면 이탈을 확인합니다. 배포 시 `/plants/…` 같은 직접 접근도 `index.html`을
@@ -158,3 +160,10 @@ GitHub 원격 저장소 생성과 push도 별도 확인 이후에 진행합니�
 표시합니다. 선택 버튼을 누를 때만 학명을 채우고 직접 입력·미선택 저장도 지원합니다.
 같은 유통명에 여러 종이 있을 수 있으며 기존 저장 학명은 자동 수정하지 않습니다.
 분류별 출처·확인 날짜와 데이터 정책은 [Phase 6 문서](docs/phase-6.md)를 참고하세요.
+
+## 식물 관리 캘린더 (Phase 7)
+
+하단 캘린더 탭에서 월별 기록, 날짜별 목록, 전체/특정 식물 필터를 사용할 수 있습니다.
+관리 이벤트는 기기의 로컬 날짜, 일기는 저장된 일기 날짜 기준으로 표시합니다.
+캘린더용 중복 데이터나 DB 스키마 변경 없이 기존 Repository를 조회합니다.
+[Phase 7 구현·검증·모바일 캡처](docs/phase-7.md)를 참고하세요.

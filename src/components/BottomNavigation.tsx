@@ -24,15 +24,15 @@ export function BottomNavigation() {
         <NotebookText aria-hidden="true" />
         <span>기록</span>
       </NavLink>
-      <button
-        type="button"
-        className="bottom-nav-item"
-        disabled
-        aria-label="캘린더 (준비 중)"
+      <NavLink
+        to="/calendar"
+        className={({ isActive }) =>
+          isActive ? 'bottom-nav-item active' : 'bottom-nav-item'
+        }
       >
         <CalendarDays aria-hidden="true" />
         <span>캘린더</span>
-      </button>
+      </NavLink>
     </nav>
   )
 }

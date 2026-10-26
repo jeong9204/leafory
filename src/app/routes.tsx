@@ -32,6 +32,12 @@ export const routes: RouteObject[] = [
           Component: (await import('../pages/BackupPage')).BackupPage,
         }),
       },
+      {
+        path: 'calendar',
+        lazy: async () => ({
+          Component: (await import('../pages/CalendarPage')).CalendarPage,
+        }),
+      },
       { path: 'records', element: <SetupPage title="기록 목록" /> },
       { path: '*', element: <SetupPage title="페이지를 찾을 수 없습니다" /> },
     ],
