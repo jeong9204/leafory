@@ -9,6 +9,7 @@ import { useRepositories } from '../../app/repository-context'
 import { preparePlantPhoto } from '../../lib/plant-photo'
 import { useUnsavedChanges } from '../../hooks/useUnsavedChanges'
 import { PlantPhoto } from './PlantPhoto'
+import { ScientificNameSuggestions } from './ScientificNameSuggestions'
 
 export function PlantForm({
   initial,
@@ -197,6 +198,7 @@ export function PlantForm({
             onChange={(e) => setName(e.target.value)}
             placeholder="예: 나의 작은 괴마옥"
           />
+          <ScientificNameSuggestions query={name} onSelect={setSpecies} />
           <label htmlFor={`${prefix}-species`}>
             학명 또는 품종 <span>선택</span>
           </label>

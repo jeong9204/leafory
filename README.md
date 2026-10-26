@@ -151,3 +151,10 @@ GitHub 원격 저장소 생성과 push도 별도 확인 이후에 진행합니�
 설정 참고: [Vite](https://vite.dev/guide/),
 [Tailwind CSS Vite 통합](https://tailwindcss.com/docs/installation/using-vite),
 [Vitest](https://vitest.dev/guide/).
+
+## 식물 이름으로 학명 찾기 (Phase 6)
+
+식물 등록·수정 폼에서 한국어 이름·별칭·학명을 입력하면 32종 로컬 카탈로그의 후보를
+표시합니다. 선택 버튼을 누를 때만 학명을 채우고 직접 입력·미선택 저장도 지원합니다.
+같은 유통명에 여러 종이 있을 수 있으며 기존 저장 학명은 자동 수정하지 않습니다.
+분류별 출처·확인 날짜와 데이터 정책은 [Phase 6 문서](docs/phase-6.md)를 참고하세요.

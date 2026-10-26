@@ -1,0 +1,20 @@
+Leafory plant catalog — classification data attribution
+
+Source: Royal Botanic Gardens, Kew, Plants of the World Online (POWO).
+The International Plant Names Index and World Checklist of Vascular Plants 2026.
+https://powo.science.kew.org/
+
+Kew Names and Taxonomic Backbone:
+© Copyright 2023 International Plant Names Index and World Checklist of Vascular Plants.
+Licensed under Creative Commons Attribution 3.0 Unported (CC BY 3.0):
+https://creativecommons.org/licenses/by/3.0/
+
+Leafory selected 32 accepted species names and a subset of their synonyms,
+checked on 2026-10-26. Korean search labels and short candidate notes were
+written for Leafory; they are not official taxonomic names or identification
+results. Source descriptions and photographs are not reproduced.
+
+Each candidate links to its individual POWO taxon record and check date.
+The source list and selection policy are documented in docs/phase-6.md.
+Other authorities may use different classifications. No endorsement by Kew
+is implied. Existing user-entered names are never automatically corrected.

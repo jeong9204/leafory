@@ -1,0 +1,115 @@
+@reference '../../index.css';
+@layer components {
+  .scientific-suggestions {
+    min-width: 0;
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid #dce3cf;
+    border-radius: 12px;
+    background: #f1f4ea;
+    color: var(--color-forest);
+  }
+  .suggestion-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 10px;
+  }
+  .scientific-suggestions h2 {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .scientific-suggestions h2 > span {
+    margin-left: 5px;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--color-brown);
+  }
+  .suggestion-status {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--color-brown);
+  }
+  .scientific-suggestions ul {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .scientific-suggestions li {
+    min-width: 0;
+    border: 1px solid #e0e5d6;
+    border-radius: 10px;
+    background: #fffefa;
+    overflow-wrap: anywhere;
+  }
+  .candidate-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 76px;
+    align-items: center;
+  }
+  .scientific-candidate {
+    display: grid;
+    align-content: center;
+    width: 100%;
+    min-width: 0;
+    gap: 3px;
+    min-height: 68px;
+    padding: 10px 12px;
+    text-align: left;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .candidate-name {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .candidate-scientific {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .candidate-toggle {
+    min-height: 44px;
+    margin-right: 4px;
+    padding: 8px 4px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-brown);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .scientific-candidate:disabled,
+  .candidate-toggle:disabled {
+    opacity: 0.65;
+    cursor: wait;
+  }
+  .candidate-details {
+    padding: 10px 12px 0;
+    border-top: 1px solid #eef0e7;
+  }
+  .candidate-note {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--color-brown);
+  }
+  .candidate-source,
+  .catalog-attribution {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--color-brown);
+    text-decoration: underline;
+  }
+  .scientific-candidate:focus-visible,
+  .candidate-toggle:focus-visible,
+  .catalog-attribution:focus-visible,
+  .candidate-source:focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+  }
+}

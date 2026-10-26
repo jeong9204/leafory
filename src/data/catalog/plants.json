@@ -1,0 +1,338 @@
+[
+  {
+    "id": "monstera-deliciosa",
+    "commonName": "몬스테라",
+    "scientificName": "Monstera deliciosa",
+    "aliases": ["몬스테라 델리시오사"],
+    "synonyms": [],
+    "note": "몬스테라속의 한 종이에요. 아단소니와 구분해 주세요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:87478-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "monstera-adansonii",
+    "commonName": "몬스테라 아단소니",
+    "scientificName": "Monstera adansonii",
+    "aliases": ["몬스테라", "아단소니"],
+    "synonyms": [],
+    "note": "델리시오사와 다른 종이에요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:87464-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "epipremnum-aureum",
+    "commonName": "스킨답서스 · 골든포토스",
+    "scientificName": "Epipremnum aureum",
+    "aliases": ["스킨답서스", "골든포토스"],
+    "synonyms": ["Scindapsus aureus", "Pothos aureus"],
+    "note": "스킨답서스라는 유통명으로 찾을 수 있는 에피프레넘속 후보예요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:87014-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "scindapsus-pictus",
+    "commonName": "실버 스킨답서스",
+    "scientificName": "Scindapsus pictus",
+    "aliases": ["스킨답서스", "실버스킨", "픽투스"],
+    "synonyms": [],
+    "note": "골든포토스와 속이 다른 후보예요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:88905-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "philodendron-hederaceum",
+    "commonName": "필로덴드론 헤데라세움",
+    "scientificName": "Philodendron hederaceum",
+    "aliases": ["헤데라세움", "하트잎 필로덴드론"],
+    "synonyms": [],
+    "note": "품종을 확정하지 않는 종 단위 후보예요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:87797-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "philodendron-bipinnatifidum",
+    "commonName": "셀렘",
+    "scientificName": "Philodendron bipinnatifidum",
+    "aliases": ["셀로움", "필로덴드론 셀렘"],
+    "synonyms": ["Thaumatophyllum bipinnatifidum", "Philodendron selloum"],
+    "note": "Kew에서는 현재 Philodendron으로 분류해요. 다른 분류 체계와 다를 수 있어요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:77306988-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "spathiphyllum-wallisii",
+    "commonName": "스파티필룸",
+    "scientificName": "Spathiphyllum wallisii",
+    "aliases": ["스파티필름"],
+    "synonyms": [],
+    "note": "스파티필룸에는 여러 종과 교잡 품종이 있어요. 이 종인지 확인해 주세요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:89011-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "anthurium-andraeanum",
+    "commonName": "안스리움",
+    "scientificName": "Anthurium andraeanum",
+    "aliases": ["안수리움"],
+    "synonyms": [],
+    "note": "여러 종과 교잡 품종이 유통돼요. 이 종인지 확인해 주세요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:84549-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "zamioculcas-zamiifolia",
+    "commonName": "금전수",
+    "scientificName": "Zamioculcas zamiifolia",
+    "aliases": ["ZZ plant", "자미오쿨카스"],
+    "synonyms": [],
+    "note": "",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:89402-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "dracaena-trifasciata",
+    "commonName": "산세베리아",
+    "scientificName": "Dracaena trifasciata",
+    "aliases": ["산세비에리아", "뱀식물"],
+    "synonyms": ["Sansevieria trifasciata"],
+    "note": "산세베리아로 불리는 여러 종 중 한 후보예요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:77164235-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "dracaena-angolensis",
+    "commonName": "스투키 · 실린드리카 후보",
+    "scientificName": "Dracaena angolensis",
+    "aliases": ["스투키", "산세베리아 실린드리카", "실린드리카"],
+    "synonyms": ["Sansevieria cylindrica", "Sansevieria angolensis"],
+    "note": "스투키로 검색할 때 함께 확인할 후보예요. stuckyi와 다른 종이에요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:77182375-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "dracaena-stuckyi",
+    "commonName": "스투키 · stuckyi 후보",
+    "scientificName": "Dracaena stuckyi",
+    "aliases": ["스투키", "산세베리아 스투키"],
+    "synonyms": ["Sansevieria stuckyi"],
+    "note": "학명에 stuckyi가 들어가는 종이에요. 실린드리카와 구분해 주세요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:77183329-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "dracaena-fragrans",
+    "commonName": "행운목",
+    "scientificName": "Dracaena fragrans",
+    "aliases": ["드라세나 프라그란스"],
+    "synonyms": [],
+    "note": "",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:534207-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "dracaena-reflexa",
+    "commonName": "드라세나 레플렉사",
+    "scientificName": "Dracaena reflexa",
+    "aliases": ["레플렉사"],
+    "synonyms": ["Pleomele reflexa"],
+    "note": "종 단위 후보이며 특정 원예 품종을 뜻하지 않아요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:534338-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "ficus-elastica",
+    "commonName": "인도고무나무",
+    "scientificName": "Ficus elastica",
+    "aliases": ["고무나무", "인도 고무나무"],
+    "synonyms": [],
+    "note": "고무나무라는 이름만으로는 종을 확정할 수 없어요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:60458499-2",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "ficus-lyrata",
+    "commonName": "떡갈고무나무",
+    "scientificName": "Ficus lyrata",
+    "aliases": ["고무나무", "떡갈 고무나무"],
+    "synonyms": [],
+    "note": "인도고무나무와 다른 종이에요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:853158-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "ficus-benjamina",
+    "commonName": "벤자민고무나무",
+    "scientificName": "Ficus benjamina",
+    "aliases": ["고무나무", "벤자민"],
+    "synonyms": [],
+    "note": "고무나무속의 다른 종과 구분해 주세요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:852486-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "ficus-benghalensis",
+    "commonName": "벵갈고무나무",
+    "scientificName": "Ficus benghalensis",
+    "aliases": ["고무나무", "벵갈 고무나무"],
+    "synonyms": [],
+    "note": "종 단위 후보이며 특정 원예 품종을 뜻하지 않아요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:852482-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "heptapleurum-arboricola",
+    "commonName": "홍콩야자",
+    "scientificName": "Heptapleurum arboricola",
+    "aliases": ["쉐플레라", "셰플레라", "홍콩 야자"],
+    "synonyms": ["Schefflera arboricola"],
+    "note": "이전 학명 Schefflera arboricola로도 검색할 수 있어요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:90845-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "chamaedorea-elegans",
+    "commonName": "테이블야자",
+    "scientificName": "Chamaedorea elegans",
+    "aliases": ["테이블 야자"],
+    "synonyms": [],
+    "note": "",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:54865-2",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "chrysalidocarpus-lutescens",
+    "commonName": "아레카야자",
+    "scientificName": "Chrysalidocarpus lutescens",
+    "aliases": ["아레카 야자"],
+    "synonyms": ["Dypsis lutescens"],
+    "note": "이전 학명 Dypsis lutescens로도 검색할 수 있어요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:665962-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "pachira-aquatica",
+    "commonName": "파키라",
+    "scientificName": "Pachira aquatica",
+    "aliases": ["파키라 아쿠아티카"],
+    "synonyms": [],
+    "note": "파키라속의 한 종 후보예요. 유통명만으로 종을 확정하지 않아요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:179762-2",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "strelitzia-reginae",
+    "commonName": "극락조 · 레기나에",
+    "scientificName": "Strelitzia reginae",
+    "aliases": ["극락조", "극락조화", "레기나에"],
+    "synonyms": [],
+    "note": "니콜라이와 다른 종이에요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:798194-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "strelitzia-nicolai",
+    "commonName": "극락조 · 니콜라이",
+    "scientificName": "Strelitzia nicolai",
+    "aliases": ["극락조", "니콜라이", "큰극락조"],
+    "synonyms": [],
+    "note": "레기나에와 다른 종이에요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:798185-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "chlorophytum-comosum",
+    "commonName": "접란",
+    "scientificName": "Chlorophytum comosum",
+    "aliases": ["나비란"],
+    "synonyms": [],
+    "note": "",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:532810-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "pilea-peperomioides",
+    "commonName": "필레아 페페",
+    "scientificName": "Pilea peperomioides",
+    "aliases": ["필레아 페페로미오이데스"],
+    "synonyms": [],
+    "note": "페페로미아와 속이 달라요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:855664-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "peperomia-obtusifolia",
+    "commonName": "청페페",
+    "scientificName": "Peperomia obtusifolia",
+    "aliases": ["페페로미아 옵투시폴리아", "페페로미아"],
+    "synonyms": [],
+    "note": "페페로미아속의 한 종 후보예요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:679269-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "goeppertia-orbifolia",
+    "commonName": "칼라데아 오르비폴리아",
+    "scientificName": "Goeppertia orbifolia",
+    "aliases": ["오르비폴리아", "칼라테아 오르비폴리아"],
+    "synonyms": ["Calathea orbifolia"],
+    "note": "이전 학명 Calathea orbifolia로도 검색할 수 있어요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:60461168-2",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "euphorbia-bupleurifolia",
+    "commonName": "괴마옥",
+    "scientificName": "Euphorbia bupleurifolia",
+    "aliases": ["유포르비아 부플레우리폴리아"],
+    "synonyms": [],
+    "note": "",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:345870-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "crassula-ovata",
+    "commonName": "염좌",
+    "scientificName": "Crassula ovata",
+    "aliases": ["제이드플랜트", "크라슐라 오바타"],
+    "synonyms": [],
+    "note": "",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:273350-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "adenium-obesum",
+    "commonName": "아데니움 · 오베숨",
+    "scientificName": "Adenium obesum",
+    "aliases": [
+      "아데니움",
+      "아데늄",
+      "오베숨",
+      "아데니움 오베숨",
+      "아데니움 아라비쿰",
+      "아라비쿰",
+      "사막의 장미",
+      "desert rose"
+    ],
+    "synonyms": ["Adenium arabicum"],
+    "note": "아데니움속의 한 종 후보예요. Kew에서는 Adenium arabicum을 이 종의 동의어로 처리해요. 유통명만으로 종·품종·교잡 여부를 확정하지 않아요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:76369-1",
+    "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "adenium-multiflorum",
+    "commonName": "아데니움 · 멀티플로룸",
+    "scientificName": "Adenium multiflorum",
+    "aliases": [
+      "아데니움",
+      "아데늄",
+      "멀티플로룸",
+      "아데니움 멀티플로룸",
+      "사막의 장미",
+      "desert rose"
+    ],
+    "synonyms": [],
+    "note": "오베숨과 다른 아데니움속의 종이에요. 사막의 장미는 속 수준 검색을 위한 이름이며 이 종이나 특정 품종을 확정하는 이름이 아니에요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:76366-1",
+    "checkedAt": "2026-10-26"
+  }
+]
