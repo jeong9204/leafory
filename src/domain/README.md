@@ -1,6 +1,7 @@
 # 도메인
 
 - `models.ts`: Plant, DiaryEntry, DiaryPhoto, CareEvent, 생성·수정 입력, 타임라인 타입
+- `backup.ts`: 전체 데이터 스냅샷·개수·필수 필드와 연결 관계 검증
 - `repositories.ts`: UI와 무관한 CRUD·목록·집계·트랜잭션 계약
 - `validation.ts`: UUID, 실제 달력 날짜, ISO 시각, 필수 필드, Blob/MIME 검증
 - `calendar.ts`: 사용자 장치의 로컬 날짜와 달력 기준 경과 일수

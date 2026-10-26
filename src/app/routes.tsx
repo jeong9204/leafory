@@ -6,11 +6,13 @@ import { CareEditorPage } from '../pages/CareEditorPage'
 import { HomePage } from '../pages/HomePage'
 import { DiaryEditorPage } from '../pages/DiaryEditorPage'
 import { DiaryDetailPage } from '../pages/DiaryDetailPage'
+import { DataFeedback } from '../components/plants/DataFeedback'
 import { AppLayout } from './AppLayout'
 
 export const routes: RouteObject[] = [
   {
     element: <AppLayout />,
+    hydrateFallbackElement: <DataFeedback />,
     children: [
       { index: true, element: <HomePage /> },
       { path: 'plants/new', element: <PlantEditorPage /> },
@@ -24,6 +26,12 @@ export const routes: RouteObject[] = [
       },
       { path: 'plants/:id/diary/:entryId', element: <DiaryDetailPage /> },
       { path: 'plants/:id/diary/:entryId/edit', element: <DiaryEditorPage /> },
+      {
+        path: 'backup',
+        lazy: async () => ({
+          Component: (await import('../pages/BackupPage')).BackupPage,
+        }),
+      },
       { path: 'records', element: <SetupPage title="기록 목록" /> },
       { path: '*', element: <SetupPage title="페이지를 찾을 수 없습니다" /> },
     ],

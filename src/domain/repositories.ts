@@ -1,3 +1,4 @@
+import type { LocalDataSnapshot, DataCounts } from './backup'
 import type {
   CareEvent,
   CreateInput,
@@ -36,6 +37,11 @@ export interface PlantQueries {
   totalRecordCount(plantId: UUID): Promise<number>
 }
 export interface Repositories {
+  backup: {
+    snapshot(): Promise<LocalDataSnapshot>
+    counts(): Promise<DataCounts>
+    replace(data: LocalDataSnapshot): Promise<void>
+  }
   runInTransaction<T>(
     work: (repositories: Repositories) => Promise<T>,
   ): Promise<T>

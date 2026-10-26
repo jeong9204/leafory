@@ -31,3 +31,6 @@ dist-ssr
 # Test and TypeScript output
 coverage/
 *.tsbuildinfo
+
+# Local backup exports (may contain personal photos and records)
+leafory-backup-*.zip

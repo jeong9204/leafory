@@ -1,0 +1,131 @@
+@reference '../index.css';
+@layer components {
+  .backup-page {
+    padding-bottom: 8px;
+  }
+  .backup-card {
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 15px;
+  }
+  .backup-card h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-forest);
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .backup-card h2 svg {
+    width: 20px;
+    height: 20px;
+  }
+  .backup-card p,
+  .backup-message {
+    margin-block: 12px;
+    color: #756655;
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+  }
+  .backup-card > button {
+    margin-top: 4px;
+    width: 100%;
+  }
+  .backup-counts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin-block: 18px 4px;
+    text-align: center;
+  }
+  .backup-counts dt {
+    font-size: 11px;
+    color: #817568;
+    line-height: 1.5;
+  }
+  .backup-counts dd {
+    margin-top: 5px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #516b50;
+    overflow-wrap: anywhere;
+  }
+  .backup-counts dd span {
+    margin-left: 2px;
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .backup-risk {
+    border-radius: 11px;
+    padding: 12px;
+    background: #f3e8da;
+    color: #805d47;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .backup-preview,
+  .backup-download {
+    margin-top: 18px;
+    border-top: 1px solid #e8e2d8;
+    padding-top: 14px;
+  }
+  .backup-preview h3 {
+    color: #516b50;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .backup-preview > button,
+  .backup-download a {
+    margin-top: 12px;
+    width: 100%;
+  }
+  .backup-filename {
+    overflow-wrap: anywhere;
+  }
+  .backup-agreement {
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 13px;
+    line-height: 1.7;
+    cursor: pointer;
+  }
+  .backup-agreement input {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    accent-color: #516b50;
+  }
+  .backup-confirm {
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
+  }
+  .backup-home-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    margin-top: 20px;
+    color: #756655;
+    font-size: 12px;
+  }
+  .backup-home-link svg {
+    width: 15px;
+    height: 15px;
+  }
+  .backup-page h1 {
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 359px) {
+    .backup-card {
+      padding: 16px;
+    }
+    .backup-counts {
+      gap: 4px;
+    }
+  }
+}

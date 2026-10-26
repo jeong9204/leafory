@@ -13,3 +13,8 @@ Phase 4A에서는 `main.tsx`에서 실제 DB를 생성하고 Repository만 화�
 
 스키마, 삭제 정책, API, 오류 처리와 예시는 [Phase 3 문서](../../../docs/phase-3.md)를 참고하세요.
 실제 화면 연결과 사진 처리는 [Phase 4A 문서](../../../docs/phase-4a.md)를 참고하세요.
+
+Phase 5의 `backup.snapshot()`은 4개 테이블을 하나의 읽기 트랜잭션으로 조회합니다.
+`backup.replace()`는 데이터와 연결 관계를 재검증한 뒤 전체 삭제·삽입을 하나의 쓰기
+트랜잭션으로 수행하며 실패 시 기존 데이터를 보존합니다. ID와 시각의 의미를 보존하고
+ISO 시각은 기존 CRUD와 같이 UTC로 정규화합니다. [백업 형식과 정책](../../../docs/phase-5.md)을 참고하세요.

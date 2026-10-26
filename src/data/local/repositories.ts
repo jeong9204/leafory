@@ -1,3 +1,4 @@
+import { validateSnapshot } from '../../domain/backup'
 import type { Table } from 'dexie'
 import { RepositoryError } from '../../domain/errors'
 import { calendarDaysBetween, localDateKey } from '../../domain/calendar'
@@ -221,6 +222,57 @@ export function createLocalRepositories(db: LeaforyDatabase): Repositories {
     )[0]?.occurredAt
   }
   const repositories: Repositories = {
+    backup: {
+      snapshot: () =>
+        read(async () => {
+          const [plants, diaries, photos, careEvents] = await Promise.all([
+            db.plants.toArray(),
+            db.diaries.toArray(),
+            db.photos.toArray(),
+            db.careEvents.toArray(),
+          ])
+          return { plants, diaries, photos, careEvents }
+        }),
+      counts: () =>
+        read(async () => ({
+          plants: await db.plants.count(),
+          diaries: await db.diaries.count(),
+          photos: await db.photos.count(),
+          careEvents: await db.careEvents.count(),
+        })),
+      replace: (data) =>
+        write(async () => {
+          validateSnapshot(data)
+          // Preserve IDs and timestamp instants; normalize ISO representation like normal CRUD.
+          const timestamps = <
+            T extends { createdAt: string; updatedAt?: string },
+          >(
+            row: T,
+          ) => ({
+            ...row,
+            createdAt: utc(row.createdAt),
+            ...(row.updatedAt === undefined
+              ? {}
+              : { updatedAt: utc(row.updatedAt) }),
+          })
+          // Clearing and inserting all tables share this transaction.
+          for (const table of tables) await table.clear()
+          await db.plants.bulkAdd(data.plants.map(timestamps))
+          await db.diaries.bulkAdd(data.diaries.map(timestamps))
+          await db.photos.bulkAdd(
+            data.photos.map((p) => ({
+              ...timestamps(p),
+              capturedAt: utc(p.capturedAt),
+            })),
+          )
+          await db.careEvents.bulkAdd(
+            data.careEvents.map((e) => ({
+              ...timestamps(e),
+              occurredAt: utc(e.occurredAt),
+            })),
+          )
+        }),
+    },
     plants: {
       ...plants,
       list: () => read(async () => (await db.plants.toArray()).sort(newest)),

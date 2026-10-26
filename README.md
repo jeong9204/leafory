@@ -1,11 +1,11 @@
 # Leafory
 
 식물의 성장과 관리 기록을 사진 일기로 남기는 모바일 우선 웹앱입니다.
-현재는 Phase 4B-2 사진 일기 단계입니다.
+현재는 Phase 5 로컬 데이터 백업·복원 단계입니다.
 홈과 상세에서 실제 로컬 식물을 조회하며 등록·정보 수정·삭제·대표 사진 저장을 지원합니다.
-홈 물주기·빠른 관리 기록과 사진 일기의 생성·수정·삭제를 지원합니다. 사진은 최대 10장 첨부하고 순서를 바꿀 수 있습니다. DB에 목업 식물을 자동 추가하지 않습니다.
+홈 물주기·빠른 관리 기록과 사진 일기의 생성·수정·삭제를 지원합니다. 사진은 최대 10장 첨부하고 순서를 바꿀 수 있습니다. 홈의 데이터 백업·복원에서 ZIP 내보내기와 전체 교체 복원을 지원합니다. DB에 목업 식물을 자동 추가하지 않습니다.
 
-[홈 UI](docs/phase-1-refinement.md) · [상세 UI](docs/phase-2.md) · [데이터 모델과 Repository](docs/phase-3.md) · [실제 식물 관리·사진 정책·검증](docs/phase-4a.md) · [빠른 관리 기록·검증·캡처](docs/phase-4b1.md) · [사진 일기·저장 정책·검증](docs/phase-4b2.md)
+[홈 UI](docs/phase-1-refinement.md) · [상세 UI](docs/phase-2.md) · [데이터 모델과 Repository](docs/phase-3.md) · [실제 식물 관리·사진 정책·검증](docs/phase-4a.md) · [빠른 관리 기록·검증·캡처](docs/phase-4b1.md) · [사진 일기·저장 정책·검증](docs/phase-4b2.md) · [백업 형식·복원 정책·검증](docs/phase-5.md)
 
 ## 시작하기
 
@@ -53,6 +53,7 @@ src/
 │   ├── CareEditorPage.tsx  # 빠른 관리 기록 생성·수정
 │   ├── DiaryEditorPage.tsx # 사진 일기 작성·수정
 │   ├── DiaryDetailPage.tsx # 사진 일기 보기·삭제
+│   ├── BackupPage.tsx      # ZIP 백업·전체 교체 복원
 │   └── SetupPage.tsx       # 후속 단계 자리표시자
 ├── lib/                   # 한국 시간 날짜 계산과 테스트
 ├── domain/                # 도메인 타입·계약·검증·로컬 날짜
@@ -74,19 +75,20 @@ DB는 `main.tsx`에서 생성하고 Provider로 Repository 계약을 주입합�
 
 ## 라우트
 
-| 경로                              | 화면           |
-| --------------------------------- | -------------- |
-| `/`                               | 홈             |
-| `/plants/new`                     | 식물 등록      |
-| `/plants/:id`                     | 식물 상세      |
-| `/plants/:id/edit`                | 식물 수정      |
-| `/plants/:id/care/new`            | 빠른 관리 기록 |
-| `/plants/:id/care/:eventId/edit`  | 관리 기록 수정 |
-| `/plants/:id/diary/new`           | 일기 작성      |
-| `/plants/:id/diary/:entryId`      | 일기 상세      |
-| `/plants/:id/diary/:entryId/edit` | 일기 수정      |
-| `/records`                        | 기록 목록      |
-| 그 외                             | 페이지 없음    |
+| 경로                              | 화면             |
+| --------------------------------- | ---------------- |
+| `/`                               | 홈               |
+| `/plants/new`                     | 식물 등록        |
+| `/plants/:id`                     | 식물 상세        |
+| `/plants/:id/edit`                | 식물 수정        |
+| `/plants/:id/care/new`            | 빠른 관리 기록   |
+| `/plants/:id/care/:eventId/edit`  | 관리 기록 수정   |
+| `/plants/:id/diary/new`           | 일기 작성        |
+| `/plants/:id/diary/:entryId`      | 일기 상세        |
+| `/plants/:id/diary/:entryId/edit` | 일기 수정        |
+| `/records`                        | 기록 목록        |
+| `/backup`                         | 데이터 백업·복원 |
+| 그 외                             | 페이지 없음      |
 
 `createBrowserRouter`와 `RouterProvider`를 사용합니다. 작성 중인 폼은 `useBlocker`로 화면 이탈을 확인합니다. 배포 시 `/plants/…` 같은 직접 접근도 `index.html`을
 반환하도록 호스팅의 SPA fallback 설정이 필요합니다.
@@ -121,6 +123,7 @@ Pretendard 1.3.9의 저작권 고지와 SIL OFL 1.1 원문은 [`public/licenses/
 | React Router                 | 8.5.0   |
 | Zustand                      | 5.0.16  |
 | Dexie                        | 4.4.7   |
+| fflate                       | 0.8.3   |
 | fake-indexeddb (테스트 전용) | 6.2.6   |
 | Lucide React                 | 1.61.0  |
 | Pretendard                   | 1.3.9   |
@@ -139,7 +142,7 @@ GitHub 원격 저장소 생성과 push도 별도 확인 이후에 진행합니�
 
 추천 순서:
 
-1. 사진 보관·내보내기·백업 정책 결정
+1. 실제 기기에서 백업 파일 보관·복원과 저장 공간 정책 확인
 2. 전체 기록 목록을 Repository에 연결
 3. 연결 후 로딩·오류·빈 상태와 모바일 실사용 검증
 4. PWA manifest·아이콘·서비스 워커와 오프라인 업데이트 정책 추가

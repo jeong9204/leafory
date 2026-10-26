@@ -9,6 +9,7 @@ import { LeaforyDatabase } from './data/local/database'
 import { createLocalRepositories } from './data/local/repositories'
 import { RepositoryProvider } from './app/RepositoryProvider'
 import './pages/plant-management.css'
+import './pages/backup.css'
 
 const router = createBrowserRouter(routes)
 const database = new LeaforyDatabase()
