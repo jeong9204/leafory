@@ -138,8 +138,8 @@ Pretendard 1.3.9의 저작권 고지와 SIL OFL 1.1 원문은 [`public/licenses/
 
 ## 현재 범위와 다음 단계
 
-이번 단계에는 서버 API, Supabase, 로그인, Capacitor, PWA 서비스 워커·설치용 manifest를
-추가하지 않았습니다. 현재 앱은 설치형 또는 오프라인 PWA가 아닙니다.
+서버 API, Supabase, 로그인, Capacitor는 추가하지 않았습니다.
+Phase 8에서 설치용 manifest·아이콘·앱 셸 서비스 워커를 추가했습니다.
 GitHub 원격 저장소 생성과 push도 별도 확인 이후에 진행합니다.
 
 추천 순서:
@@ -147,7 +147,7 @@ GitHub 원격 저장소 생성과 push도 별도 확인 이후에 진행합니�
 1. 실제 기기에서 백업 파일 보관·복원과 저장 공간 정책 확인
 2. 전체 기록 목록을 Repository에 연결
 3. 연결 후 로딩·오류·빈 상태와 모바일 실사용 검증
-4. PWA manifest·아이콘·서비스 워커와 오프라인 업데이트 정책 추가
+4. 모바일 실기기 설치·오프라인·업데이트 및 파일 앱 검증
 5. 공개 서비스 전 서버 저장소·인증을 설계하고, 이후 Capacitor 도입 검토
 
 설정 참고: [Vite](https://vite.dev/guide/),
@@ -167,3 +167,20 @@ GitHub 원격 저장소 생성과 push도 별도 확인 이후에 진행합니�
 관리 이벤트는 기기의 로컬 날짜, 일기는 저장된 일기 날짜 기준으로 표시합니다.
 캘린더용 중복 데이터나 DB 스키마 변경 없이 기존 Repository를 조회합니다.
 [Phase 7 구현·검증·모바일 캡처](docs/phase-7.md)를 참고하세요.
+
+## 설치형 PWA와 모바일 테스트 (Phase 8)
+
+홈의 ‘홈 화면 설치·오프라인 안내’에서 설치 방법과 준비 상태를 확인합니다.
+프로덕션 빌드에서 앱 셸·지연 청크·로컬 폰트를 캐시하고, 새 버전은 작성 화면을 나온 뒤
+적용합니다. 사진·일기·관리 기록은 기존 IndexedDB에 유지하며 SW 캐시와 분리합니다.
+
+```sh
+npm run build
+npm run preview -- --host 127.0.0.1 --port 4174 --strictPort
+# 같은 Wi-Fi에서 UI 확인 (HTTP는 휴대폰 PWA 검증용이 아님)
+npm run dev:lan -- --port 5173 --strictPort
+```
+
+휴대폰의 설치/SW 테스트에는 신뢰할 수 있는 HTTPS가 필요합니다.
+[모바일 LAN·HTTPS·Safari/Chrome 체크리스트](docs/mobile-testing.md),
+[Phase 8 구현·업데이트 정책·번들 비교·검증/캡처](docs/phase-8.md)를 참고하세요.

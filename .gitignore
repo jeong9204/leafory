@@ -34,3 +34,10 @@ coverage/
 
 # Local backup exports (may contain personal photos and records)
 leafory-backup-*.zip
+
+# Local HTTPS test certificates and private keys
+.certs/
+*.pem
+*.key
+*.p12
+*.pfx

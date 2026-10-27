@@ -1,0 +1,76 @@
+@reference '../index.css';
+@layer components {
+  .pwa-status {
+    margin: 12px;
+    padding: 12px 14px;
+    border: 1px solid #d9e2cf;
+    border-radius: 14px;
+    background: #ecf1e5;
+    color: #43563e;
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+  .pwa-status button {
+    min-height: 44px;
+    margin-top: 8px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: var(--color-forest);
+    color: #fffefa;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .pwa-status button:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .pwa-status button:focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+  }
+  .install-page {
+    padding: max(24px, env(safe-area-inset-top)) 16px 0;
+  }
+  .install-page > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--color-forest);
+    font-size: 13px;
+  }
+  .install-page h1 {
+    color: var(--color-forest);
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 12px 0;
+  }
+  .install-page > p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .install-page section {
+    margin-top: 16px;
+    padding: 18px;
+    border-radius: 16px;
+  }
+  .install-page h2 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--color-forest);
+    margin-bottom: 10px;
+  }
+  .install-page ol {
+    list-style: decimal;
+    padding-left: 20px;
+  }
+  .install-page li,
+  .install-page section p {
+    font-size: 13px;
+    line-height: 1.9;
+  }
+  .install-page section p + p {
+    margin-top: 8px;
+  }
+}

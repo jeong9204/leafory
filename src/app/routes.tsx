@@ -1,11 +1,7 @@
 import type { RouteObject } from 'react-router'
 import { SetupPage } from '../pages/SetupPage'
 import { PlantDetailPage } from '../pages/PlantDetailPage'
-import { PlantEditorPage } from '../pages/PlantEditorPage'
-import { CareEditorPage } from '../pages/CareEditorPage'
 import { HomePage } from '../pages/HomePage'
-import { DiaryEditorPage } from '../pages/DiaryEditorPage'
-import { DiaryDetailPage } from '../pages/DiaryDetailPage'
 import { DataFeedback } from '../components/plants/DataFeedback'
 import { AppLayout } from './AppLayout'
 
@@ -15,17 +11,49 @@ export const routes: RouteObject[] = [
     hydrateFallbackElement: <DataFeedback />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'plants/new', element: <PlantEditorPage /> },
-      { path: 'plants/:id/edit', element: <PlantEditorPage /> },
-      { path: 'plants/:id/care/new', element: <CareEditorPage /> },
-      { path: 'plants/:id/care/:eventId/edit', element: <CareEditorPage /> },
+      {
+        path: 'plants/new',
+        lazy: async () => ({
+          Component: (await import('../pages/PlantEditorPage')).PlantEditorPage,
+        }),
+      },
+      {
+        path: 'plants/:id/edit',
+        lazy: async () => ({
+          Component: (await import('../pages/PlantEditorPage')).PlantEditorPage,
+        }),
+      },
+      {
+        path: 'plants/:id/care/new',
+        lazy: async () => ({
+          Component: (await import('../pages/CareEditorPage')).CareEditorPage,
+        }),
+      },
+      {
+        path: 'plants/:id/care/:eventId/edit',
+        lazy: async () => ({
+          Component: (await import('../pages/CareEditorPage')).CareEditorPage,
+        }),
+      },
       { path: 'plants/:id', element: <PlantDetailPage /> },
       {
         path: 'plants/:id/diary/new',
-        element: <DiaryEditorPage />,
+        lazy: async () => ({
+          Component: (await import('../pages/DiaryEditorPage')).DiaryEditorPage,
+        }),
       },
-      { path: 'plants/:id/diary/:entryId', element: <DiaryDetailPage /> },
-      { path: 'plants/:id/diary/:entryId/edit', element: <DiaryEditorPage /> },
+      {
+        path: 'plants/:id/diary/:entryId',
+        lazy: async () => ({
+          Component: (await import('../pages/DiaryDetailPage')).DiaryDetailPage,
+        }),
+      },
+      {
+        path: 'plants/:id/diary/:entryId/edit',
+        lazy: async () => ({
+          Component: (await import('../pages/DiaryEditorPage')).DiaryEditorPage,
+        }),
+      },
       {
         path: 'backup',
         lazy: async () => ({
@@ -36,6 +64,12 @@ export const routes: RouteObject[] = [
         path: 'calendar',
         lazy: async () => ({
           Component: (await import('../pages/CalendarPage')).CalendarPage,
+        }),
+      },
+      {
+        path: 'install',
+        lazy: async () => ({
+          Component: (await import('../pages/InstallPage')).InstallPage,
         }),
       },
       { path: 'records', element: <SetupPage title="기록 목록" /> },

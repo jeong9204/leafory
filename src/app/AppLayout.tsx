@@ -1,4 +1,5 @@
 import { Link, Outlet, useLocation, useMatch } from 'react-router'
+import { PwaStatus } from '../pwa/PwaStatus'
 import { BottomNavigation } from '../components/BottomNavigation'
 
 export function AppLayout() {
@@ -15,12 +16,14 @@ export function AppLayout() {
     isDetail ||
     isForm ||
     pathname === '/backup' ||
-    pathname === '/calendar'
+    pathname === '/calendar' ||
+    pathname === '/install'
   return (
     <div className={`app-shell ${isForm ? 'form-shell' : ''}`}>
       <a href="#main-content" className="skip-link">
         본문으로 건너뛰기
       </a>
+      <PwaStatus canUpdate={!isForm && pathname !== '/backup'} />
       {!hasOwnHeader && (
         <header className="px-5 pt-6">
           <Link

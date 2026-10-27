@@ -1,4 +1,11 @@
-import { ChevronRight, NotebookText, Sprout, Plus, Archive } from 'lucide-react'
+import {
+  ChevronRight,
+  NotebookText,
+  Sprout,
+  Plus,
+  Archive,
+  Download,
+} from 'lucide-react'
 import { Link } from 'react-router'
 import { useCallback, useEffect, useState } from 'react'
 import { PlantCard } from '../components/home/PlantCard'
@@ -163,6 +170,9 @@ export function HomePage() {
             ))}
           </ul>
         </section>
+        <Link to="/install" className="backup-home-link">
+          <Download aria-hidden="true" />홈 화면 설치·오프라인 안내
+        </Link>
         <Link to="/backup" className="backup-home-link">
           <Archive aria-hidden="true" />
           데이터 백업·복원
