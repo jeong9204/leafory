@@ -37,6 +37,13 @@ export const routes: RouteObject[] = [
       },
       { path: 'plants/:id', element: <PlantDetailPage /> },
       {
+        path: 'plants/:id/compare',
+        lazy: async () => ({
+          Component: (await import('../pages/GrowthComparisonPage'))
+            .GrowthComparisonPage,
+        }),
+      },
+      {
         path: 'plants/:id/diary/new',
         lazy: async () => ({
           Component: (await import('../pages/DiaryEditorPage')).DiaryEditorPage,

@@ -39,6 +39,7 @@ describe('Vercel Preview 설정 계약', () => {
       '/plants/new',
       '/plants/example',
       '/plants/example/edit',
+      '/plants/example/compare',
       '/plants/example/diary/new',
       '/plants/example/diary/entry',
       '/plants/example/diary/entry/edit',

@@ -18,6 +18,7 @@ describe('기본 라우팅', () => {
     ['/', '나의 작은 정원'],
     ['/plants/new', '새로운 초록 친구'],
     [`/plants/${fixtureIds[0]}`, '괴마옥'],
+    [`/plants/${fixtureIds[0]}/compare`, '성장 비교'],
     ['/plants/plant-1', '식물을 찾을 수 없습니다'],
     [`/plants/${fixtureIds[0]}/diary/new`, '일기 작성'],
     ['/records', '기록 목록'],

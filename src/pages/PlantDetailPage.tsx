@@ -3,6 +3,7 @@ import {
   ChevronLeft,
   ChevronRight,
   MoreHorizontal,
+  Images,
   NotebookText,
   Pencil,
   Trash2,
@@ -114,6 +115,10 @@ export function PlantDetailPage() {
           일기 쓰기
         </Link>
       </div>
+      <Link to={`/plants/${plant.id}/compare`} className="detail-growth-link">
+        <Images aria-hidden="true" size={18} />
+        성장 비교
+      </Link>
       <PlantRecordTabs
         key={plant.id}
         plantId={plant.id}

@@ -1,0 +1,188 @@
+@reference '../index.css';
+@layer components {
+  .growth-page {
+    padding: calc(20px + env(safe-area-inset-top))
+      max(16px, env(safe-area-inset-right)) 0
+      max(16px, env(safe-area-inset-left));
+  }
+  .growth-page .editor-header p {
+    overflow-wrap: anywhere;
+  }
+  .growth-page .editor-header > a {
+    min-width: 44px;
+  }
+  .growth-refresh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    margin-left: auto;
+    color: var(--color-forest);
+    cursor: pointer;
+  }
+  .growth-refresh svg {
+    width: 20px;
+    height: 20px;
+  }
+  .growth-help {
+    margin-block: 10px 16px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--color-brown);
+  }
+  .growth-content {
+    margin-top: 24px;
+  }
+  .growth-heading {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .growth-heading h2 {
+    font-family: var(--font-sans);
+    font-size: 21px;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    color: #171f19;
+  }
+  .growth-heading h2:focus {
+    outline: none;
+  }
+  .growth-heading > span {
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: var(--color-forest);
+  }
+  .growth-notice {
+    padding: 16px;
+    margin-block: 14px;
+    border: 1px solid #dce3cf;
+    border-radius: 14px;
+    background: #edf1e5;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+  .growth-selection-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-block: 16px;
+  }
+  .growth-selection-actions .secondary-button {
+    padding-inline: 12px;
+    font-size: 13px;
+  }
+  .growth-text-button {
+    min-height: 44px;
+    padding: 8px;
+    font-size: 12px;
+    color: var(--color-forest);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .growth-photo-list,
+  .growth-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .growth-photo-list li,
+  .growth-pair figure {
+    min-width: 0;
+  }
+  .growth-photo-choice {
+    position: relative;
+    display: block;
+    height: 100%;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .growth-photo-choice.is-selected {
+    border-color: var(--color-forest);
+  }
+  .growth-photo-choice input {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 22px;
+    height: 22px;
+    accent-color: var(--color-forest);
+    cursor: pointer;
+  }
+  .growth-thumbnail {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+  .growth-photo-meta,
+  .growth-pair figcaption {
+    display: grid;
+    gap: 5px;
+    padding: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .growth-photo-meta time,
+  .growth-pair time {
+    font-weight: 600;
+    color: var(--color-forest);
+  }
+  .growth-photo-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+  }
+  .growth-compare-button {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .growth-pair figure {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .growth-comparison-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: #e9ede2;
+  }
+  .growth-comparison-photo {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .growth-photo-label {
+    color: var(--color-brown);
+    font-size: 11px;
+  }
+  .growth-page button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  .growth-page :is(button, input):focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+  }
+  .growth-photo-choice:has(input:focus-visible) {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+  }
+}

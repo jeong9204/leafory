@@ -10,10 +10,12 @@ export function AppLayout() {
   const isEdit = Boolean(useMatch('/plants/:id/edit'))
   const isCare = Boolean(useMatch('/plants/:id/care/*'))
   const isDiary = Boolean(useMatch('/plants/:id/diary/*'))
+  const isGrowth = Boolean(useMatch('/plants/:id/compare'))
   const isForm = isEdit || pathname === '/plants/new' || isCare || isDiary
   const hasOwnHeader =
     isHome ||
     isDetail ||
+    isGrowth ||
     isForm ||
     pathname === '/backup' ||
     pathname === '/calendar' ||
