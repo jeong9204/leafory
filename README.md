@@ -182,5 +182,6 @@ npm run dev:lan -- --port 5173 --strictPort
 ```
 
 휴대폰의 설치/SW 테스트에는 신뢰할 수 있는 HTTPS가 필요합니다.
+[Vercel Preview 설정·접근 보호·실기기 검증 순서](docs/vercel-preview.md),
 [모바일 LAN·HTTPS·Safari/Chrome 체크리스트](docs/mobile-testing.md),
 [Phase 8 구현·업데이트 정책·번들 비교·검증/캡처](docs/phase-8.md)를 참고하세요.

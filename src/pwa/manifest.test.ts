@@ -33,9 +33,11 @@ describe('Leafory 설치 메타데이터', () => {
       ]),
     )
   })
-  it('HTML에서 manifest와 Apple touch icon을 연결한다', () => {
+  it('같은 출처 Manifest를 인증 세션과 함께 요청하고 Apple touch icon을 연결한다', () => {
     const html = readFileSync('index.html', 'utf8')
-    expect(html).toContain('rel="manifest" href="/manifest.webmanifest"')
+    const link = html.match(/<link\s[^>]*rel="manifest"[^>]*>/)?.[0]
+    expect(link).toContain('href="/manifest.webmanifest"')
+    expect(link).toContain('crossorigin="use-credentials"')
     expect(html).toContain('rel="apple-touch-icon"')
   })
 })
