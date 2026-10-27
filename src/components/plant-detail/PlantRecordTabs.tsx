@@ -84,17 +84,21 @@ export function PlantRecordTabs({
                     width="160"
                     height="160"
                   />
-                  {entry.diaryEntryId && plantId && (
-                    <Link
-                      className="diary-gallery-link"
-                      to={`/plants/${plantId}/diary/${entry.diaryEntryId}`}
-                    >
-                      일기 보기
-                    </Link>
-                  )}
                   <figcaption>
                     <time dateTime={entry.date}>{fullDate(entry.date)}</time>
-                    <span>{entry.title}</span>
+                    <span className="detail-gallery-title" title={entry.title}>
+                      {entry.title}
+                    </span>
+                    <div className="detail-gallery-action">
+                      {entry.diaryEntryId && plantId && (
+                        <Link
+                          className="diary-gallery-link"
+                          to={`/plants/${plantId}/diary/${entry.diaryEntryId}`}
+                        >
+                          일기 보기
+                        </Link>
+                      )}
+                    </div>
                   </figcaption>
                 </figure>
               </li>

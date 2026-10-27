@@ -187,6 +187,9 @@
     border-radius: 999px;
     background: #f0ece2;
   }
+  .detail-page > .detail-actions + .detail-records {
+    margin-top: 16px;
+  }
   .detail-tabs button {
     min-height: 38px;
     border-radius: 999px;
@@ -315,23 +318,41 @@
     gap: 10px;
   }
   .detail-gallery figure {
+    display: grid;
+    grid-template-rows: auto minmax(132px, 1fr);
+    height: 100%;
     overflow: hidden;
     border-radius: 14px;
   }
+  .detail-gallery li {
+    min-width: 0;
+  }
   .detail-gallery img {
+    display: block;
     width: 100%;
     aspect-ratio: 1;
     height: auto;
     object-fit: cover;
   }
   .detail-gallery figcaption {
-    padding: 9px;
+    display: grid;
+    grid-template-rows: auto 3em 44px;
+    gap: 6px;
+    min-width: 0;
+    padding: 10px;
     font-size: 12px;
+    line-height: 1.5;
     color: #344b36;
+  }
+  .detail-gallery-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: anywhere;
   }
   .detail-gallery time {
     display: block;
-    margin-bottom: 3px;
     font-size: 10px;
     color: #827466;
   }

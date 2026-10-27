@@ -253,6 +253,21 @@
   .editor-fields textarea {
     resize: vertical;
   }
+  /* Avoid iOS temporal inputs adding native padding to a percentage width. */
+  .editor-fields input[type='date'][name='acquiredAt'] {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    justify-self: stretch;
+    appearance: none;
+  }
+  .editor-fields input[name='acquiredAt']::-webkit-date-and-time-value {
+    min-width: 0;
+    min-height: 1.45em;
+    padding: 0;
+    text-align: left;
+  }
   .plant-editor :is(input, select, textarea, button):focus-visible,
   .delete-dialog button:focus-visible,
   .plant-manage-menu button:focus-visible {
