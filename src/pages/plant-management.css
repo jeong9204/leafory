@@ -118,7 +118,9 @@
     line-height: 1.6;
   }
   .plant-editor-page {
-    padding: max(20px, env(safe-area-inset-top)) 16px 0;
+    padding: calc(20px + env(safe-area-inset-top))
+      max(16px, env(safe-area-inset-right)) 0
+      max(16px, env(safe-area-inset-left));
   }
   .editor-header {
     display: flex;
@@ -228,6 +230,9 @@
   }
   .editor-fields label:not(:first-child) {
     margin-top: 19px;
+  }
+  .editor-fields .scientific-suggestions + label {
+    margin-top: 12px;
   }
   .editor-fields input,
   .editor-fields select,
@@ -381,7 +386,8 @@
   }
   @media (max-width: 359px) {
     .plant-editor-page {
-      padding-inline: 12px;
+      padding-inline: max(12px, env(safe-area-inset-left))
+        max(12px, env(safe-area-inset-right));
     }
     .editor-photo-section,
     .editor-fields {
