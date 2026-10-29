@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 import type { Plant } from '../../domain/models'
 import { useRepositories } from '../../app/repository-context'
+import { RepositoryError } from '../../domain/errors'
 export function DeletePlantDialog({
   plant,
   open,
@@ -40,9 +41,13 @@ export function DeletePlantDialog({
       await repositories.plants.delete(plant.id)
       invalidate()
       if (alive.current) navigate('/', { replace: true })
-    } catch {
+    } catch (cause) {
       if (alive.current)
-        setError('삭제하지 못했어요. 잠시 후 다시 시도해 주세요.')
+        setError(
+          cause instanceof RepositoryError && cause.code === 'CONFLICT'
+            ? cause.message
+            : '삭제하지 못했어요. 잠시 후 다시 시도해 주세요.',
+        )
     } finally {
       lock.current = false
       if (alive.current) setBusy(false)

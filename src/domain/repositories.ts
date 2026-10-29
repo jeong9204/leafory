@@ -10,6 +10,7 @@ import type {
   UUID,
   LocalDate,
   IsoDateTime,
+  GrowLightTimer,
 } from './models'
 
 export interface EntityRepository<T extends { id: UUID; createdAt: string }> {
@@ -37,6 +38,14 @@ export interface PlantQueries {
   totalRecordCount(plantId: UUID): Promise<number>
 }
 export interface Repositories {
+  lightTimer: {
+    get(): Promise<GrowLightTimer | undefined>
+    start(plantId: UUID): Promise<GrowLightTimer>
+    pause(sessionId: UUID, revision: number): Promise<GrowLightTimer>
+    resume(sessionId: UUID, revision: number): Promise<GrowLightTimer>
+    finish(sessionId: UUID, revision: number): Promise<CareEvent>
+    discard(sessionId: UUID, revision: number): Promise<void>
+  }
   backup: {
     snapshot(): Promise<LocalDataSnapshot>
     counts(): Promise<DataCounts>

@@ -5,14 +5,16 @@ import type {
   DiaryEntry,
   DiaryPhoto,
   Plant,
+  GrowLightTimer,
 } from '../../domain/models'
 
-/** Constructor defines schema only; app code does not instantiate/open this database yet. */
+/** Additive migrations only; never reset existing user tables. */
 export class LeaforyDatabase extends Dexie {
   plants!: Table<Plant, string>
   diaries!: Table<DiaryEntry, string>
   photos!: Table<DiaryPhoto, string>
   careEvents!: Table<CareEvent, string>
+  timerState!: Table<GrowLightTimer, string>
 
   constructor(name = 'leafory') {
     super(name)
@@ -22,5 +24,6 @@ export class LeaforyDatabase extends Dexie {
       photos: 'id, plantId, entryId, [plantId+sortOrder]',
       careEvents: 'id, plantId, [plantId+occurredAt], [plantId+eventType]',
     })
+    this.version(2).stores({ timerState: 'id, plantId' })
   }
 }

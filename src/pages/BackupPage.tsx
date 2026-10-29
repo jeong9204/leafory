@@ -68,6 +68,11 @@ export function BackupPage() {
   const { repositories, invalidate } = useRepositories()
   const query = useCallback(() => repositories.backup.counts(), [repositories])
   const { result, reload } = useRepositoryQuery(query)
+  const timerQuery = useCallback(
+    () => repositories.lightTimer.get(),
+    [repositories],
+  )
+  const { result: timerResult } = useRepositoryQuery(timerQuery)
   const [file, setFile] = useState<Awaited<ReturnType<typeof exportBackup>>>()
   const [prepared, setPrepared] = useState<PreparedBackup>()
   const [busy, setBusy] = useState('')
@@ -213,6 +218,10 @@ export function BackupPage() {
           전체 식물·일기·사진·관리 기록을 ZIP 파일로 만들어요. 백업은 암호화되지
           않으니 안전한 곳에 보관해 주세요.
         </p>
+        <p className="field-hint">
+          진행 중·일시정지 타이머는 ZIP에 포함되지 않아요. 타이머를 완료한 뒤
+          백업해 주세요. 타이머가 남아 있으면 전체 복원은 할 수 없어요.
+        </p>
         <button
           type="button"
           className="primary-button"
@@ -235,6 +244,14 @@ export function BackupPage() {
         <p className="backup-risk">
           복원 전 위의 내보내기로 현재 데이터를 먼저 백업하는 것을 권장해요.
         </p>
+        {timerResult.status === 'success' && timerResult.data && (
+          <p className="field-hint">
+            전체 복원 전에 진행 중인 타이머를 종료하거나 취소해 주세요.{' '}
+            <Link to={`/plants/${timerResult.data.plantId}`}>
+              타이머 식물로 이동
+            </Link>
+          </p>
+        )}
         <button
           type="button"
           className="secondary-button"

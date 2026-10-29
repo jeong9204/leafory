@@ -169,7 +169,7 @@ export function backupErrorMessage(error: unknown) {
   }
   return error instanceof Error &&
     'code' in error &&
-    error.code === 'VALIDATION'
+    (error.code === 'VALIDATION' || error.code === 'CONFLICT')
     ? error.message
     : '작업을 완료하지 못했어요. 복원 중이었다면 기존 데이터는 그대로 유지돼요. 파일과 저장 공간을 확인하고 다시 시도해 주세요.'
 }

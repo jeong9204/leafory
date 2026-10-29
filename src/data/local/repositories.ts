@@ -22,6 +22,8 @@ import {
   validateUuid,
 } from '../../domain/validation'
 import type { LeaforyDatabase } from './database'
+import { createLightTimerRepository } from './light-timer'
+import { TIMER_KEY } from '../../domain/light-timer'
 
 type Stored = { id: string; createdAt: string; updatedAt?: string }
 
@@ -56,7 +58,8 @@ function newest<T extends { id: string; createdAt: string }>(a: T, b: T) {
 
 /** No singleton: construction is explicit and independent from React and the mock UI. */
 export function createLocalRepositories(db: LeaforyDatabase): Repositories {
-  const tables = [db.plants, db.diaries, db.photos, db.careEvents]
+  const dataTables = [db.plants, db.diaries, db.photos, db.careEvents]
+  const tables = [...dataTables, db.timerState]
   const read = <T>(work: () => Promise<T>) =>
     guard(() => db.transaction('r', tables, work))
   const write = <T>(work: () => Promise<T>) =>
@@ -155,6 +158,11 @@ export function createLocalRepositories(db: LeaforyDatabase): Repositories {
       }
     },
     remove: async (plant) => {
+      if ((await db.timerState.get(TIMER_KEY))?.plantId === plant.id)
+        throw new RepositoryError(
+          'CONFLICT',
+          '식물등 타이머를 종료하거나 취소한 뒤 식물을 삭제해 주세요.',
+        )
       await db.diaries.where('plantId').equals(plant.id).delete()
       await db.photos.where('plantId').equals(plant.id).delete()
       await db.careEvents.where('plantId').equals(plant.id).delete()
@@ -222,6 +230,9 @@ export function createLocalRepositories(db: LeaforyDatabase): Repositories {
     )[0]?.occurredAt
   }
   const repositories: Repositories = {
+    lightTimer: createLightTimerRepository(db, read, write, (input) =>
+      careEvents.create(input),
+    ),
     backup: {
       snapshot: () =>
         read(async () => {
@@ -243,6 +254,11 @@ export function createLocalRepositories(db: LeaforyDatabase): Repositories {
       replace: (data) =>
         write(async () => {
           validateSnapshot(data)
+          if (await db.timerState.count())
+            throw new RepositoryError(
+              'CONFLICT',
+              '실행 중이거나 일시정지한 식물등 타이머를 종료하거나 취소한 뒤 복원해 주세요.',
+            )
           // Preserve IDs and timestamp instants; normalize ISO representation like normal CRUD.
           const timestamps = <
             T extends { createdAt: string; updatedAt?: string },
@@ -256,7 +272,7 @@ export function createLocalRepositories(db: LeaforyDatabase): Repositories {
               : { updatedAt: utc(row.updatedAt) }),
           })
           // Clearing and inserting all tables share this transaction.
-          for (const table of tables) await table.clear()
+          for (const table of dataTables) await table.clear()
           await db.plants.bulkAdd(data.plants.map(timestamps))
           await db.diaries.bulkAdd(data.diaries.map(timestamps))
           await db.photos.bulkAdd(

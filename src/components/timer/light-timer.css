@@ -1,0 +1,92 @@
+@reference '../../index.css';
+@layer components {
+  .light-timer-card {
+    min-width: 0;
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid #e1e6d8;
+    border-radius: 18px;
+  }
+  .light-timer-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .light-timer-heading h2 {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--color-forest);
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .light-timer-heading svg {
+    width: 20px;
+    height: 20px;
+  }
+  .light-timer-heading > span {
+    padding: 4px 9px;
+    border-radius: 999px;
+    color: var(--color-forest);
+    background: #e8edda;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .light-timer-clock {
+    display: block;
+    margin-top: 12px;
+    font-size: clamp(28px, 9vw, 40px);
+    line-height: 1.35;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.03em;
+    color: #354f32;
+    overflow-wrap: anywhere;
+  }
+  .light-timer-help {
+    margin-block: 8px 12px;
+    font-size: 12px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+  .light-timer-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .light-timer-actions > :only-child {
+    grid-column: 1 / -1;
+  }
+  .light-timer-card :is(.primary-button, .secondary-button) {
+    font-size: 13px;
+    padding-inline: 8px;
+  }
+  .light-timer-discard {
+    display: block;
+    min-height: 44px;
+    margin: 4px auto -6px;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .light-timer-card button:disabled {
+    cursor: wait;
+    opacity: 0.6;
+  }
+  .light-timer-card button:focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+  }
+  .light-timer-dialog .light-timer-confirm-time {
+    color: var(--color-forest);
+    font-size: 28px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+  }
+  .light-timer-card + .detail-records {
+    margin-top: 16px;
+  }
+}

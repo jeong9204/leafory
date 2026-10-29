@@ -45,6 +45,19 @@ export interface CareEvent {
   updatedAt: IsoDateTime
 }
 
+/** Transient local session; completed care records keep their existing shape. */
+export interface GrowLightTimer {
+  id: 'grow-light'
+  sessionId: UUID
+  plantId: UUID
+  startedAt: IsoDateTime
+  status: 'running' | 'paused'
+  runningSince?: IsoDateTime
+  accumulatedMs: number
+  revision: number
+  updatedAt: IsoDateTime
+}
+
 export type CreateInput<T extends { id: UUID; createdAt: string }> = Omit<
   T,
   'id' | 'createdAt' | 'updatedAt'

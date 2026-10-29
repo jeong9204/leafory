@@ -17,6 +17,7 @@ import { useRepositories } from '../app/repository-context'
 import { loadPlant } from '../app/plant-service'
 import { useRepositoryQuery } from '../hooks/useRepositoryQuery'
 import { RepositoryError } from '../domain/errors'
+import { LightTimerCard } from '../components/timer/LightTimerCard'
 import './plant-detail.css'
 
 export function PlantDetailPage() {
@@ -119,6 +120,7 @@ export function PlantDetailPage() {
         <Images aria-hidden="true" size={18} />
         성장 비교
       </Link>
+      <LightTimerCard plantId={plant.id} />
       <PlantRecordTabs
         key={plant.id}
         plantId={plant.id}

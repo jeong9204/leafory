@@ -79,7 +79,7 @@ describe('백업 관리 UI', () => {
     const user = await select()
     await user.click(screen.getByRole('button', { name: '복원 내용 확인' }))
     await screen.findByRole('dialog')
-    await user.click(screen.getByRole('checkbox'))
+    await user.click(await screen.findByRole('checkbox'))
     let release!: () => void
     const gate = new Promise<void>((resolve) => {
       release = resolve
@@ -126,7 +126,7 @@ describe('백업 관리 UI', () => {
     )
     await user.click(screen.getByRole('button', { name: '복원 내용 확인' }))
     await screen.findByRole('dialog')
-    await user.click(screen.getByRole('checkbox'))
+    await user.click(await screen.findByRole('checkbox'))
     await user.click(screen.getByRole('button', { name: '전체 교체 복원' }))
     expect(await screen.findByRole('alert')).toHaveTextContent(
       '저장 공간이 부족',
@@ -162,5 +162,26 @@ describe('백업 관리 UI', () => {
     ).toHaveAttribute('download', 'leafory-backup.zip')
     view.unmount()
     expect(revoke).toHaveBeenCalled()
+  })
+  it('타이머가 있으면 복원을 차단하고 소유 식물의 종료·취소 화면으로 이동한다', async () => {
+    const plant = (await context.repos.plants.list())[0]
+    await context.repos.lightTimer.start(plant.id)
+    const user = await select()
+    await user.click(screen.getByRole('button', { name: '복원 내용 확인' }))
+    await user.click(await screen.findByRole('checkbox'))
+    await user.click(screen.getByRole('button', { name: '전체 교체 복원' }))
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      '타이머를 종료하거나 취소',
+    )
+    expect(await context.repos.plants.list()).toHaveLength(2)
+    await user.click(screen.getByRole('link', { name: '타이머 식물로 이동' }))
+    await user.click(
+      await screen.findByRole('button', { name: '기록 없이 취소' }),
+    )
+    await user.click(
+      await screen.findByRole('button', { name: '기록 없이 종료' }),
+    )
+    await screen.findByText('기록 없이 타이머를 종료했어요.')
+    expect(await context.repos.lightTimer.get()).toBeUndefined()
   })
 })

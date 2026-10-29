@@ -402,7 +402,7 @@ describe('일괄 저장과 DB 수명', () => {
       expect(await (await second.photos.getById(image.id))?.blob.text()).toBe(
         'photo-bytes',
       )
-      expect(reopened.verno).toBe(1)
+      expect(reopened.verno).toBe(2)
     } finally {
       reopened.close()
     }
