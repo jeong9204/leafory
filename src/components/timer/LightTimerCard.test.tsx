@@ -75,7 +75,8 @@ describe('식물등 타이머 실제 Repository 화면 연결', () => {
     })
     await waitFor(() => expect(within(summary).getByText('2분')).toBeVisible())
     expect(within(summary).getByText('1개')).toBeVisible()
-    expect(await screen.findByText(/식물등 타이머 자동 기록/)).toBeVisible()
+    expect(await screen.findByText('타이머 기록')).toBeVisible()
+    expect(screen.getByText('실제 사용 시간 2분 1초')).toBeVisible()
   })
   it('화면을 다시 열면 실행 시간을 복구하고 종료 확인을 닫으면 일시정지로 남긴다', async () => {
     const view = open()

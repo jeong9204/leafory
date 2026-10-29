@@ -5,6 +5,7 @@ import type { PlantTimelineEntry } from '../../app/plant-service'
 import { PlantPhoto } from '../plants/PlantPhoto'
 import { conditionLabels } from '../../app/diary-service'
 import { fullDate } from '../../lib/dates'
+import { TimerRecordDescription } from './TimerRecordDescription'
 
 const eventIcons = {
   growth: Sprout,
@@ -76,7 +77,11 @@ export function PlantTimeline({
                     {entry.photoCount ?? 0}장
                   </p>
                 )}
-                <p>{entry.description}</p>
+                {entry.kind === 'light' && entry.careEventId ? (
+                  <TimerRecordDescription memo={entry.description} />
+                ) : (
+                  <p>{entry.description}</p>
+                )}
               </div>
               {entry.diaryEntryId && plantId && (
                 <div className="care-event-actions">

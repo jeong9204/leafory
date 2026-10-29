@@ -509,3 +509,51 @@
     }
   }
 }
+
+@layer components {
+  .timer-record-description {
+    margin-top: 7px;
+    min-width: 0;
+  }
+  .timer-record-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #e8edda;
+    color: var(--color-forest);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .detail-event-card .timer-record-range {
+    margin-top: 7px;
+    color: #465e45;
+    font-weight: 500;
+  }
+  .detail-event-card .timer-record-user-memo {
+    margin-top: 8px;
+    white-space: pre-wrap;
+  }
+  .timer-record-details {
+    margin-top: 5px;
+    color: #756655;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+  }
+  .timer-record-details summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    width: fit-content;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .timer-record-details summary:focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 2px;
+  }
+  .detail-event-card .timer-record-details p {
+    white-space: pre-wrap;
+    font-size: 11px;
+  }
+}
