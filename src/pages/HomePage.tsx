@@ -1,27 +1,26 @@
 import {
-  ChevronRight,
-  NotebookText,
-  Sprout,
-  Plus,
   Archive,
+  ArrowUpRight,
   Download,
+  Plus,
+  Sprout,
+  NotebookText,
 } from 'lucide-react'
 import { Link } from 'react-router'
 import { useCallback, useEffect, useState } from 'react'
-import { PlantCard } from '../components/home/PlantCard'
-import { loadHome } from '../app/plant-service'
+import { loadBookshelf } from '../app/bookshelf-service'
 import { useRepositories } from '../app/repository-context'
 import { useRepositoryQuery } from '../hooks/useRepositoryQuery'
 import { localDateKey } from '../domain/calendar'
 import { DataFeedback } from '../components/plants/DataFeedback'
-import { PlantPhoto } from '../components/plants/PlantPhoto'
 import { fullDate } from '../lib/dates'
-
+import { Bookshelf, PixelDecoration } from '../components/bookshelf/Bookshelf'
+import './bookshelf-home.css'
 export function HomePage() {
   const [today, setToday] = useState(localDateKey)
   useEffect(() => {
     const refresh = () => setToday(localDateKey())
-    const timer = window.setInterval(refresh, 60_000)
+    const timer = window.setInterval(refresh, 60000)
     window.addEventListener('focus', refresh)
     return () => {
       window.clearInterval(timer)
@@ -30,154 +29,104 @@ export function HomePage() {
   }, [])
   const { repositories } = useRepositories()
   const query = useCallback(
-    () => loadHome(repositories, today),
+    () => loadBookshelf(repositories, today),
     [repositories, today],
   )
   const { result, reload } = useRepositoryQuery(query)
   if (result.status === 'loading') return <DataFeedback />
   if (result.status === 'error') return <DataFeedback error retry={reload} />
   const { views, records, weekCount } = result.data
-
   return (
-    <>
-      <header className="home-hero">
-        <div className="hero-copy">
-          <p className="hero-date">{fullDate(today)}</p>
-          <h1>나의 작은 정원</h1>
-          <p className="hero-greeting">
-            오늘도 식물들과 함께하는 하루 <Sprout aria-hidden="true" />
-          </p>
-        </div>
-        <p className="hero-note" aria-hidden="true">
-          작은 식물이
-          <br />큰 행복을
-          <br />
-          가져다줘요
-          <br />
-          <span>···</span>
-        </p>
-      </header>
-      <div className="home-content">
-        <section aria-label="나의 정원 요약" className="summary-card surface">
-          <a
-            href="#my-plants"
-            className="summary-item"
-            aria-label={`함께하는 식물 ${views.length}`}
-          >
-            <span className="summary-icon plants">
-              <Sprout aria-hidden="true" />
-            </span>
-            <span>
-              <span className="summary-label">함께하는 식물</span>
-              <span className="summary-value">
-                <strong>{views.length}</strong>
-                <ChevronRight aria-hidden="true" />
-              </span>
-            </span>
-          </a>
-          <Link
-            to="/records"
-            className="summary-item"
-            aria-label={`이번 주 기록 ${weekCount}`}
-          >
-            <span className="summary-icon records">
-              <NotebookText aria-hidden="true" />
-            </span>
-            <span>
-              <span className="summary-label">이번 주 기록</span>
-              <span className="summary-value">
-                <strong>{weekCount}</strong>
-                <ChevronRight aria-hidden="true" />
-              </span>
-            </span>
+    <div className="bookshelf-home">
+      <header className="garden-header">
+        <PixelDecoration art="ivy" className="header-ivy" />
+        <div className="garden-header-top">
+          <span className="garden-wordmark">LEAFORY</span>
+          <time dateTime={today}>{fullDate(today)}</time>
+          <Link to="/backup" aria-label="백업 관리">
+            <Archive aria-hidden="true" />
           </Link>
-        </section>
-        <section
-          id="my-plants"
-          aria-labelledby="plants-heading"
-          className="home-section"
-        >
-          <div className="section-heading">
-            <h2 id="plants-heading">내 식물</h2>
-            <Link to="/plants/new" className="add-plant-link">
-              <Plus aria-hidden="true" />
-              식물 추가
-            </Link>
-          </div>
-          {views.length ? (
-            <ul
-              id="plant-list"
-              aria-label="내 식물 목록"
-              className="plant-list"
-            >
-              {views.map((view) => (
-                <PlantCard key={view.plant.id} view={view} today={today} />
-              ))}
-            </ul>
-          ) : (
-            <div className="empty-plants surface">
-              <Sprout aria-hidden="true" />
-              <h3>첫 초록 친구를 만나 보세요</h3>
-              <p>
-                함께 자랄 식물을 등록하고
-                <br />
-                나만의 작은 정원을 시작해요.
-              </p>
-              <Link to="/plants/new" className="primary-button">
-                <Plus aria-hidden="true" />첫 식물 등록
-              </Link>
-            </div>
-          )}
-        </section>
-        <section
-          aria-labelledby="records-heading"
-          className="home-section recent-section"
-        >
-          <div className="section-heading">
-            <h2 id="records-heading">최근 기록</h2>
-            <Link to="/records">
-              모두 보기
-              <ChevronRight aria-hidden="true" />
-            </Link>
-          </div>
-          {!records.length && (
-            <p className="empty-records surface">
-              아직 기록이 없어요. 식물과 함께할 이야기를 기다려요.
-            </p>
-          )}
-          <ul className="recent-list">
-            {records.slice(0, 2).map((record) => (
+        </div>
+        <p className="garden-eyebrow">A LITTLE GREEN, A LITTLE JOY</p>
+        <h1>
+          <Sprout aria-hidden="true" />
+          나의 작은 정원
+          <Sprout aria-hidden="true" />
+        </h1>
+        <p className="garden-greeting">오늘도, 식물이 있는 하루</p>
+        <div className="garden-summary" aria-label="나의 정원 요약">
+          <a href="#my-plants" aria-label={`함께하는 식물 ${views.length}`}>
+            <Sprout aria-hidden="true" />
+            함께하는 식물 <strong>{views.length}</strong>
+          </a>
+          <span aria-hidden="true">·</span>
+          <Link to="/records" aria-label={`이번 주 기록 ${weekCount}`}>
+            <NotebookText aria-hidden="true" />
+            이번 주 기록 <strong>{weekCount}</strong>
+          </Link>
+        </div>
+      </header>
+      <section
+        id="my-plants"
+        aria-labelledby="plants-heading"
+        className="garden-collection"
+      >
+        <div className="garden-collection-heading">
+          <h2 id="plants-heading">
+            내 식물 <span>{views.length}개의 초록 친구</span>
+          </h2>
+          <Link to="/plants/new">
+            <Plus aria-hidden="true" />
+            식물 추가
+          </Link>
+        </div>
+        <Bookshelf views={views} today={today} />
+        <p className="garden-caption">
+          화분을 눌러 식물의 이야기를 만나 보세요.
+          <br />
+          물방울 + 버튼으로 물주기를 기록해요. 자세한 관리는 화분을 눌러
+          확인해요.
+        </p>
+      </section>
+      <section className="garden-journal" aria-labelledby="records-heading">
+        <div>
+          <span className="garden-eyebrow">GARDEN NOTES</span>
+          <h2 id="records-heading">최근 기록</h2>
+          <Link to="/records">
+            모두 보기 <ArrowUpRight aria-hidden="true" />
+          </Link>
+        </div>
+        {records.length ? (
+          <ul>
+            {records.map((record) => (
               <li key={record.id}>
-                <Link
-                  to={`/plants/${record.plantId}`}
-                  className="record-card surface"
-                >
-                  <PlantPhoto
-                    blob={record.image}
-                    alt={record.imageAlt ?? '기록 사진'}
-                    width="64"
-                    height="64"
-                    className="record-photo"
-                  />
-                  <div className="min-w-0">
+                <Link to={`/plants/${record.plantId}`}>
+                  <NotebookText aria-hidden="true" />
+                  <span>
                     <time dateTime={record.date}>{fullDate(record.date)}</time>
-                    <h3>{record.title}</h3>
-                    <p>{record.description}</p>
-                  </div>
-                  <ChevronRight className="record-chevron" aria-hidden="true" />
+                    <strong>{record.title}</strong>
+                  </span>
+                  <ArrowUpRight aria-hidden="true" />
                 </Link>
               </li>
             ))}
           </ul>
-        </section>
-        <Link to="/install" className="backup-home-link">
+        ) : (
+          <p className="garden-journal-empty">
+            아직 기록이 없어요. 식물과 함께할 이야기를 기다려요.
+          </p>
+        )}
+      </section>
+      <footer className="garden-footer">
+        <Link to="/install">
           <Download aria-hidden="true" />홈 화면 설치·오프라인 안내
         </Link>
-        <Link to="/backup" className="backup-home-link">
+        <Link to="/backup">
           <Archive aria-hidden="true" />
           데이터 백업·복원
         </Link>
-      </div>
-    </>
+        <p>당신의 속도로, 초록과 함께.</p>
+      </footer>
+    </div>
   )
 }

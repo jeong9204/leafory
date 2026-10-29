@@ -1,0 +1,727 @@
+@reference '../index.css';
+@layer components {
+  .app-shell:has(.bookshelf-home) {
+    background: #e8cda5;
+  }
+  .bookshelf-home {
+    --garden-ink: #4e2e1b;
+    color: var(--garden-ink);
+    background: #ead2ad;
+    background-image: radial-gradient(
+      ellipse at 50% 0%,
+      #fff1cf99,
+      transparent 55%
+    );
+  }
+  .garden-header {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    text-align: center;
+    padding: calc(13px + env(safe-area-inset-top)) 16px 22px;
+    background:
+      radial-gradient(ellipse at 50% 70%, #fff0cc88, transparent 75%),
+      linear-gradient(#e4c49c, #edd2a9);
+    border-top: 4px solid #a16c43;
+  }
+  .garden-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: #7e5a3c;
+    font-size: 10px;
+  }
+  .garden-wordmark {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+  .garden-header-top a {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+  }
+  .garden-header-top svg {
+    width: 19px;
+    height: 19px;
+  }
+  .garden-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: #95704e;
+  }
+  .garden-header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0 7px;
+    font-weight: 700;
+    font-size: clamp(24px, 7vw, 33px);
+    letter-spacing: -0.06em;
+    line-height: 1.3;
+    color: #492913;
+    text-shadow: 1px 2px #fff0c944;
+  }
+  .garden-header h1 svg {
+    width: 18px;
+    height: 18px;
+    fill: #7b9148;
+    color: #576a35;
+  }
+  .garden-greeting {
+    color: #92704e;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .garden-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    font-size: 10px;
+  }
+  .garden-summary a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-height: 44px;
+  }
+  .garden-summary svg {
+    width: 13px;
+    height: 13px;
+    color: #718146;
+  }
+  .garden-summary strong {
+    font-size: 15px;
+    font-weight: 700;
+    margin-left: 2px;
+  }
+  .pixel-art {
+    display: block;
+    object-fit: contain;
+    image-rendering: pixelated;
+    pointer-events: none;
+    user-select: none;
+  }
+  .header-ivy {
+    position: absolute;
+    z-index: -1;
+    left: -6px;
+    top: 1px;
+    height: 170px;
+    width: 35px;
+    opacity: 0.8;
+  }
+  .garden-collection {
+    background: #e3c49a;
+  }
+  .garden-collection-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px 10px;
+    gap: 6px;
+  }
+  .garden-collection-heading h2 {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .garden-collection-heading h2 span {
+    display: block;
+    font-size: 9px;
+    font-weight: 400;
+    color: #8b694c;
+    margin-top: 2px;
+  }
+  .garden-collection-heading > a {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    min-height: 44px;
+    padding: 0 10px;
+    background: #f6e7c6;
+    box-shadow:
+      inset 0 0 0 1px #b58d5c,
+      0 2px #b18552;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .garden-collection-heading svg {
+    width: 13px;
+    height: 13px;
+  }
+  .garden-bookshelf {
+    margin: 0 8px;
+    border: 8px solid #87502c;
+    border-top: 0;
+    box-shadow:
+      0 0 0 2px #6a3b22,
+      3px 6px 0 #75432355,
+      inset 3px 0 #ad7744;
+    background: #704021;
+  }
+  .shelf-crown {
+    position: relative;
+    height: 68px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 10px;
+    background:
+      linear-gradient(#61371f88, #5e351f33),
+      url('/pixel/wood.svg') center / 128px;
+    border-bottom: 12px solid #a96b38;
+    box-shadow:
+      0 4px #58321d,
+      inset 0 -3px #c68b4a;
+  }
+  .shelf-crown > img {
+    width: 55px;
+    height: 68px;
+    position: relative;
+    bottom: -1px;
+  }
+  .shelf-crown > img:last-child {
+    width: 58px;
+    height: 73px;
+    filter: drop-shadow(0 5px 13px #ffb43988);
+  }
+  .shelf-crown-title {
+    align-self: center;
+    font-size: 7px;
+    letter-spacing: 0.12em;
+    color: #e3b57e;
+    text-align: center;
+    line-height: 1.8;
+    width: 115px;
+  }
+
+  .shelf-ivy {
+    position: absolute;
+    width: 24px;
+    height: 160px;
+    top: -12px;
+    z-index: 2;
+  }
+  .shelf-ivy.left {
+    left: -11px;
+  }
+  .shelf-ivy.right {
+    right: -10px;
+    transform: scaleX(-1);
+  }
+  .shelf-plants {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 8px;
+    row-gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .shelf-plant {
+    min-width: 0;
+    position: relative;
+    padding-top: 8px;
+    padding-bottom: 34px;
+    isolation: isolate;
+  }
+
+  .shelf-plant-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+  }
+  .shelf-sprite-stage {
+    width: 100%;
+    height: 143px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+  }
+  .plant-sprite {
+    width: 112px;
+    max-width: 110%;
+    height: 134px;
+    filter: drop-shadow(3px 4px 0 #2d1a1555);
+    transform-origin: bottom;
+  }
+  .shelf-plant-link:hover .plant-sprite {
+    animation: garden-sway 1.5s steps(3, end) infinite;
+  }
+  .shelf-nameplate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 4px);
+    max-width: 108px;
+    min-height: 46px;
+    padding: 4px 6px;
+    color: #452917;
+    background: linear-gradient(#f4dfb2, #e4c18a);
+    border: 1px solid #b88c5b;
+    box-shadow: 0 2px #45281644;
+    clip-path: polygon(
+      4px 0,
+      calc(100% - 4px) 0,
+      calc(100% - 4px) 3px,
+      100% 3px,
+      100% calc(100% - 3px),
+      calc(100% - 4px) calc(100% - 3px),
+      calc(100% - 4px) 100%,
+      4px 100%,
+      4px calc(100% - 3px),
+      0 calc(100% - 3px),
+      0 3px,
+      4px 3px
+    );
+  }
+  .shelf-plant-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.45;
+    min-height: 35px;
+    align-content: center;
+  }
+  .shelf-care-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px 9px;
+    min-height: 25px;
+    margin: 5px 0 2px;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #f7e3bf;
+  }
+  .shelf-care-info > span {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .shelf-care-info svg {
+    width: 12px;
+    height: 12px;
+    color: #ead39c;
+  }
+  .shelf-care-neutral {
+    color: #dfc49d;
+    font-size: 9px;
+  }
+  .shelf-water-button {
+    position: absolute;
+    top: 12px;
+    left: -3px;
+    display: grid;
+    place-items: center;
+    min-height: 44px;
+    width: 44px;
+    color: #4c7680;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  .shelf-water-button svg {
+    width: 24px;
+    height: 28px;
+    padding: 5px;
+    background: #efddb5;
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 85%,
+      45% 85%,
+      32% 100%,
+      32% 85%,
+      0 85%
+    );
+  }
+  .shelf-water-button:hover {
+    background: #ddb77f20;
+  }
+  .shelf-water-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+  .shelf-feedback {
+    font-size: 9px;
+    line-height: 1.5;
+    color: #fff2d5;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+  .shelf-still-life {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 4px;
+    height: 113px;
+    border-bottom: 13px solid #a86a36;
+    box-shadow: 0 4px #5b321e;
+  }
+  .shelf-still-life img {
+    width: 24%;
+    height: 96px;
+  }
+  .shelf-still-life img:nth-child(2) {
+    width: 20%;
+    height: 83px;
+  }
+  .shelf-still-life img:nth-child(3) {
+    width: 27%;
+    height: 95px;
+  }
+  .shelf-plinth {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 13px;
+    color: #e2b47f;
+    font-size: 8px;
+    letter-spacing: 0.05em;
+    background: linear-gradient(#8f542c, #975d31);
+    border-top: 4px solid #c08443;
+    box-shadow: inset 0 3px #5c331d;
+  }
+  .shelf-empty {
+    text-align: center;
+    padding: 14px 6px 26px;
+    color: #f6dfb7;
+    border-bottom: 12px solid #ad713b;
+    box-shadow: 0 4px #4d2d1c;
+  }
+  .shelf-empty > img {
+    width: 80px;
+    height: 90px;
+    margin: auto;
+  }
+  .shelf-empty h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 7px;
+  }
+  .shelf-empty p {
+    font-size: 11px;
+    line-height: 1.9;
+    color: #dab98b;
+    margin: 10px 0 15px;
+  }
+  .shelf-empty a {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    background: #f1dab0;
+    padding: 0 18px;
+    color: #573820;
+    box-shadow: 3px 3px #3c2518;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .garden-caption {
+    text-align: center;
+    font-size: 9px;
+    color: #8b6747;
+    line-height: 1.8;
+    padding: 15px 10px 20px;
+  }
+  .garden-journal {
+    margin: 0 15px 12px;
+    padding: 18px 15px;
+    background: #f7e9ce;
+    border: 1px solid #ceb18a;
+    box-shadow: 3px 3px #b18b5b33;
+  }
+  .garden-journal > div {
+    position: relative;
+  }
+  .garden-journal h2 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 3px;
+  }
+  .garden-journal > div > a {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    min-height: 44px;
+    font-size: 10px;
+    color: #96714d;
+  }
+  .garden-journal svg {
+    width: 14px;
+    height: 14px;
+  }
+  .garden-journal li {
+    border-top: 1px dashed #d8c09b;
+    margin-top: 12px;
+    padding-top: 4px;
+  }
+  .garden-journal li a {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    min-height: 60px;
+  }
+  .garden-journal li a > svg {
+    color: #a27d4e;
+  }
+  .garden-journal li span {
+    flex: 1;
+    min-width: 0;
+  }
+  .garden-journal time {
+    display: block;
+    font-size: 9px;
+    color: #987c58;
+  }
+  .garden-journal strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 4px;
+    overflow-wrap: anywhere;
+  }
+  .garden-journal-empty {
+    margin-top: 13px;
+    font-size: 11px;
+    line-height: 1.8;
+    color: #8f7252;
+  }
+  .garden-footer {
+    padding: 8px 18px 13px;
+    text-align: center;
+  }
+  .garden-footer a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    font-size: 11px;
+    color: #795739;
+  }
+  .garden-footer svg {
+    width: 14px;
+    height: 14px;
+  }
+  .garden-footer p {
+    margin-top: 12px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: #9a7854;
+  }
+  .app-shell:has(.bookshelf-home) .bottom-navigation {
+    background: #f7e6c9f5;
+    border-top: 2px solid #b8905b;
+    box-shadow: 0 -4px 15px #4c2d2022;
+  }
+  .app-shell:has(.bookshelf-home) .bottom-nav-item {
+    color: #a08060;
+  }
+  .app-shell:has(.bookshelf-home) .bottom-nav-item.active {
+    color: #526b38;
+  }
+  .bookshelf-home :is(a, button):focus-visible {
+    outline: 3px solid #f1ba55;
+    outline-offset: 3px;
+  }
+  @keyframes garden-sway {
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(2deg);
+    }
+  }
+  @media (max-width: 379px) {
+    .shelf-plants {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 14px;
+    }
+    .shelf-sprite-stage {
+      height: 143px;
+    }
+    .plant-sprite {
+      width: 110px;
+      height: 143px;
+    }
+    .shelf-plant-name {
+      font-size: 12px;
+    }
+    .garden-header h1 {
+      gap: 7px;
+    }
+    .garden-summary {
+      gap: 7px;
+      font-size: 9px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .shelf-plant-link:hover .plant-sprite {
+      animation: none;
+    }
+  }
+}
+@layer components {
+  .shelf-water-button::after {
+    content: '+';
+    position: absolute;
+    right: 6px;
+    top: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    color: #f7e8c4;
+    background: #52747a;
+    width: 10px;
+    height: 10px;
+    text-align: center;
+  }
+}
+@layer components {
+  .bookshelf-home :is(a, button):focus-visible {
+    outline-color: #415b32;
+  }
+  .garden-bookshelf :is(a, button):focus-visible {
+    outline-color: #ffe2a0;
+  }
+}
+@layer components {
+  .shelf-crown {
+    background:
+      radial-gradient(ellipse at 90% 5%, #ffd38644, transparent 45%),
+      url('/pixel/wood.svg') center / 160px;
+  }
+  .shelf-crown > img:last-child {
+    filter: drop-shadow(0 9px 18px #ffc04c99);
+  }
+  .plant-sprite.art-succulent {
+    height: 112px;
+  }
+  .plant-sprite.art-cactus {
+    height: 128px;
+  }
+  .plant-sprite.art-trailing {
+    height: 128px;
+  }
+  .plant-sprite.art-snake {
+    height: 143px;
+  }
+  .plant-sprite.art-rosemary {
+    height: 140px;
+  }
+  .plant-sprite.art-monstera {
+    height: 138px;
+  }
+
+  .shelf-still-life {
+    height: 88px;
+    justify-content: space-between;
+    padding-inline: 10px;
+  }
+  .shelf-still-life > img {
+    width: 65px;
+    height: 78px;
+  }
+  .shelf-still-life > img:nth-child(2) {
+    width: 78px;
+    height: 78px;
+  }
+  .shelf-still-life > img:only-child {
+    margin-left: auto;
+    width: 85px;
+    height: 85px;
+  }
+}
+@layer components {
+  .shelf-interior {
+    position: relative;
+    isolation: isolate;
+    padding: 12px 8px 0;
+    background: #80532f;
+    box-shadow: inset 0 6px 7px #3d291b33;
+  }
+  .shelf-interior::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: url('/pixel/wood.svg') center / 160px;
+    opacity: 0.18;
+  }
+  .shelf-gap {
+    min-width: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    gap: 4px;
+    padding: 0 3px;
+    pointer-events: none;
+  }
+  .shelf-gap > img {
+    width: 64px;
+    max-width: 80%;
+    height: 90px;
+  }
+  .shelf-rail {
+    position: relative;
+    grid-column: 1/-1;
+    height: 16px;
+    margin-inline: -8px;
+    background: linear-gradient(
+      #ce9252 0 3px,
+      #a46532 3px 9px,
+      #6c3e22 9px 13px,
+      #472b1b 13px
+    );
+    box-shadow: 0 4px 6px #2c1d1644;
+    pointer-events: none;
+  }
+  .rail-decoration {
+    position: absolute;
+    bottom: 16px;
+    left: 6px;
+    width: 38px;
+    height: 32px;
+  }
+  .rail-decoration.at-right {
+    left: auto;
+    right: 6px;
+  }
+  @media (min-width: 380px) {
+    .gap-narrow,
+    .rail-narrow {
+      display: none;
+    }
+  }
+  @media (max-width: 379px) {
+    .gap-wide,
+    .rail-wide {
+      display: none;
+    }
+  }
+}

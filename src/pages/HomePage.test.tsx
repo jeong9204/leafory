@@ -42,9 +42,9 @@ describe('실제 저장소 홈 UI', () => {
     expect(
       screen.getByRole('link', { name: '이번 주 기록 0' }),
     ).toBeInTheDocument()
-    expect(screen.getAllByText('기록 없음')).toHaveLength(6)
+    expect(screen.getAllByText('관리 기록 없음')).toHaveLength(3)
     expect(
-      screen.getByRole('img', { name: '괴마옥 화분 (사진 없음)' }),
+      screen.getByRole('img', { name: '괴마옥 픽셀 화분' }),
     ).toBeInTheDocument()
   })
   it('저장된 이벤트의 날짜·경과 일수와 활성 물주기 버튼을 표시한다', async () => {
