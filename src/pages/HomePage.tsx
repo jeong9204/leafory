@@ -1,6 +1,6 @@
 import {
   Archive,
-  ArrowUpRight,
+  ChevronRight,
   Download,
   Plus,
   Sprout,
@@ -15,6 +15,11 @@ import { localDateKey } from '../domain/calendar'
 import { DataFeedback } from '../components/plants/DataFeedback'
 import { fullDate } from '../lib/dates'
 import { Bookshelf, PixelDecoration } from '../components/bookshelf/Bookshelf'
+import {
+  pixelAsset,
+  fallbackPixelAsset,
+} from '../components/bookshelf/pixel-assets'
+import { plantArt } from '../components/bookshelf/plant-art'
 import './bookshelf-home.css'
 export function HomePage() {
   const [today, setToday] = useState(localDateKey)
@@ -40,6 +45,9 @@ export function HomePage() {
     <div className="bookshelf-home">
       <header className="garden-header">
         <PixelDecoration art="ivy" className="header-ivy" />
+        <PixelDecoration art="ivy" className="header-ivy right" />
+        <PixelDecoration art="frame" className="header-frame" />
+        <PixelDecoration art="lamp" className="header-lamp" />
         <div className="garden-header-top">
           <span className="garden-wordmark">LEAFORY</span>
           <time dateTime={today}>{fullDate(today)}</time>
@@ -93,7 +101,7 @@ export function HomePage() {
           <span className="garden-eyebrow">GARDEN NOTES</span>
           <h2 id="records-heading">최근 기록</h2>
           <Link to="/records">
-            모두 보기 <ArrowUpRight aria-hidden="true" />
+            모두 보기 <ChevronRight aria-hidden="true" />
           </Link>
         </div>
         {records.length ? (
@@ -101,12 +109,27 @@ export function HomePage() {
             {records.map((record) => (
               <li key={record.id}>
                 <Link to={`/plants/${record.plantId}`}>
-                  <NotebookText aria-hidden="true" />
+                  <img
+                    className="pixel-art garden-note-thumbnail"
+                    onError={fallbackPixelAsset}
+                    src={pixelAsset(
+                      plantArt(
+                        views.find((view) => view.plant.id === record.plantId)!
+                          .plant,
+                      ),
+                    )}
+                    width="40"
+                    height="40"
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <span>
                     <time dateTime={record.date}>{fullDate(record.date)}</time>
                     <strong>{record.title}</strong>
                   </span>
-                  <ArrowUpRight aria-hidden="true" />
+                  <ChevronRight aria-hidden="true" />
                 </Link>
               </li>
             ))}

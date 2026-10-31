@@ -34,6 +34,25 @@ describe('책장 홈 데이터와 접근성', () => {
     await user.click(screen.getByRole('link', { name: `${name} 상세 보기` }))
     expect(await screen.findByRole('heading', { name, level: 1 })).toBeVisible()
   })
+  it('새 에셋 로딩 실패 시 기본 화분으로 대체하고 상세 링크를 유지한다', async () => {
+    const plant = await context.repos.plants.create({
+      name: '괴마옥',
+      status: 'healthy',
+    })
+    renderApp(context.repos)
+    const image = await screen.findByRole('img', { name: '괴마옥 픽셀 화분' })
+    expect(image).toHaveAttribute(
+      'src',
+      '/pixel/refined/euphorbia-bupleurifolia.webp',
+    )
+    fireEvent.error(image)
+    expect(image).toHaveAttribute('src', '/pixel/refined/default.webp')
+    fireEvent.error(image)
+    expect(image).toHaveAttribute('src', '/pixel/refined/default.webp')
+    expect(
+      screen.getByRole('link', { name: '괴마옥 상세 보기' }),
+    ).toHaveAttribute('href', `/plants/${plant.id}`)
+  })
   it('다수 식물 추가·삭제 후 재조회해 목록을 갱신하고 메뉴 3개를 유지한다', async () => {
     const plants = []
     for (let i = 0; i < 7; i++)
@@ -83,7 +102,7 @@ describe('책장 홈 데이터와 접근성', () => {
       'healthy',
     )
   })
-  it.each([0, 1, 2, 3, 9, 12])(
+  it.each([0, 1, 2, 3, 6, 9, 12])(
     '식물 %s개에서도 장식이 실제 목록 수나 상세 링크를 바꾸지 않는다',
     async (count) => {
       for (let i = 0; i < count; i++)

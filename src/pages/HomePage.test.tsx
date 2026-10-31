@@ -17,6 +17,44 @@ afterEach(async () => {
   await context.db.delete()
 })
 describe('실제 저장소 홈 UI', () => {
+  it.each([0, 1, 3])(
+    '기록 %s개에서 최근 2개까지 실제 식물 썸네일과 상세 이동을 제공한다',
+    async (count) => {
+      const plant = await context.repos.plants.create({
+        name: '아데니움',
+        status: 'healthy',
+      })
+      for (let i = 0; i < count; i++)
+        await context.repos.diaries.create({
+          plantId: plant.id,
+          entryDate: `2026-10-${20 + i}`,
+          condition: 'good',
+          title: `관찰 ${i}`,
+        })
+      renderApp(context.repos)
+      const section = await screen.findByRole('region', { name: '최근 기록' })
+      if (!count) {
+        expect(within(section).getByText(/아직 기록이 없어요/)).toBeVisible()
+        expect(within(section).queryByRole('list')).not.toBeInTheDocument()
+      } else {
+        const list = within(section).getByRole('list')
+        const links = within(list).getAllByRole('link')
+        expect(links).toHaveLength(Math.min(2, count))
+        expect(links[0]).toHaveAttribute('href', `/plants/${plant.id}`)
+        expect(links[0]).toHaveTextContent(`관찰 ${count - 1}`)
+        const thumbnail = links[0].querySelector('img')!
+        expect(thumbnail).toHaveAttribute('src', '/pixel/refined/adenium.webp')
+        expect(thumbnail).toHaveAttribute('alt', '')
+        expect(
+          links[0].querySelector('.lucide-chevron-right'),
+        ).toBeInTheDocument()
+        expect(
+          links[0].querySelector('.lucide-arrow-up-right'),
+        ).not.toBeInTheDocument()
+      }
+      expect(await context.repos.photos.listByPlant(plant.id)).toEqual([])
+    },
+  )
   it('빈 DB에 목업을 넣지 않고 빈 상태와 0개 요약을 표시한다', async () => {
     renderApp(context.repos)
     expect(

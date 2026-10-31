@@ -41,3 +41,14 @@ leafory-backup-*.zip
 *.key
 *.p12
 *.pfx
+
+# Local Phase 11 art reviews, comparisons and synthetic QA evidence
+/design/phase-11-refined/
+/design/phase-11-refined-v2/
+/docs/screenshots/phase-11-final/
+/docs/screenshots/phase-11-refined-applied/
+/docs/phase-11-final-design.md
+/docs/phase-11-refined-applied.md
+/docs/phase-11-pwa-asset-optimization/*
+!/docs/phase-11-pwa-asset-optimization/asset-integrity.json
+!/docs/phase-11-pwa-asset-optimization/build-comparison.json

@@ -1,0 +1,211 @@
+{
+  "painted": [
+    {
+      "path": "public/pixel/painted/adenium.webp",
+      "bytes": 324430,
+      "sha256": "f667c0d15cd3d4d629b772b4d3e9e872668fdb602c6cffa21874b615a3622ab9"
+    },
+    {
+      "path": "public/pixel/painted/books.webp",
+      "bytes": 155930,
+      "sha256": "320bf245c234c6212330800bcedebbf68e004f69ed70c7d8c4432cd8a21b34c9"
+    },
+    {
+      "path": "public/pixel/painted/cactus.webp",
+      "bytes": 167004,
+      "sha256": "402d66e1a934ab16cc1b03af17afd4b581f6b01a2231ee9ec706f08026098d4e"
+    },
+    {
+      "path": "public/pixel/painted/can.webp",
+      "bytes": 135838,
+      "sha256": "303fb9d06e103efc61c0024f3418f671dba368ba64a96511b75854910d2e9539"
+    },
+    {
+      "path": "public/pixel/painted/cat.webp",
+      "bytes": 139970,
+      "sha256": "5d740a1d72d59be24e96f6fff4380358cd70079c7dae3515063c89a3ace2c27c"
+    },
+    {
+      "path": "public/pixel/painted/default.webp",
+      "bytes": 137854,
+      "sha256": "eeddd534784c9b00f2e1bd39f3e84364d97cc3958c800fd03150f6aec9aadb3e"
+    },
+    {
+      "path": "public/pixel/painted/evergreen.webp",
+      "bytes": 291248,
+      "sha256": "ead46900405f1156f166581e3878974a1a8b0ebbbe0475ab4219222bb47cc214"
+    },
+    {
+      "path": "public/pixel/painted/frame.webp",
+      "bytes": 67760,
+      "sha256": "94e571468277bebf41bdf468f052cd7aa2473f85af65aae5ffaa61e42ee838ba"
+    },
+    {
+      "path": "public/pixel/painted/globe.webp",
+      "bytes": 188352,
+      "sha256": "c5d2aa5fa643849e411a384d6df16a7c25d2d20be1b08e9154a15038eb7b4b8f"
+    },
+    {
+      "path": "public/pixel/painted/house.webp",
+      "bytes": 143466,
+      "sha256": "0b555975bc855fb46fa3b51659724e9bcb8f1a4bbf044485a0ce9cb9ffb44d08"
+    },
+    {
+      "path": "public/pixel/painted/ivy.webp",
+      "bytes": 157446,
+      "sha256": "b1481f4d0f50da9783806edae21d05f327e5e55ab4df3059d2fe5d50ee9fd66c"
+    },
+    {
+      "path": "public/pixel/painted/lamp.webp",
+      "bytes": 115224,
+      "sha256": "5d45daa64220fcd74cf35b03d84ce5226511cdfa1838db0a0d23cd4b7b5b6cc8"
+    },
+    {
+      "path": "public/pixel/painted/lantern.webp",
+      "bytes": 150304,
+      "sha256": "1b889377d51380cbbf082260ba8d59ae1bf4817ad84ad35346fad751d3d95eff"
+    },
+    {
+      "path": "public/pixel/painted/monstera.webp",
+      "bytes": 305012,
+      "sha256": "f32333ad5d8bfe9291541ccd6c2c26d603abc76a42c5ad1f982253ba1cb9cc07"
+    },
+    {
+      "path": "public/pixel/painted/philodendron.webp",
+      "bytes": 300792,
+      "sha256": "91ecbce3e128d54f582c0a359c75e1b458986d1b5835790164a2cf20f8256d58"
+    },
+    {
+      "path": "public/pixel/painted/rosemary.webp",
+      "bytes": 292348,
+      "sha256": "1988d8f3532f3a6ccd88f7513a7c3f1e95b21ebe69f8e2b6625f7b1577323a1e"
+    },
+    {
+      "path": "public/pixel/painted/snake.webp",
+      "bytes": 142760,
+      "sha256": "8dec26ddad61d6c85ac1348847033e3232d949f91767a34c4641b950ba210033"
+    },
+    {
+      "path": "public/pixel/painted/spray.webp",
+      "bytes": 154048,
+      "sha256": "fab6fcfb2ef5017c6eeaa1139f903bb9c172ceb74b1113673fd64a9c95b4724f"
+    },
+    {
+      "path": "public/pixel/painted/succulent.webp",
+      "bytes": 190588,
+      "sha256": "d8ac3a57a0d4b8bf17af092b7289924109cd9e3993059648c7fb2748ec7e74fa"
+    },
+    {
+      "path": "public/pixel/painted/trailing.webp",
+      "bytes": 339804,
+      "sha256": "11cf7eb11d732b7e471407d18468f2ff7cb14c6c27e1e2d59cb11b3e3936f7de"
+    }
+  ],
+  "refined": [
+    {
+      "path": "public/pixel/refined/adenium.webp",
+      "bytes": 1568,
+      "sha256": "ce3fa45833e588c27becffe83b3db895f670a19f1db849598ec393474f805a91"
+    },
+    {
+      "path": "public/pixel/refined/books.webp",
+      "bytes": 920,
+      "sha256": "763623704cd4f9ea45269ad0795e3d6d0832d8960350ed1f1b7ef070a7a8111d"
+    },
+    {
+      "path": "public/pixel/refined/cactus.webp",
+      "bytes": 1238,
+      "sha256": "194d676aae09bb06f4471764ddd11f837c79c9d36eb05a279cb647ded481b770"
+    },
+    {
+      "path": "public/pixel/refined/can.webp",
+      "bytes": 652,
+      "sha256": "5d6b52e569aee3561f114de13797d89c908a571ce95bf7983fff3a589263beb1"
+    },
+    {
+      "path": "public/pixel/refined/cat.webp",
+      "bytes": 1016,
+      "sha256": "090579783fbaddb1c92d7a813a8a3648ea752018b247bd191fba28395002e181"
+    },
+    {
+      "path": "public/pixel/refined/default.webp",
+      "bytes": 1026,
+      "sha256": "aecf3c7455dc06a5a150691a5c176fd9903f202debe17952fc44d8721bd39348"
+    },
+    {
+      "path": "public/pixel/refined/euphorbia-bupleurifolia.webp",
+      "bytes": 1242,
+      "sha256": "75b315a6898626bd8cc1c0c779f1d86eb8cdbe680c37950807091abd1fb9868f"
+    },
+    {
+      "path": "public/pixel/refined/evergreen.webp",
+      "bytes": 1256,
+      "sha256": "5e9ac2ad76036357d6b8594cff16439a476595f5634b331b0d06469b81aa57e8"
+    },
+    {
+      "path": "public/pixel/refined/frame.webp",
+      "bytes": 538,
+      "sha256": "a851b55021ef8ec6d70b142c87041abb5e1c659bf20dcab7eca630c442f816cb"
+    },
+    {
+      "path": "public/pixel/refined/globe.webp",
+      "bytes": 798,
+      "sha256": "83dee1688ae147c4e6ac356ed705e1b0b55d818b62f2dd617798d8f30a7cf755"
+    },
+    {
+      "path": "public/pixel/refined/house.webp",
+      "bytes": 340,
+      "sha256": "6984c1b393286b70adbac7e2093d74b0dc00221eaac2efe4aed905b4340129e9"
+    },
+    {
+      "path": "public/pixel/refined/ivy.webp",
+      "bytes": 1420,
+      "sha256": "466869a7efcbf604bd2bbc7d1875414fa2851d2e83e76eb58d942c722ff7e1cf"
+    },
+    {
+      "path": "public/pixel/refined/lamp.webp",
+      "bytes": 638,
+      "sha256": "cc389450dea9998cac7092d450fd564ccc2ea4f6e39e0f6b4770cf34d8162e5c"
+    },
+    {
+      "path": "public/pixel/refined/lantern.webp",
+      "bytes": 752,
+      "sha256": "b7415a9d60ce4d8b6db4ca0aac99427681b81de4b1b5c666c6c22a734fdc9f58"
+    },
+    {
+      "path": "public/pixel/refined/monstera.webp",
+      "bytes": 1478,
+      "sha256": "d2321a27abb277e307d6a3a9b24d44f225952f1627ffc697ccd1c0b2d1640f11"
+    },
+    {
+      "path": "public/pixel/refined/philodendron.webp",
+      "bytes": 1438,
+      "sha256": "8d5ae6372efe92f891bf7b9293f9c8540796960722cce229e275271df854182c"
+    },
+    {
+      "path": "public/pixel/refined/rosemary.webp",
+      "bytes": 1462,
+      "sha256": "e9d3fc43ed0e4b1daa0ea995ab5a3513f7519e623692c1995318d6444cab57ca"
+    },
+    {
+      "path": "public/pixel/refined/snake.webp",
+      "bytes": 1366,
+      "sha256": "b132aa89cf18aa3c16fa992dbed9c4a00c68691e093f443d6bb2ca4cc126d459"
+    },
+    {
+      "path": "public/pixel/refined/spray.webp",
+      "bytes": 344,
+      "sha256": "2e543465d91a0512e230fc7cf5cb2ccd9eb99a8df3734cdc40d690f3ea57ed59"
+    },
+    {
+      "path": "public/pixel/refined/succulent.webp",
+      "bytes": 1098,
+      "sha256": "0be780358c9fb4a8a99e24f94bf04d182b93ae8aa40bfad49290ff2e602e39de"
+    },
+    {
+      "path": "public/pixel/refined/trailing.webp",
+      "bytes": 1630,
+      "sha256": "22c8723455357e74d9783c5e897463e555622403a6767c3db4a0e20c12225249"
+    }
+  ]
+}

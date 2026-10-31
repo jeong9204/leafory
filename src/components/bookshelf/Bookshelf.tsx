@@ -6,27 +6,46 @@ import { useRepositories } from '../../app/repository-context'
 import { localDateKey } from '../../domain/calendar'
 import { elapsedDays, shortDate } from '../../lib/dates'
 import { plantArt } from './plant-art'
+import { pixelAsset, pixelDimensions, fallbackPixelAsset } from './pixel-assets'
 
 export function PixelDecoration({
   art,
   className = '',
+  loading = 'eager',
 }: {
   art: string
   className?: string
+  loading?: 'eager' | 'lazy'
 }) {
+  if (art === 'ivy')
+    return (
+      <span className={`pixel-art pixel-ivy ${className}`} aria-hidden="true" />
+    )
+  const [width, height] = pixelDimensions(art)
   return (
     <img
       className={`pixel-art ${className}`}
-      src={`/pixel/${art}.svg`}
-      width="80"
-      height="96"
+      src={pixelAsset(art)}
+      width={width}
+      height={height}
+      loading={loading}
+      onError={fallbackPixelAsset}
       alt=""
       aria-hidden="true"
       draggable="false"
+      decoding="async"
     />
   )
 }
-function ShelfPlantItem({ view, today }: { view: ShelfPlant; today: string }) {
+function ShelfPlantItem({
+  view,
+  today,
+  priority,
+}: {
+  view: ShelfPlant
+  today: string
+  priority: boolean
+}) {
   const { plant, lastWatered, lightMinutes } = view
   const { repositories, invalidate } = useRepositories()
   const lock = useRef(false)
@@ -65,47 +84,50 @@ function ShelfPlantItem({ view, today }: { view: ShelfPlant; today: string }) {
         className="shelf-plant-link"
         aria-label={`${plant.name} 상세 보기`}
       >
-        <div className="shelf-sprite-stage">
-          <img
-            src={`/pixel/${art}.svg`}
-            width="80"
-            height="96"
-            className={`pixel-art plant-sprite art-${art}`}
-            alt={`${plant.name} 픽셀 화분`}
-            draggable="false"
-          />
-        </div>
         <span className="shelf-nameplate">
           <span className="shelf-plant-name">{plant.name}</span>
         </span>
-      </Link>
-      <div className="shelf-care-info">
-        {date && (
-          <span
-            role="img"
-            aria-label={`마지막 물주기 ${shortDate(date)}, ${days === 0 ? '오늘' : `${days}일 전`}`}
-            title={`마지막 물주기 ${shortDate(date)}`}
-          >
-            <Droplet aria-hidden="true" />
-            <span aria-hidden="true">
-              {days === 0 ? '오늘' : `${days}일 전`}
+        <div className="shelf-care-info">
+          {date && (
+            <span
+              role="img"
+              aria-label={`마지막 물주기 ${shortDate(date)}, ${days === 0 ? '오늘' : `${days}일 전`}`}
+              title={`마지막 물주기 ${shortDate(date)}`}
+            >
+              <Droplet aria-hidden="true" />
+              <span aria-hidden="true">
+                {days === 0 ? '오늘' : `${days}일 전`}
+              </span>
             </span>
-          </span>
-        )}
-        {lightMinutes !== undefined && (
-          <span
-            role="img"
-            aria-label={`오늘 식물등 ${lightMinutes}분 기록 있음`}
-            title={`오늘 식물등 ${lightMinutes}분`}
-          >
-            <Sun aria-hidden="true" />
-            <span aria-hidden="true">기록</span>
-          </span>
-        )}
-        {!date && lightMinutes === undefined && (
-          <span className="shelf-care-neutral">관리 기록 없음</span>
-        )}
-      </div>
+          )}
+          {lightMinutes !== undefined && (
+            <span
+              role="img"
+              aria-label={`오늘 식물등 ${lightMinutes}분 기록 있음`}
+              title={`오늘 식물등 ${lightMinutes}분`}
+            >
+              <Sun aria-hidden="true" />
+              <span aria-hidden="true">기록</span>
+            </span>
+          )}
+          {!date && lightMinutes === undefined && (
+            <span className="shelf-care-neutral">관리 기록 없음</span>
+          )}
+        </div>
+        <div className="shelf-sprite-stage">
+          <img
+            src={pixelAsset(art)}
+            width="192"
+            height="192"
+            loading={priority ? 'eager' : 'lazy'}
+            onError={fallbackPixelAsset}
+            className={`pixel-art plant-sprite art-${art}`}
+            alt={`${plant.name} 픽셀 화분`}
+            decoding="async"
+            draggable="false"
+          />
+        </div>
+      </Link>
       <button
         type="button"
         className="shelf-water-button"
@@ -135,11 +157,6 @@ export function Bookshelf({
 }) {
   return (
     <div className="garden-bookshelf" data-plant-count={views.length}>
-      <div className="shelf-crown" aria-hidden="true">
-        <PixelDecoration art="frame" />
-        <span className="shelf-crown-title">LEAFORY · MY LITTLE GARDEN</span>
-        <PixelDecoration art="lamp" />
-      </div>
       <div className="shelf-interior">
         <PixelDecoration art="ivy" className="shelf-ivy left" />
         <PixelDecoration art="ivy" className="shelf-ivy right" />
@@ -147,7 +164,11 @@ export function Bookshelf({
           <ul className="shelf-plants" aria-label="내 식물 목록">
             {views.map((view, index) => (
               <Fragment key={view.plant.id}>
-                <ShelfPlantItem view={view} today={today} />
+                <ShelfPlantItem
+                  view={view}
+                  today={today}
+                  priority={index < 3}
+                />
                 <ShelfRowEnd
                   index={index}
                   total={views.length}
@@ -177,15 +198,12 @@ export function Bookshelf({
             </Link>
           </div>
         )}
-        {views.length <= 3 && (
-          <div className="shelf-still-life" aria-hidden="true">
-            {views.length < 3 && <PixelDecoration art="books" />}
-            <PixelDecoration art="cat" />
-            {views.length > 0 && views.length < 3 && (
-              <PixelDecoration art="can" />
-            )}
-          </div>
-        )}
+        <div className="shelf-still-life" aria-hidden="true">
+          <PixelDecoration art="books" loading="lazy" />
+          <PixelDecoration art="globe" loading="lazy" />
+          {views.length < 9 && <PixelDecoration art="lantern" loading="lazy" />}
+          <PixelDecoration art="cat" loading="lazy" />
+        </div>
       </div>
       <div className="shelf-plinth" aria-hidden="true">
         <span>작은 초록이 모여, 나만의 정원</span>
@@ -221,8 +239,13 @@ function ShelfRowEnd({
           role="presentation"
           aria-hidden="true"
         >
-          <PixelDecoration art="books" />
-          {remaining > 1 && <PixelDecoration art="can" />}
+          <PixelDecoration
+            art={row % 2 === 0 ? 'books' : 'frame'}
+            loading={row === 0 ? 'eager' : 'lazy'}
+          />
+          {remaining > 1 && (
+            <PixelDecoration art="can" loading={row === 0 ? 'eager' : 'lazy'} />
+          )}
         </li>
       )}
       <li
@@ -230,9 +253,10 @@ function ShelfRowEnd({
         role="presentation"
         aria-hidden="true"
       >
-        {remaining === 0 && total > 3 && row < 2 && (
+        {remaining === 0 && total <= 6 && row < 2 && (
           <PixelDecoration
-            art={row === 0 ? 'books' : 'can'}
+            art={row === 0 ? 'house' : 'spray'}
+            loading={row === 0 ? 'eager' : 'lazy'}
             className={`rail-decoration ${row === 1 ? 'at-right' : ''}`}
           />
         )}
