@@ -1,0 +1,764 @@
+{
+  "checkedAt": "2026-10-31",
+  "branch": "test/iphone-pwa",
+  "head": "e1c69c7a303953b1bcb2b8241f75970f8de1755f",
+  "local": {
+    "node": "22.22.0",
+    "npm": "10.9.4",
+    "nvmrc": "22",
+    "nodeVersionFile": null,
+    "engines": {
+      "node": ">=22.12.0",
+      "npm": ">=10"
+    }
+  },
+  "vercelObserved": {
+    "projectSetting": "24.x",
+    "deployedMajor": "26.x",
+    "deployedPatch": null,
+    "npmVersion": null,
+    "deployment": "BVAwy8bTqPoKijF9x43XPWyDHehG"
+  },
+  "findings": [
+    {
+      "package": "@eslint-community/eslint-utils",
+      "installed": "4.10.1",
+      "range": "*",
+      "severity": "moderate",
+      "direct": false,
+      "dev": true,
+      "via": ["eslint"],
+      "fixAvailable": {
+        "name": "typescript-eslint",
+        "version": "8.14.0",
+        "isSemVerMajor": true
+      },
+      "parentPath": "eslint / typescript-eslint → utils"
+    },
+    {
+      "package": "@eslint/config-array",
+      "installed": "0.23.5",
+      "range": "*",
+      "severity": "moderate",
+      "direct": false,
+      "dev": true,
+      "via": ["minimatch"],
+      "fixAvailable": {
+        "name": "typescript-eslint",
+        "version": "8.14.0",
+        "isSemVerMajor": true
+      },
+      "parentPath": "eslint → config-array"
+    },
+    {
+      "package": "@eslint/js",
+      "installed": "10.0.1",
+      "range": ">=10.0.1",
+      "severity": "moderate",
+      "direct": true,
+      "dev": true,
+      "via": ["eslint"],
+      "fixAvailable": {
+        "name": "@eslint/js",
+        "version": "9.39.5",
+        "isSemVerMajor": true
+      },
+      "parentPath": "직접 선언, eslint peer 경로"
+    },
+    {
+      "package": "@typescript-eslint/eslint-plugin",
+      "installed": "8.72.0",
+      "range": "*",
+      "severity": "moderate",
+      "direct": false,
+      "dev": true,
+      "via": [
+        "@typescript-eslint/parser",
+        "@typescript-eslint/type-utils",
+        "@typescript-eslint/utils",
+        "eslint"
+      ],
+      "fixAvailable": true,
+      "parentPath": "typescript-eslint → eslint-plugin"
+    },
+    {
+      "package": "@typescript-eslint/parser",
+      "installed": "8.72.0",
+      "range": "*",
+      "severity": "moderate",
+      "direct": false,
+      "dev": true,
+      "via": ["@typescript-eslint/typescript-estree", "eslint"],
+      "fixAvailable": {
+        "name": "typescript-eslint",
+        "version": "8.14.0",
+        "isSemVerMajor": true
+      },
+      "parentPath": "typescript-eslint → parser"
+    },
+    {
+      "package": "@typescript-eslint/type-utils",
+      "installed": "8.72.0",
+      "range": ">=5.9.2-alpha.0",
+      "severity": "moderate",
+      "direct": false,
+      "dev": true,
+      "via": [
+        "@typescript-eslint/typescript-estree",
+        "@typescript-eslint/utils",
+        "eslint"
+      ],
+      "fixAvailable": true,
+      "parentPath": "typescript-eslint → eslint-plugin → type-utils"
+    },
+    {
+      "package": "@typescript-eslint/typescript-estree",
+      "installed": "8.72.0",
+      "range": ">=6.16.0",
+      "severity": "moderate",
+      "direct": false,
+      "dev": true,
+      "via": ["minimatch"],
+      "fixAvailable": {
+        "name": "typescript-eslint",
+        "version": "8.14.0",
+        "isSemVerMajor": true
+      },
+      "parentPath": "typescript-eslint → typescript-estree"
+    },
+    {
+      "package": "@typescript-eslint/utils",
+      "installed": "8.72.0",
+      "range": "*",
+      "severity": "moderate",
+      "direct": false,
+      "dev": true,
+      "via": [
+        "@eslint-community/eslint-utils",
+        "@typescript-eslint/typescript-estree",
+        "eslint"
+      ],
+      "fixAvailable": {
+        "name": "typescript-eslint",
+        "version": "8.14.0",
+        "isSemVerMajor": true
+      },
+      "parentPath": "typescript-eslint → utils"
+    },
+    {
+      "package": "eslint",
+      "installed": "10.13.0",
+      "range": "0.7.1 - 2.0.0-rc.1 || >=4.1.0",
+      "severity": "moderate",
+      "direct": true,
+      "dev": true,
+      "via": [
+        "@eslint-community/eslint-utils",
+        "@eslint/config-array",
+        "minimatch"
+      ],
+      "fixAvailable": {
+        "name": "typescript-eslint",
+        "version": "8.14.0",
+        "isSemVerMajor": true
+      },
+      "parentPath": "직접 선언 → minimatch / config-array"
+    },
+    {
+      "package": "eslint-config-prettier",
+      "installed": "10.1.8",
+      "range": ">=7.0.0",
+      "severity": "moderate",
+      "direct": true,
+      "dev": true,
+      "via": ["eslint"],
+      "fixAvailable": {
+        "name": "eslint-config-prettier",
+        "version": "6.15.0",
+        "isSemVerMajor": true
+      },
+      "parentPath": "직접 선언, eslint peer 경로"
+    },
+    {
+      "package": "eslint-plugin-react-refresh",
+      "installed": "0.5.7",
+      "range": "*",
+      "severity": "moderate",
+      "direct": true,
+      "dev": true,
+      "via": ["eslint"],
+      "fixAvailable": false,
+      "parentPath": "직접 선언, eslint peer 경로"
+    },
+    {
+      "package": "minimatch",
+      "installed": "10.2.6",
+      "range": "<11.0.1",
+      "severity": "moderate",
+      "direct": false,
+      "dev": true,
+      "via": [
+        {
+          "source": 1244012,
+          "name": "minimatch",
+          "dependency": "minimatch",
+          "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
+          "severity": "moderate",
+          "cwe": ["CWE-405"],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<11.0.1"
+        }
+      ],
+      "fixAvailable": {
+        "name": "typescript-eslint",
+        "version": "8.14.0",
+        "isSemVerMajor": true
+      },
+      "parentPath": "eslint / config-array / typescript-estree → minimatch"
+    },
+    {
+      "package": "typescript-eslint",
+      "installed": "8.72.0",
+      "range": "*",
+      "severity": "moderate",
+      "direct": true,
+      "dev": true,
+      "via": [
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "@typescript-eslint/typescript-estree",
+        "@typescript-eslint/utils",
+        "eslint"
+      ],
+      "fixAvailable": {
+        "name": "typescript-eslint",
+        "version": "8.14.0",
+        "isSemVerMajor": true
+      },
+      "parentPath": "직접 선언 → parser / utils / eslint-plugin"
+    }
+  ],
+  "auditBefore": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 13,
+      "high": 0,
+      "critical": 0,
+      "total": 13
+    },
+    "dependencies": {
+      "prod": 15,
+      "dev": 289,
+      "optional": 50,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 303
+    }
+  },
+  "auditAfter": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 13,
+      "high": 0,
+      "critical": 0,
+      "total": 13
+    },
+    "dependencies": {
+      "prod": 15,
+      "dev": 289,
+      "optional": 50,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 303
+    }
+  },
+  "productionOnlyBefore": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 15,
+      "dev": 289,
+      "optional": 50,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 303
+    }
+  },
+  "productionOnlyAfter": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 15,
+      "dev": 289,
+      "optional": 50,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 303
+    }
+  },
+  "installedToolSupport": [
+    {
+      "name": "dexie",
+      "version": "4.4.7",
+      "engines": null,
+      "peers": null,
+      "dev": false
+    },
+    {
+      "name": "fflate",
+      "version": "0.8.3",
+      "engines": null,
+      "peers": null,
+      "dev": false
+    },
+    {
+      "name": "lucide-react",
+      "version": "1.61.0",
+      "engines": null,
+      "peers": {
+        "@types/react": "*",
+        "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+      },
+      "dev": false
+    },
+    {
+      "name": "pretendard",
+      "version": "1.3.9",
+      "engines": null,
+      "peers": null,
+      "dev": false
+    },
+    {
+      "name": "react",
+      "version": "19.3.1",
+      "engines": {
+        "node": ">=0.10.0"
+      },
+      "peers": null,
+      "dev": false
+    },
+    {
+      "name": "react-dom",
+      "version": "19.3.1",
+      "engines": null,
+      "peers": {
+        "react": "^19.3.1"
+      },
+      "dev": false
+    },
+    {
+      "name": "react-router",
+      "version": "8.5.0",
+      "engines": {
+        "node": ">=22.22.0"
+      },
+      "peers": {
+        "@types/react": ">=19.2.0",
+        "@types/react-dom": ">=19.2.0",
+        "react": ">=19.2.7",
+        "react-dom": ">=19.2.7"
+      },
+      "dev": false
+    },
+    {
+      "name": "zustand",
+      "version": "5.0.16",
+      "engines": {
+        "node": ">=12.20.0"
+      },
+      "peers": {
+        "@types/react": ">=18.0.0",
+        "immer": ">=9.0.6",
+        "react": ">=18.0.0",
+        "use-sync-external-store": ">=1.2.0"
+      },
+      "dev": false
+    },
+    {
+      "name": "@eslint/js",
+      "version": "10.0.1",
+      "engines": {
+        "node": "^20.19.0 || ^22.13.0 || >=24"
+      },
+      "peers": {
+        "eslint": "^10.0.0"
+      },
+      "dev": true
+    },
+    {
+      "name": "@tailwindcss/vite",
+      "version": "4.3.3",
+      "engines": null,
+      "peers": {
+        "vite": "^5.2.0 || ^6 || ^7 || ^8"
+      },
+      "dev": true
+    },
+    {
+      "name": "@testing-library/dom",
+      "version": "10.4.2",
+      "engines": {
+        "node": ">=18"
+      },
+      "peers": null,
+      "dev": true
+    },
+    {
+      "name": "@testing-library/jest-dom",
+      "version": "7.0.1",
+      "engines": {
+        "node": ">=22",
+        "npm": ">=6",
+        "yarn": ">=1"
+      },
+      "peers": {
+        "@testing-library/dom": ">=10 <11",
+        "vitest": ">= 0.32"
+      },
+      "dev": true
+    },
+    {
+      "name": "@testing-library/react",
+      "version": "16.3.3",
+      "engines": {
+        "node": ">=18"
+      },
+      "peers": {
+        "@testing-library/dom": "^10.0.0",
+        "@types/react": "^18.0.0 || ^19.0.0",
+        "@types/react-dom": "^18.0.0 || ^19.0.0",
+        "react": "^18.0.0 || ^19.0.0",
+        "react-dom": "^18.0.0 || ^19.0.0"
+      },
+      "dev": true
+    },
+    {
+      "name": "@testing-library/user-event",
+      "version": "14.6.8",
+      "engines": {
+        "node": ">=12",
+        "npm": ">=6"
+      },
+      "peers": {
+        "@testing-library/dom": ">=7.21.4"
+      },
+      "dev": true
+    },
+    {
+      "name": "@types/node",
+      "version": "24.19.2",
+      "engines": null,
+      "peers": {},
+      "dev": true
+    },
+    {
+      "name": "@types/react",
+      "version": "19.3.0",
+      "engines": null,
+      "peers": {},
+      "dev": true
+    },
+    {
+      "name": "@types/react-dom",
+      "version": "19.3.0",
+      "engines": null,
+      "peers": {
+        "@types/react": "^19.3.0"
+      },
+      "dev": true
+    },
+    {
+      "name": "@vitejs/plugin-react",
+      "version": "6.1.2",
+      "engines": {
+        "node": "^20.19.0 || >=22.12.0"
+      },
+      "peers": {
+        "@rolldown/plugin-babel": "^0.1.7 || ^0.2.0",
+        "babel-plugin-react-compiler": "^1.0.0",
+        "oxc-transform-react": "^0.152.0",
+        "vite": "^8.0.0"
+      },
+      "dev": true
+    },
+    {
+      "name": "eslint",
+      "version": "10.13.0",
+      "engines": {
+        "node": "^20.19.0 || ^22.13.0 || >=24"
+      },
+      "peers": {
+        "jiti": "*"
+      },
+      "dev": true
+    },
+    {
+      "name": "eslint-config-prettier",
+      "version": "10.1.8",
+      "engines": null,
+      "peers": {
+        "eslint": ">=7.0.0"
+      },
+      "dev": true
+    },
+    {
+      "name": "eslint-plugin-react-hooks",
+      "version": "7.1.1",
+      "engines": {
+        "node": ">=18"
+      },
+      "peers": {
+        "eslint": "^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0 || ^10.0.0"
+      },
+      "dev": true
+    },
+    {
+      "name": "eslint-plugin-react-refresh",
+      "version": "0.5.7",
+      "engines": null,
+      "peers": {
+        "eslint": "^9 || ^10"
+      },
+      "dev": true
+    },
+    {
+      "name": "fake-indexeddb",
+      "version": "6.2.6",
+      "engines": {
+        "node": ">=18"
+      },
+      "peers": null,
+      "dev": true
+    },
+    {
+      "name": "jsdom",
+      "version": "29.1.1",
+      "engines": {
+        "node": "^20.19.0 || ^22.13.0 || >=24.0.0"
+      },
+      "peers": {
+        "canvas": "^3.0.0"
+      },
+      "dev": true
+    },
+    {
+      "name": "prettier",
+      "version": "3.9.10",
+      "engines": {
+        "node": ">=14"
+      },
+      "peers": null,
+      "dev": true
+    },
+    {
+      "name": "tailwindcss",
+      "version": "4.3.3",
+      "engines": null,
+      "peers": null,
+      "dev": true
+    },
+    {
+      "name": "typescript",
+      "version": "6.0.3",
+      "engines": {
+        "node": ">=14.17"
+      },
+      "peers": null,
+      "dev": true
+    },
+    {
+      "name": "typescript-eslint",
+      "version": "8.72.0",
+      "engines": {
+        "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+      },
+      "peers": {
+        "eslint": "^8.57.0 || ^9.0.0 || ^10.0.0",
+        "typescript": ">=4.8.4 <6.1.0"
+      },
+      "dev": true
+    },
+    {
+      "name": "vite",
+      "version": "8.3.5",
+      "engines": {
+        "node": "^20.19.0 || >=22.12.0"
+      },
+      "peers": {
+        "@types/node": "^20.19.0 || >=22.12.0",
+        "@vitejs/devtools": "^0.7.1 || ^0.8.0",
+        "esbuild": "^0.27.0 || ^0.28.0",
+        "jiti": ">=1.21.0",
+        "less": "^4.0.0",
+        "sass": "^1.70.0",
+        "sass-embedded": "^1.70.0",
+        "stylus": ">=0.54.8",
+        "sugarss": "^5.0.0",
+        "terser": "^5.16.0",
+        "tsx": "^4.8.1",
+        "yaml": "^2.4.2"
+      },
+      "dev": true
+    },
+    {
+      "name": "vitest",
+      "version": "5.0.5",
+      "engines": {
+        "node": "^22.12.0 || ^24.0.0 || >=26.0.0"
+      },
+      "peers": {
+        "@edge-runtime/vm": "*",
+        "@opentelemetry/api": "^1.9.0",
+        "@types/node": "^22.0.0 || >=24.0.0",
+        "@vitest/browser-playwright": "5.0.5",
+        "@vitest/browser-preview": "5.0.5",
+        "@vitest/browser-webdriverio": "^5.0.0-beta.5 || >=5.0.0",
+        "@vitest/coverage-istanbul": "5.0.5",
+        "@vitest/coverage-v8": "5.0.5",
+        "@vitest/ui": "5.0.5",
+        "happy-dom": "*",
+        "jsdom": "*",
+        "vite": "^6.4.0 || ^7.0.0 || ^8.0.0"
+      },
+      "dev": true
+    }
+  ],
+  "latestNodeAtCheck": {
+    "22": {
+      "version": "v22.23.4",
+      "date": "2026-10-20",
+      "lts": "Jod",
+      "npm": "10.9.9"
+    },
+    "24": {
+      "version": "v24.22.2",
+      "date": "2026-10-27",
+      "lts": "Krypton",
+      "npm": "11.19.1"
+    },
+    "26": {
+      "version": "v26.13.0",
+      "date": "2026-10-28",
+      "lts": "Lithium",
+      "npm": "11.20.0"
+    }
+  },
+  "outdated": {
+    "@types/node": {
+      "current": "24.19.2",
+      "wanted": "24.19.2",
+      "latest": "26.6.6"
+    },
+    "eslint": {
+      "current": "10.13.0",
+      "wanted": "10.14.0",
+      "latest": "10.14.0"
+    },
+    "fake-indexeddb": {
+      "current": "6.2.6",
+      "wanted": "6.2.7",
+      "latest": "6.2.7"
+    },
+    "lucide-react": {
+      "current": "1.61.0",
+      "wanted": "1.66.0",
+      "latest": "1.66.0"
+    },
+    "react-router": {
+      "current": "8.5.0",
+      "wanted": "8.5.1",
+      "latest": "8.5.1"
+    },
+    "typescript": {
+      "current": "6.0.3",
+      "wanted": "6.0.3",
+      "latest": "7.0.2"
+    },
+    "typescript-eslint": {
+      "current": "8.72.0",
+      "wanted": "8.72.1",
+      "latest": "8.72.1"
+    }
+  },
+  "runtimeMatrix": [
+    {
+      "node": "22.22.0",
+      "npm": "10.9.4",
+      "mode": "current local",
+      "tests": 417,
+      "typecheck": true,
+      "lint": true,
+      "format": true,
+      "build": true,
+      "pwa": true,
+      "distIdenticalToBefore": true
+    },
+    {
+      "node": "24.22.2",
+      "npm": "11.19.1",
+      "mode": "isolated official runtime",
+      "tests": 417,
+      "typecheck": true,
+      "lint": true,
+      "format": true,
+      "build": true,
+      "pwa": true,
+      "distIdenticalToBefore": true
+    },
+    {
+      "node": "26.13.0",
+      "npm": "11.20.0",
+      "mode": "isolated official runtime",
+      "tests": 417,
+      "typecheck": true,
+      "lint": true,
+      "format": true,
+      "build": true,
+      "pwa": true,
+      "distIdenticalToBefore": true
+    },
+    {
+      "node": "24.22.2",
+      "npm": "11.19.1",
+      "mode": "isolated clean npm ci",
+      "tests": 417,
+      "typecheck": true,
+      "lint": true,
+      "format": true,
+      "build": true,
+      "pwa": true,
+      "distIdenticalToBefore": true
+    }
+  ],
+  "dependencyChanges": [],
+  "configurationChanges": [],
+  "precache": {
+    "beforeCount": 70,
+    "afterCount": 70,
+    "beforeBytes": 3156994,
+    "afterBytes": 3156994,
+    "refinedWebp": 21,
+    "paintedWebp": 0,
+    "cacheVersion": "81dd2c55e4a9b1f9",
+    "workerSha256": "5d2e1c088ac88606f8f2c9e5462c94b402612803b0c4a584e81afd7c4c68ec7c"
+  },
+  "packageJsonSha256": "bdb4dab0f055a2ec727614efe31b61a50ef6fee2f356080d20ee08cd03470f4b",
+  "lockfileSha256": "5d72c281c1d6452b4531a3f926a64b5241dc73e5cd829f9b37a9f41742703b1e"
+}

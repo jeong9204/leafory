@@ -10,12 +10,22 @@
 
 ## 시작하기
 
-Node.js 22.12 이상과 npm 10 이상이 필요합니다. `.nvmrc`는 Node.js 22를 사용합니다.
+Node.js 24.x LTS와 npm 11.x를 사용합니다. 검증 기준은 Node.js 24.22.2 / npm 11.19.1이며,
+`.nvmrc`는 24.22.2로 고정합니다. nvm을 사용한다면 프로젝트에서 다음과 같이 실행합니다.
 
 ```sh
+nvm install
+nvm use
+node --version
+npm --version
 npm ci
 npm run dev
 ```
+
+nvm 이외의 도구를 사용해도 같은 Node 메이저와 npm 메이저를 맞춥니다. `engines.npm`은
+npm을 자동 교체하거나 정확한 패치를 설치하는 설정이 아닙니다. Vercel은 Node 24 계열의 패치를
+자동 갱신하므로 정확한 Node/npm 패치는 배포 로그에서 확인해야 합니다.
+[Node 24 고정 및 검증 결과](docs/phase-12a2-node24.md)를 참고하세요.
 
 터미널에 표시되는 개발 서버 주소를 엽니다. 휴대폰에서 확인하려면 같은 네트워크에서
 `npm run dev -- --host 0.0.0.0`을 실행한 뒤 컴퓨터의 LAN 주소로 접속합니다.
