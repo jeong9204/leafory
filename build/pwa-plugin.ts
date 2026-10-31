@@ -4,6 +4,11 @@ import { resolve, relative } from 'node:path'
 import type { Plugin } from 'vite'
 import { serviceWorkerSource } from '../src/pwa/service-worker-source.ts'
 
+/** Keep archived originals deployable for comparison/rollback, but out of the offline shell. */
+export function isArchivedPixelArt(path: string) {
+  return /^pixel\/painted\/[^/]+\.webp$/.test(path)
+}
+
 export function leaforyPwa(): Plugin {
   let publicDir = ''
   return {
@@ -36,6 +41,7 @@ export function leaforyPwa(): Plugin {
           if (entry.name.startsWith('.')) continue
           const path = resolve(entry.parentPath, entry.name)
           const name = relative(publicDir, path).replaceAll('\\', '/')
+          if (isArchivedPixelArt(name)) continue
           urls.push(`/${name}`)
           hash.update(name).update(await readFile(path))
         }

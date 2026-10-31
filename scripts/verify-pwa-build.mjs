@@ -8,6 +8,32 @@ const root = resolve('dist')
 const html = readFileSync(resolve(root, 'index.html'), 'utf8')
 const sw = readFileSync(resolve(root, 'sw.js'), 'utf8')
 const urls = JSON.parse(sw.match(/const ASSETS = (\[.*\]);/)[1])
+assert.equal(urls.length, new Set(urls).size, '중복 precache URL')
+for (const name of readdirSync(resolve(root, 'pixel/painted'))) {
+  if (!name.endsWith('.webp')) continue
+  readFileSync(resolve(root, 'pixel/painted', name))
+  assert(
+    !urls.includes(`/pixel/painted/${name}`),
+    `보관용 원본이 precache에 포함됨: ${name}`,
+  )
+}
+const refined = readdirSync(resolve(root, 'pixel/refined')).filter((name) =>
+  name.endsWith('.webp'),
+)
+assert.equal(refined.length, 21, '승인된 신규 에셋 21종 필요')
+for (const name of refined)
+  assert(
+    urls.includes(`/pixel/refined/${name}`),
+    `신규 에셋 오프라인 캐시 누락: ${name}`,
+  )
+for (const name of readdirSync(resolve(root, 'assets'))) {
+  if (!/\.(js|css)$/.test(name)) continue
+  const source = readFileSync(resolve(root, 'assets', name), 'utf8')
+  assert(
+    !source.includes('/pixel/painted/'),
+    `배포 앱에서 보관용 경로 사용: ${name}`,
+  )
+}
 assert(urls.includes('/index.html'))
 const manifest = JSON.parse(
   readFileSync(resolve(root, 'manifest.webmanifest'), 'utf8'),
