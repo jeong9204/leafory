@@ -1,5 +1,5 @@
+import { NavigationLink as Link } from '../navigation/NavigationLink'
 import { Droplet, Sun } from 'lucide-react'
-import { Link } from 'react-router'
 import { Fragment, useRef, useState } from 'react'
 import type { ShelfPlant } from '../../app/bookshelf-service'
 import { useRepositories } from '../../app/repository-context'

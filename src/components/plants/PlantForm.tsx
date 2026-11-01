@@ -1,3 +1,4 @@
+import { useBackNavigation } from '../../hooks/useBackNavigation'
 import { useEffect, useId, useRef, useState } from 'react'
 import type { FormEvent, ChangeEvent } from 'react'
 import { Camera, ImagePlus, Sprout } from 'lucide-react'
@@ -20,6 +21,7 @@ export function PlantForm({
 }) {
   const { repositories, invalidate } = useRepositories()
   const navigate = useNavigate()
+  const navigation = useBackNavigation(initial ? `/plants/${initial.id}` : '/')
   const prefix = useId()
   const [name, setName] = useState(initial?.name ?? '')
   const [species, setSpecies] = useState(initial?.species ?? '')
@@ -95,7 +97,14 @@ export function PlantForm({
       )
       allowNavigation()
       invalidate()
-      if (alive.current) navigate(`/plants/${saved.id}`, { replace: true })
+      if (alive.current) {
+        if (initial) void navigation.back()
+        else
+          navigate(`/plants/${saved.id}`, {
+            replace: true,
+            state: navigation.replacementState,
+          })
+      }
     } catch (cause) {
       if (alive.current)
         setError(
@@ -264,7 +273,7 @@ export function PlantForm({
           type="button"
           className="secondary-button"
           disabled={saving || processing}
-          onClick={() => navigate(initial ? `/plants/${initial.id}` : '/')}
+          onClick={() => void navigation.back()}
         >
           취소
         </button>

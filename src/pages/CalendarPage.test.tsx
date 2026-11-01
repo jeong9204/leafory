@@ -182,8 +182,7 @@ describe('관리 캘린더 화면', () => {
     await screen.findByRole('heading', { name: '관리 기록 수정' })
     await user.selectOptions(screen.getByLabelText('관리 종류'), 'fertilizing')
     await user.click(screen.getByRole('button', { name: '기록 저장' }))
-    await screen.findByRole('heading', { name: '초록이', level: 1 })
-    await user.click(screen.getByRole('link', { name: '캘린더' }))
+    // Saving returns to the actual calendar caller instead of pushing plant detail.
     await screen.findByRole('heading', { name: '관리 캘린더' })
     expect(screen.getByRole('button', { pressed: true })).toHaveAccessibleName(
       /비료 1건/,

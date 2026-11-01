@@ -1,6 +1,7 @@
+import { NavigationLink as Link } from '../components/navigation/NavigationLink'
 import { useCallback, useEffect, useState } from 'react'
 import { CalendarDays, ChevronRight, Leaf } from 'lucide-react'
-import { Link, useSearchParams } from 'react-router'
+import { useSearchParams } from 'react-router'
 import { useRepositories } from '../app/repository-context'
 import { useRepositoryQuery } from '../hooks/useRepositoryQuery'
 import {

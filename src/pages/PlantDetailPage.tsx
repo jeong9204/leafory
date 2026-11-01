@@ -1,3 +1,7 @@
+import {
+  NavigationLink as Link,
+  BackLink,
+} from '../components/navigation/NavigationLink'
 import { useCallback, useRef, useState } from 'react'
 import {
   ChevronLeft,
@@ -8,7 +12,7 @@ import {
   Pencil,
   Trash2,
 } from 'lucide-react'
-import { Link, useLocation, useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import { PlantSummary } from '../components/plant-detail/PlantSummary'
 import { PlantRecordTabs } from '../components/plant-detail/PlantRecordTabs'
 import { DataFeedback } from '../components/plants/DataFeedback'
@@ -52,13 +56,13 @@ export function PlantDetailPage() {
   return (
     <div className="detail-page">
       <header className="detail-header">
-        <Link
-          to="/"
+        <BackLink
+          fallback="/"
           aria-label="내 식물 목록으로 돌아가기"
           className="detail-back"
         >
           <ChevronLeft aria-hidden="true" />
-        </Link>
+        </BackLink>
         <div className="min-w-0">
           <h1>{plant.name}</h1>
           <p lang="la">{plant.species || '학명 미등록'}</p>

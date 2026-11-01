@@ -1,5 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
-import { Link, useLocation, useSearchParams } from 'react-router'
+import {
+  NavigationLink as Link,
+  BackLink,
+} from '../components/navigation/NavigationLink'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useLocation, useSearchParams } from 'react-router'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRepositories } from '../app/repository-context'
 import { useRepositoryQuery } from '../hooks/useRepositoryQuery'
@@ -19,9 +23,10 @@ import {
 } from '../components/bookshelf/pixel-assets'
 import { DataFeedback } from '../components/plants/DataFeedback'
 import type { Repositories } from '../domain/repositories'
+import { readRecordPosition, saveRecordPosition } from '../lib/record-position'
 import './records.css'
 
-// Per history entry, in memory only; no user records or Blobs are retained here.
+// Per history entry; optional sessionStorage contains only UI position metadata.
 const positionStores = new WeakMap<
   Repositories,
   Map<string, { filter: string; count: number; y: number }>
@@ -47,12 +52,13 @@ export function RecordsPage() {
     result.status === 'success' ? result.data.plants : [],
   )
   const filter = `${selection.type}:${selection.plant}`
-  const saved = positions.get(location.key)
+  const saved = positions.get(location.key) ?? readRecordPosition(location.key)
   const [page, setPage] = useState(() => ({
     filter: saved?.filter ?? filter,
     count: saved?.count ?? 30,
   }))
   const count = page.filter === filter ? page.count : 30
+  const leaving = useRef(false)
   const [today, setToday] = useState(localDateKey)
   useEffect(() => {
     const refresh = () => setToday(localDateKey())
@@ -71,6 +77,7 @@ export function RecordsPage() {
     setParams(next, {
       replace: true,
       state: {
+        ...location.state,
         recordsNotice:
           '올바르지 않거나 삭제된 필터를 해제했어요. 표시된 조건의 기록을 확인해 주세요.',
       },
@@ -82,25 +89,44 @@ export function RecordsPage() {
     selection.plant,
     params,
     setParams,
+    location.state,
   ])
+  function rememberPosition(y: number) {
+    const position = { filter, count, y }
+    positions.set(location.key, position)
+    saveRecordPosition(location.key, position)
+    if (positions.size > 40) positions.delete(positions.keys().next().value!)
+  }
   useEffect(() => {
     if (result.status !== 'success') return
-    const previous = positions.get(location.key)
-    const frame =
-      previous?.filter === filter
-        ? requestAnimationFrame(() =>
-            window.scrollTo({ top: previous.y, behavior: 'instant' }),
-          )
-        : undefined
-    const remember = () => {
-      positions.set(location.key, { filter, count, y: window.scrollY })
+    leaving.current = false
+    const previous =
+      positions.get(location.key) ?? readRecordPosition(location.key)
+    let lastY = previous?.filter === filter ? previous.y : window.scrollY
+    let restoring = previous?.filter === filter
+    const persist = (y: number) => {
+      const position = { filter, count, y }
+      positions.set(location.key, position)
+      saveRecordPosition(location.key, position)
       if (positions.size > 40) positions.delete(positions.keys().next().value!)
+    }
+    const frame = restoring
+      ? requestAnimationFrame(() => {
+          window.scrollTo({ top: lastY, behavior: 'instant' })
+          restoring = false
+        })
+      : undefined
+    const remember = () => {
+      if (leaving.current || restoring) return
+      lastY = window.scrollY
+      persist(lastY)
     }
     window.addEventListener('scroll', remember, { passive: true })
     return () => {
       if (frame !== undefined) cancelAnimationFrame(frame)
       window.removeEventListener('scroll', remember)
-      remember()
+      // The destination DOM can already have shortened the page by cleanup time.
+      if (!leaving.current) persist(lastY)
     }
   }, [result.status, location.key, filter, count, positions])
   if (result.status === 'loading') return <DataFeedback />
@@ -122,14 +148,14 @@ export function RecordsPage() {
     if (plant) next.set('plant', plant)
     else next.delete('plant')
     setPage({ filter: `${type}:${plant}`, count: 30 })
-    setParams(next, { replace: true, state: null })
+    setParams(next, { replace: true, state: location.state })
   }
   return (
     <div className="records-page">
       <header className="records-header">
-        <Link to="/" aria-label="내 정원으로 돌아가기">
+        <BackLink fallback="/" aria-label="내 정원으로 돌아가기">
           <ChevronLeft aria-hidden="true" />
-        </Link>
+        </BackLink>
         <div>
           <p className="records-eyebrow">GARDEN NOTES</p>
           <h1>나의 기록</h1>
@@ -201,7 +227,22 @@ export function RecordsPage() {
                   const plant = plantMap.get(record.plantId)!
                   return (
                     <li key={record.key}>
-                      <Link className="record-list-item" to={record.href}>
+                      <Link
+                        className="record-list-item"
+                        to={record.href}
+                        onClick={(event) => {
+                          if (
+                            event.button !== 0 ||
+                            event.metaKey ||
+                            event.ctrlKey ||
+                            event.shiftKey ||
+                            event.altKey
+                          )
+                            return
+                          rememberPosition(window.scrollY)
+                          leaving.current = true
+                        }}
+                      >
                         <img
                           src={pixelAsset(plantArt(plant))}
                           onError={fallbackPixelAsset}

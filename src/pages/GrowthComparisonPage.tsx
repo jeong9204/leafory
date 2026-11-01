@@ -1,6 +1,10 @@
+import {
+  NavigationLink as Link,
+  BackLink,
+} from '../components/navigation/NavigationLink'
 import { useCallback } from 'react'
 import { ChevronLeft, RefreshCw } from 'lucide-react'
-import { Link, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { loadGrowthPhotos } from '../app/growth-service'
 import { useRepositories } from '../app/repository-context'
 import { useRepositoryQuery } from '../hooks/useRepositoryQuery'
@@ -20,9 +24,9 @@ export function GrowthComparisonPage() {
   return (
     <div className="growth-page">
       <header className="editor-header">
-        <Link to={`/plants/${id}`} aria-label="식물 상세로 돌아가기">
+        <BackLink fallback={`/plants/${id}`} aria-label="식물 상세로 돌아가기">
           <ChevronLeft aria-hidden="true" />
-        </Link>
+        </BackLink>
         <div className="min-w-0">
           <h1>성장 비교</h1>
           <p>

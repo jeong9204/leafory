@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { NavigationLink as Link } from '../navigation/NavigationLink'
 import { useEffect, useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 import type { PlantTimelineEntry } from '../../app/plant-service'

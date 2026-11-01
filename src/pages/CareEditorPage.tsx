@@ -1,7 +1,12 @@
+import { useBackNavigation } from '../hooks/useBackNavigation'
+import {
+  NavigationLink as Link,
+  BackLink,
+} from '../components/navigation/NavigationLink'
 import { useCallback, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { ChevronLeft, Check } from 'lucide-react'
-import { Link, useNavigate, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import type { CareEvent } from '../domain/models'
 import { RepositoryError } from '../domain/errors'
 import { loadPlant } from '../app/plant-service'
@@ -44,9 +49,14 @@ export function CareEditorPage() {
   return (
     <div className="plant-editor-page">
       <header className="editor-header">
-        <Link to={`/plants/${id}`} aria-label="식물 상세로 돌아가기">
+        <BackLink
+          fallback={
+            eventId ? `/plants/${id}#care-event-${eventId}` : `/plants/${id}`
+          }
+          aria-label="식물 상세로 돌아가기"
+        >
           <ChevronLeft aria-hidden="true" />
-        </Link>
+        </BackLink>
         <div>
           <h1>{eventId ? '관리 기록 수정' : '빠른 관리 기록'}</h1>
           <p>{result.data.plant.name}의 오늘을 남겨 주세요.</p>
@@ -68,7 +78,11 @@ function CareForm({
   initial?: CareEvent
 }) {
   const { repositories, invalidate } = useRepositories()
-  const navigate = useNavigate()
+  const navigation = useBackNavigation(
+    initial
+      ? `/plants/${plantId}#care-event-${initial.id}`
+      : `/plants/${plantId}`,
+  )
   const [original] = useState(() => ({
     eventType: initial?.eventType ?? 'watering',
     dateTime: localDateTime(
@@ -106,7 +120,7 @@ function CareForm({
       await saveCare(repositories, plantId, fields, initial?.id)
       allowNavigation()
       invalidate()
-      navigate(`/plants/${plantId}`, { replace: true })
+      void navigation.back()
     } catch (cause) {
       setError(
         cause instanceof RepositoryError && cause.code === 'VALIDATION'
@@ -207,7 +221,7 @@ function CareForm({
           type="button"
           className="secondary-button"
           disabled={busy}
-          onClick={() => navigate(`/plants/${plantId}`)}
+          onClick={() => void navigation.back()}
         >
           취소
         </button>

@@ -1,3 +1,4 @@
+import { NavigationLink as Link } from '../components/navigation/NavigationLink'
 import {
   Archive,
   ChevronRight,
@@ -6,7 +7,6 @@ import {
   Sprout,
   NotebookText,
 } from 'lucide-react'
-import { Link } from 'react-router'
 import { useCallback, useEffect, useState } from 'react'
 import { loadBookshelf } from '../app/bookshelf-service'
 import { useRepositories } from '../app/repository-context'

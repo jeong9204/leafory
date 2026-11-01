@@ -1,5 +1,8 @@
+import {
+  NavigationLink as Link,
+  BackLink,
+} from '../components/navigation/NavigationLink'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router'
 
 export function InstallPage() {
   const [ready, setReady] = useState(false)
@@ -25,7 +28,9 @@ export function InstallPage() {
     ('standalone' in navigator && navigator.standalone === true)
   return (
     <div className="install-page">
-      <Link to="/">← 내 정원으로</Link>
+      <BackLink fallback="/" aria-label="내 정원으로 돌아가기">
+        ← 내 정원으로
+      </BackLink>
       <h1>Leafory를 홈 화면에</h1>
       <p>
         {standalone

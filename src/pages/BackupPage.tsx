@@ -1,7 +1,10 @@
+import {
+  NavigationLink as Link,
+  BackLink,
+} from '../components/navigation/NavigationLink'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { ChangeEvent } from 'react'
 import { ChevronLeft, Download, Upload, Archive } from 'lucide-react'
-import { Link } from 'react-router'
 import { useRepositories } from '../app/repository-context'
 import {
   backupErrorMessage,
@@ -190,9 +193,9 @@ export function BackupPage() {
   return (
     <div className="plant-editor-page backup-page">
       <header className="editor-header">
-        <Link to="/" aria-label="홈으로 돌아가기">
+        <BackLink fallback="/" aria-label="홈으로 돌아가기">
           <ChevronLeft aria-hidden="true" />
-        </Link>
+        </BackLink>
         <div>
           <h1>데이터 백업</h1>
           <p>소중한 초록빛 기록을 안전하게 보관해요.</p>

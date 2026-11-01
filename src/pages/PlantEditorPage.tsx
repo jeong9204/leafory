@@ -1,6 +1,10 @@
+import {
+  NavigationLink as Link,
+  BackLink,
+} from '../components/navigation/NavigationLink'
 import { useCallback } from 'react'
 import { ChevronLeft } from 'lucide-react'
-import { Link, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useRepositories } from '../app/repository-context'
 import { loadPlant } from '../app/plant-service'
 import { useRepositoryQuery } from '../hooks/useRepositoryQuery'
@@ -33,12 +37,12 @@ export function PlantEditorPage() {
   return (
     <div className="plant-editor-page">
       <header className="editor-header">
-        <Link
-          to={id ? `/plants/${id}` : '/'}
+        <BackLink
+          fallback={id ? `/plants/${id}` : '/'}
           aria-label="이전 화면으로 돌아가기"
         >
           <ChevronLeft aria-hidden="true" />
-        </Link>
+        </BackLink>
         <div>
           <h1>{id ? '식물 정보 수정' : '새로운 초록 친구'}</h1>
           <p>

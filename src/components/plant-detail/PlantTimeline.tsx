@@ -1,5 +1,5 @@
+import { NavigationLink as Link } from '../navigation/NavigationLink'
 import { Droplet, Sprout, Sun } from 'lucide-react'
-import { Link } from 'react-router'
 import { DeleteCareButton } from './DeleteCareButton'
 import type { PlantTimelineEntry } from '../../app/plant-service'
 import { PlantPhoto } from '../plants/PlantPhoto'

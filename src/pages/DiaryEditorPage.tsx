@@ -1,7 +1,12 @@
+import { useBackNavigation } from '../hooks/useBackNavigation'
+import {
+  NavigationLink as Link,
+  BackLink,
+} from '../components/navigation/NavigationLink'
 import { useCallback, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { ChevronLeft, Check } from 'lucide-react'
-import { Link, useNavigate, useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { useRepositories } from '../app/repository-context'
 import { loadPlant } from '../app/plant-service'
 import { conditionLabels, loadDiary, saveDiary } from '../app/diary-service'
@@ -39,12 +44,14 @@ export function DiaryEditorPage() {
   return (
     <div className="plant-editor-page">
       <header className="editor-header">
-        <Link
-          to={entryId ? `/plants/${id}/diary/${entryId}` : `/plants/${id}`}
+        <BackLink
+          fallback={
+            entryId ? `/plants/${id}/diary/${entryId}` : `/plants/${id}`
+          }
           aria-label="이전 화면으로 돌아가기"
         >
           <ChevronLeft aria-hidden="true" />
-        </Link>
+        </BackLink>
         <div>
           <h1>{entryId ? '일기 수정' : '일기 작성'}</h1>
           <p>{result.data.plant.name}의 작은 변화를 남겨 주세요.</p>
@@ -70,6 +77,11 @@ function DiaryForm({
 }) {
   const { repositories, invalidate } = useRepositories()
   const navigate = useNavigate()
+  const navigation = useBackNavigation(
+    initial.entry
+      ? `/plants/${plantId}/diary/${initial.entry.id}`
+      : `/plants/${plantId}`,
+  )
   const [original] = useState(() => ({
     entryDate: initial.entry?.entryDate ?? localDateKey(),
     condition: initial.entry?.condition ?? 'normal',
@@ -110,7 +122,12 @@ function DiaryForm({
       )
       allowNavigation()
       invalidate()
-      navigate(`/plants/${plantId}/diary/${saved.id}`, { replace: true })
+      if (initial.entry) void navigation.back()
+      else
+        navigate(`/plants/${plantId}/diary/${saved.id}`, {
+          replace: true,
+          state: navigation.replacementState,
+        })
     } catch (cause) {
       setError(
         cause instanceof RepositoryError && cause.code === 'VALIDATION'
@@ -197,13 +214,7 @@ function DiaryForm({
           type="button"
           className="secondary-button"
           disabled={busy || processing}
-          onClick={() =>
-            navigate(
-              initial.entry
-                ? `/plants/${plantId}/diary/${initial.entry.id}`
-                : `/plants/${plantId}`,
-            )
-          }
+          onClick={() => void navigation.back()}
         >
           취소
         </button>
