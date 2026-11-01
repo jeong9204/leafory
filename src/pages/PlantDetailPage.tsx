@@ -8,7 +8,7 @@ import {
   Pencil,
   Trash2,
 } from 'lucide-react'
-import { Link, useParams } from 'react-router'
+import { Link, useLocation, useParams } from 'react-router'
 import { PlantSummary } from '../components/plant-detail/PlantSummary'
 import { PlantRecordTabs } from '../components/plant-detail/PlantRecordTabs'
 import { DataFeedback } from '../components/plants/DataFeedback'
@@ -22,6 +22,7 @@ import './plant-detail.css'
 
 export function PlantDetailPage() {
   const { id = '' } = useParams()
+  const { hash, key: navigationKey } = useLocation()
   const { repositories } = useRepositories()
   const query = useCallback(
     () => loadPlant(repositories, id),
@@ -122,8 +123,10 @@ export function PlantDetailPage() {
       </Link>
       <LightTimerCard plantId={plant.id} />
       <PlantRecordTabs
-        key={plant.id}
+        key={`${plant.id}:${hash}`}
         plantId={plant.id}
+        anchorHash={hash}
+        anchorNavigationKey={navigationKey}
         entries={view.entries}
         photos={view.gallery}
       />

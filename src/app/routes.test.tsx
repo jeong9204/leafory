@@ -21,7 +21,7 @@ describe('기본 라우팅', () => {
     [`/plants/${fixtureIds[0]}/compare`, '성장 비교'],
     ['/plants/plant-1', '식물을 찾을 수 없습니다'],
     [`/plants/${fixtureIds[0]}/diary/new`, '일기 작성'],
-    ['/records', '기록 목록'],
+    ['/records', '나의 기록'],
     ['/unknown', '페이지를 찾을 수 없습니다'],
   ])('%s 경로에 맞는 화면을 표시한다', async (path, title) => {
     renderApp(context.repos, path)
@@ -35,7 +35,7 @@ describe('기본 라우팅', () => {
     await screen.findByRole('heading', { name: '나의 작은 정원' })
     await user.click(screen.getByRole('link', { name: '기록 목록' }))
     expect(
-      screen.getByRole('heading', { name: '기록 목록' }),
+      await screen.findByRole('heading', { name: '나의 기록' }),
     ).toBeInTheDocument()
     await user.click(screen.getByRole('link', { name: '홈' }))
     expect(

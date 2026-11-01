@@ -79,7 +79,12 @@ export const routes: RouteObject[] = [
           Component: (await import('../pages/InstallPage')).InstallPage,
         }),
       },
-      { path: 'records', element: <SetupPage title="기록 목록" /> },
+      {
+        path: 'records',
+        lazy: async () => ({
+          Component: (await import('../pages/RecordsPage')).RecordsPage,
+        }),
+      },
       { path: '*', element: <SetupPage title="페이지를 찾을 수 없습니다" /> },
     ],
   },

@@ -42,6 +42,13 @@ export function PlantTimeline({
               <span className="sr-only">{eventNames[entry.kind]}</span>
             </span>
             <article
+              id={
+                entry.careEventId
+                  ? `care-event-${entry.careEventId}`
+                  : undefined
+              }
+              tabIndex={entry.careEventId ? -1 : undefined}
+              aria-label={entry.careEventId ? entry.title : undefined}
               className={`detail-event-card surface ${entry.image ? '' : 'without-photo'}`}
             >
               {entry.image && (

@@ -19,7 +19,8 @@ export function AppLayout() {
     isForm ||
     pathname === '/backup' ||
     pathname === '/calendar' ||
-    pathname === '/install'
+    pathname === '/install' ||
+    pathname === '/records'
   return (
     <div
       className={`app-shell ${isHome ? '' : 'subpage-shell'} ${isForm ? 'form-shell' : ''}`}

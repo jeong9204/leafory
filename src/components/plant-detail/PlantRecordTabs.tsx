@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 import type { PlantTimelineEntry } from '../../app/plant-service'
 import { PlantPhoto } from '../plants/PlantPhoto'
@@ -15,12 +15,42 @@ export function PlantRecordTabs({
   plantId,
   entries,
   photos: photoEntries,
+  anchorHash = '',
+  anchorNavigationKey = '',
 }: {
   plantId?: string
   entries: PlantTimelineEntry[]
   photos?: PlantTimelineEntry[]
+  anchorHash?: string
+  anchorNavigationKey?: string
 }) {
   const [active, setActive] = useState<'timeline' | 'photos'>('timeline')
+  const targetId = anchorHash.startsWith('#care-event-')
+    ? anchorHash.slice('#care-event-'.length)
+    : undefined
+  const handled = useRef('')
+  const targetExists =
+    targetId !== undefined &&
+    entries.some((entry) => entry.careEventId === targetId)
+  useEffect(() => {
+    if (!targetExists || active !== 'timeline') return
+    const key = `${anchorNavigationKey}:${anchorHash}`
+    if (handled.current === key) return
+    const frame = requestAnimationFrame(() => {
+      const element = document.getElementById(anchorHash.slice(1))
+      if (!element) return
+      handled.current = key
+      element.focus({ preventScroll: true })
+      element.scrollIntoView?.({
+        block: 'center',
+        behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)')
+          .matches
+          ? 'auto'
+          : 'smooth',
+      })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [anchorHash, anchorNavigationKey, targetExists, active])
   const refs = useRef<(HTMLButtonElement | null)[]>([])
   function handleKey(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let next: number
@@ -63,6 +93,11 @@ export function PlantRecordTabs({
         hidden={active !== 'timeline'}
         tabIndex={0}
       >
+        {targetId !== undefined && !targetExists && (
+          <p role="status" className="record-anchor-missing">
+            이 기록을 찾을 수 없어요. 최신 기록을 확인해 주세요.
+          </p>
+        )}
         <PlantTimeline entries={entries} plantId={plantId} />
       </div>
       <div
