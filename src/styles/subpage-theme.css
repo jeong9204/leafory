@@ -1,0 +1,199 @@
+/* Phase 11 bookshelf colors, shared by subpages without retheming semantic states. */
+:root {
+  --ui-ink: #43200b;
+  --ui-cream: #f9ead7;
+  --ui-surface: #fff0d6;
+  --ui-beige: #ebd4b7;
+  --ui-wood: #5e3116;
+  --ui-border: #d6ad7d;
+  --ui-muted: #826044;
+  --ui-olive: #466242;
+  --ui-olive-soft: #dfeee0;
+}
+
+@layer components {
+  .app-shell.subpage-shell {
+    color: var(--ui-ink);
+    background: var(--ui-cream);
+  }
+  .subpage-shell > header {
+    padding-top: calc(24px + env(safe-area-inset-top));
+  }
+  .subpage-shell > header a {
+    color: var(--ui-wood);
+  }
+  .subpage-shell .skip-link {
+    background: var(--ui-surface);
+    color: var(--ui-wood);
+  }
+  .subpage-shell .surface {
+    background: var(--ui-surface);
+    box-shadow:
+      inset 0 0 0 1px var(--ui-border),
+      0 3px 10px #8251260d;
+  }
+  .subpage-shell :is(.editor-header, .detail-header, .calendar-header) h1,
+  .subpage-shell .install-page :is(h1, h2),
+  .subpage-shell :is(.backup-card, .growth-heading, .light-timer-heading) h2,
+  .subpage-shell :is(.detail-memo, .calendar-records-heading) h2,
+  .subpage-shell .calendar-month-controls h2,
+  .subpage-shell :is(.detail-event-card, .calendar-record) h3,
+  .subpage-shell :is(.data-feedback, .detail-not-found) h1,
+  .subpage-shell :is(.calendar-empty, .empty-plants) h3,
+  .subpage-shell #main-content > h1 {
+    color: var(--ui-ink);
+  }
+  .subpage-shell :is(.editor-header, .detail-header) p,
+  .subpage-shell :is(.field-hint, .care-field-note, .diary-photo-empty),
+  .subpage-shell :is(.detail-event-card, .detail-gallery) time,
+  .subpage-shell :is(.backup-card, .backup-message, .diary-detail-meta),
+  .subpage-shell :is(.calendar-header, .calendar-empty) p,
+  .subpage-shell :is(.calendar-grid th, .backup-counts dt),
+  .subpage-shell
+    :is(.editor-fields label > span, .editor-photo-section h2 span) {
+    color: var(--ui-muted);
+  }
+  .subpage-shell :is(.editor-header > a, .detail-back, .detail-header-more),
+  .subpage-shell .install-page > a,
+  .subpage-shell .editor-photo-section h2,
+  .subpage-shell .editor-fields label,
+  .subpage-shell :is(.detail-state, .detail-memo) > p,
+  .subpage-shell .detail-event-card p,
+  .subpage-shell .detail-gallery figcaption {
+    color: var(--ui-wood);
+  }
+  .subpage-shell .editor-header > a,
+  .subpage-shell .detail-back,
+  .subpage-shell .plant-manage-menu .detail-header-more {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .subpage-shell .detail-header {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+  }
+  .subpage-shell .primary-button,
+  .subpage-shell .detail-actions > :last-child {
+    background: var(--ui-wood);
+    color: var(--ui-surface);
+  }
+  .subpage-shell .secondary-button,
+  .subpage-shell .editor-photo-actions button,
+  .subpage-shell .calendar-today,
+  .subpage-shell .data-feedback :is(a, button),
+  .subpage-shell .detail-actions > :first-child {
+    background: var(--ui-beige);
+    color: var(--ui-wood);
+  }
+  .subpage-shell .editor-photo-actions button,
+  .subpage-shell .detail-growth-link {
+    border-color: var(--ui-border);
+    color: var(--ui-wood);
+  }
+  .subpage-shell .editor-fields :is(input, select, textarea),
+  .subpage-shell .calendar-filter select {
+    border-color: var(--ui-border);
+    background: var(--ui-surface);
+    color: var(--ui-ink);
+  }
+  .subpage-shell .editor-fields :is(input, textarea)::placeholder {
+    color: var(--ui-muted);
+  }
+  .subpage-shell .detail-tabs {
+    border-color: var(--ui-border);
+    background: var(--ui-beige);
+  }
+  .subpage-shell .detail-tabs button {
+    min-height: 44px;
+    color: var(--ui-wood);
+  }
+  .subpage-shell .detail-tabs button[aria-selected='true'] {
+    color: var(--ui-surface);
+    background: var(--ui-wood);
+    box-shadow: 0 2px 4px #8251260d;
+  }
+  .subpage-shell .detail-metrics,
+  .subpage-shell .detail-metrics > div + div,
+  .subpage-shell :is(.backup-preview, .backup-download),
+  .subpage-shell .light-timer-card,
+  .subpage-shell .plant-menu-panel {
+    border-color: var(--ui-border);
+  }
+  .subpage-shell .detail-timeline::before {
+    background: var(--ui-border);
+  }
+  .subpage-shell .delete-dialog {
+    background: var(--ui-surface);
+    color: var(--ui-wood);
+    box-shadow: 0 12px 60px #43200b40;
+  }
+  .subpage-shell .delete-dialog h2 {
+    color: var(--ui-ink);
+  }
+  .subpage-shell .delete-dialog::backdrop {
+    background: #43200b66;
+  }
+  .subpage-shell :is(.detail-status, .timer-record-badge),
+  .subpage-shell .light-timer-heading > span,
+  .subpage-shell .growth-notice,
+  .subpage-shell .scientific-suggestions {
+    color: var(--ui-olive);
+    background: var(--ui-olive-soft);
+    border-color: var(--ui-border);
+  }
+  .subpage-shell .pwa-status {
+    background: var(--ui-olive-soft);
+    border-color: var(--ui-border);
+    color: var(--ui-olive);
+  }
+  .subpage-shell .pwa-status button {
+    background: var(--ui-wood);
+    color: var(--ui-surface);
+  }
+  .subpage-shell .scientific-suggestions li {
+    background: var(--ui-surface);
+    border-color: var(--ui-border);
+  }
+  .subpage-shell .candidate-details {
+    border-color: var(--ui-border);
+  }
+  .subpage-shell :is(.detail-metrics dd, .backup-counts dd),
+  .subpage-shell :is(.light-timer-clock, .light-timer-confirm-time),
+  .subpage-shell .detail-event-card .timer-record-range,
+  .subpage-shell .growth-heading > span,
+  .subpage-shell .growth-photo-meta time,
+  .subpage-shell .growth-pair time {
+    color: var(--ui-olive);
+  }
+  .subpage-shell .calendar-grid [aria-pressed='true'] {
+    background: var(--ui-olive-soft);
+    color: var(--ui-olive);
+    box-shadow: inset 0 0 0 1.5px var(--ui-olive);
+  }
+  .subpage-shell .growth-photo-choice.is-selected {
+    border-color: var(--ui-olive);
+  }
+  .subpage-shell :is(.growth-photo-choice input, .backup-agreement input) {
+    accent-color: var(--ui-olive);
+  }
+  .subpage-shell
+    :is(a, button, input, textarea, select, summary):focus-visible {
+    outline: 2px solid var(--ui-olive);
+    outline-offset: 3px;
+  }
+  .subpage-shell .bottom-navigation {
+    background: #faebd7f7;
+    border: 1px solid var(--ui-border);
+    border-bottom: 0;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -2px 8px #8251260d;
+  }
+  .subpage-shell .bottom-nav-item {
+    color: var(--ui-muted);
+  }
+  .subpage-shell .bottom-nav-item.active {
+    color: var(--ui-olive);
+  }
+  .subpage-shell .bottom-nav-item.active svg {
+    background: var(--ui-olive-soft);
+  }
+}

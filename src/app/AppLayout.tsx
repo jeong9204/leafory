@@ -21,7 +21,9 @@ export function AppLayout() {
     pathname === '/calendar' ||
     pathname === '/install'
   return (
-    <div className={`app-shell ${isForm ? 'form-shell' : ''}`}>
+    <div
+      className={`app-shell ${isHome ? '' : 'subpage-shell'} ${isForm ? 'form-shell' : ''}`}
+    >
       <a href="#main-content" className="skip-link">
         본문으로 건너뛰기
       </a>

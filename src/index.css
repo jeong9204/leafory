@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './styles/subpage-theme.css';
 
 @theme {
   --color-cream: #f7f4eb;
