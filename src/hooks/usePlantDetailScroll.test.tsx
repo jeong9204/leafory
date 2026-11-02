@@ -18,6 +18,7 @@ const diary = `${plant}/diary/c13d892e-140d-491a-8087-a8bcd80bab02`
 let frames: Map<number, FrameRequestCallback>
 let nextFrame: number
 let height: number
+let warm: boolean
 let initialReady: boolean
 let initialTimerReady: boolean
 let setTimerReady: (value: boolean) => void
@@ -43,7 +44,7 @@ function Detail() {
     setTimerReady = updateTimer
   }, [])
   const root = useRef<HTMLDivElement>(null)
-  const scroll = usePlantDetailScroll(ready, root)
+  const scroll = usePlantDetailScroll(ready, root, warm)
   const [tab, setTab] = useState(scroll.initialTab ?? 'timeline')
   if (!ready) return <p role="status">로딩 중</p>
   return (
@@ -112,6 +113,7 @@ beforeEach(() => {
   frames = new Map()
   nextFrame = 0
   height = 4000
+  warm = false
   initialReady = true
   initialTimerReady = true
   Object.defineProperty(history, 'scrollRestoration', {
@@ -152,6 +154,27 @@ afterEach(() => {
   }
 })
 describe('plant-detail POP scroll coordination', () => {
+  it('restores a warm POP before waiting for animation frames', async () => {
+    const router = open()
+    await leave(1200)
+    warm = true
+    height = 4000
+    await act(() => router.navigate(-1))
+    expect(window.scrollY).toBe(1200)
+    expect(frames.size).toBe(0)
+  })
+  it('still waits for pending timer geometry on a warm POP', async () => {
+    const router = open()
+    await leave(1200)
+    warm = true
+    initialTimerReady = false
+    height = 4000
+    await act(() => router.navigate(-1))
+    expect(window.scrollTo).not.toHaveBeenCalled()
+    await act(() => setTimerReady(true))
+    expect(window.scrollY).toBe(1200)
+  })
+
   it.each(['arrow', 'browser'] as const)(
     'waits for asynchronous content and two layout frames after %s back',
     async (method) => {

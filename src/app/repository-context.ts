@@ -1,7 +1,9 @@
 import { createContext, useContext } from 'react'
+import type { QueryCache } from './query-cache'
 import type { Repositories } from '../domain/repositories'
 export interface RepositoryContextValue {
   repositories: Repositories
+  queryCache: QueryCache
   revision: number
   invalidate: () => void
 }

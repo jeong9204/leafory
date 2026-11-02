@@ -7,16 +7,27 @@ export type QueryResult<T> =
 export function useRepositoryQuery<T>(
   query: () => Promise<T>,
   refreshOnFocus = true,
+  cacheKey?: string,
 ) {
-  const { revision } = useRepositories()
+  const { revision, queryCache } = useRepositories()
   const [attempt, setAttempt] = useState(0)
+  const [initial] = useState(() => ({
+    query,
+    snapshot: cacheKey ? queryCache.get<T>(cacheKey) : undefined,
+  }))
   const [state, setState] = useState<{
     query: () => Promise<T>
     result: QueryResult<T>
-  }>({ query, result: { status: 'loading' } })
+  }>({
+    query,
+    result: initial.snapshot
+      ? { status: 'success', data: initial.snapshot.data }
+      : { status: 'loading' },
+  })
   const reload = useCallback(() => setAttempt((value) => value + 1), [])
   useEffect(() => {
     let current = true
+    const generation = queryCache.generation
     Promise.resolve()
       .then(() => {
         if (current)
@@ -31,16 +42,22 @@ export function useRepositoryQuery<T>(
       })
       .then(
         (data) => {
-          if (current) setState({ query, result: { status: 'success', data } })
+          if (current && generation === queryCache.generation) {
+            if (cacheKey) queryCache.put(cacheKey, data, generation)
+            setState({ query, result: { status: 'success', data } })
+          }
         },
         (error) => {
-          if (current) setState({ query, result: { status: 'error', error } })
+          if (current && generation === queryCache.generation) {
+            if (cacheKey) queryCache.remove(cacheKey)
+            setState({ query, result: { status: 'error', error } })
+          }
         },
       )
     return () => {
       current = false
     }
-  }, [query, revision, attempt])
+  }, [query, revision, attempt, cacheKey, queryCache])
   useEffect(() => {
     if (!refreshOnFocus) return
     const visible = () => {
@@ -59,5 +76,6 @@ export function useRepositoryQuery<T>(
         ? state.result
         : ({ status: 'loading' } as QueryResult<T>),
     reload,
+    warm: initial.query === query && Boolean(initial.snapshot),
   }
 }

@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import type { Repositories } from '../domain/repositories'
+import { QueryCache } from './query-cache'
 import { RepositoryContext } from './repository-context'
 export function RepositoryProvider({
   repositories,
@@ -10,10 +11,17 @@ export function RepositoryProvider({
   children: ReactNode
 }) {
   const [revision, setRevision] = useState(0)
-  const invalidate = useCallback(() => setRevision((value) => value + 1), [])
+  const { cache: queryCache } = useMemo(
+    () => ({ repositories, cache: new QueryCache() }),
+    [repositories],
+  )
+  const invalidate = useCallback(() => {
+    queryCache.clear()
+    setRevision((value) => value + 1)
+  }, [queryCache])
   const value = useMemo(
-    () => ({ repositories, revision, invalidate }),
-    [repositories, revision, invalidate],
+    () => ({ repositories, revision, invalidate, queryCache }),
+    [repositories, revision, invalidate, queryCache],
   )
   return (
     <RepositoryContext.Provider value={value}>

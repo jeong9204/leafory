@@ -44,7 +44,7 @@ export function RecordsPage() {
     return store
   })
   const query = useCallback(() => loadRecordIndex(repositories), [repositories])
-  const { result, reload } = useRepositoryQuery(query)
+  const { result, reload } = useRepositoryQuery(query, true, 'records')
   const [params, setParams] = useSearchParams()
   const location = useLocation()
   const selection = recordsSelection(

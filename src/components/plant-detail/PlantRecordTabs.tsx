@@ -29,7 +29,7 @@ export function PlantRecordTabs({
   initialTab?: 'timeline' | 'photos'
 }) {
   const [active, setActive] = useState<'timeline' | 'photos'>(
-    anchorHash ? 'timeline' : initialTab,
+    preserveScrollOnReturn ? initialTab : anchorHash ? 'timeline' : initialTab,
   )
   const targetId = anchorHash.startsWith('#care-event-')
     ? anchorHash.slice('#care-event-'.length)

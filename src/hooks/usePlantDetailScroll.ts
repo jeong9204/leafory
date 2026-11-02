@@ -13,6 +13,7 @@ import type { DetailPosition } from '../lib/plant-detail-position'
 export function usePlantDetailScroll(
   ready: boolean,
   root: RefObject<HTMLDivElement | null>,
+  warm = false,
 ) {
   const location = useLocation()
   const type = useNavigationType()
@@ -82,31 +83,37 @@ export function usePlantDetailScroll(
         })
       if (frame !== undefined) cancelAnimationFrame(frame)
       if (root.current?.querySelector('[data-layout-pending="true"]')) return
-      frame = requestAnimationFrame(() => {
-        // Allow the content DOM, Blob src effects and the browser's traversal to
-        // finish before measuring. Image boxes already reserve their CSS height.
-        frame = requestAnimationFrame(() => {
-          if (
-            cancelled ||
-            !root.current ||
-            root.current.querySelector('[data-layout-pending="true"]')
-          )
-            return
-          root.current.getBoundingClientRect()
-          const scrolling =
-            document.scrollingElement ?? document.documentElement
-          const target = validScrollY(
+      const apply = () => {
+        if (
+          cancelled ||
+          !root.current ||
+          root.current.querySelector('[data-layout-pending="true"]')
+        )
+          return
+        root.current.getBoundingClientRect()
+        const scrolling = document.scrollingElement ?? document.documentElement
+        window.scrollTo({
+          top: validScrollY(
             position.y,
             scrolling.scrollHeight,
             scrolling.clientHeight || window.innerHeight,
-          )
-          window.scrollTo({ top: target, left: 0, behavior: 'instant' })
-          pending = false
-          layoutObserver.disconnect()
-          remember()
+          ),
+          left: 0,
+          behavior: 'instant',
         })
-      })
+        pending = false
+        layoutObserver.disconnect()
+        remember()
+      }
+      // A warm view already has its content and timer geometry. Restore in this
+      // layout effect, before painting the old entry at the diary's scrollY.
+      if (warm) apply()
+      else
+        frame = requestAnimationFrame(() => {
+          frame = requestAnimationFrame(apply)
+        })
     }
+
     const userIntent = () => {
       if (!pending) return
       cancelled = true
@@ -150,7 +157,7 @@ export function usePlantDetailScroll(
       // Cleanup can run after the page has shrunk: never sample scrollY here.
       if (!leaving.current) saveDetailPosition(location.key, last)
     }
-  }, [ready, saved, root, href, location.key])
+  }, [ready, saved, root, href, location.key, warm])
 
   function beforeLink(event: MouseEvent<HTMLDivElement>) {
     if (

@@ -33,9 +33,13 @@ export function PlantDetailPage() {
     () => loadPlant(repositories, id),
     [repositories, id],
   )
-  const { result, reload } = useRepositoryQuery(query)
+  const { result, reload, warm } = useRepositoryQuery(
+    query,
+    true,
+    `plant:${id}`,
+  )
   const page = useRef<HTMLDivElement>(null)
-  const scroll = usePlantDetailScroll(result.status === 'success', page)
+  const scroll = usePlantDetailScroll(result.status === 'success', page, warm)
   const [menu, setMenu] = useState(false)
   const [confirm, setConfirm] = useState(false)
   const menuButton = useRef<HTMLButtonElement>(null)

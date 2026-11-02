@@ -21,7 +21,11 @@ export function DiaryDetailPage() {
     () => loadDiary(repositories, id, entryId),
     [repositories, id, entryId],
   )
-  const { result, reload } = useRepositoryQuery(query)
+  const { result, reload } = useRepositoryQuery(
+    query,
+    true,
+    `diary:${id}:${entryId}`,
+  )
   if (result.status === 'loading') return <DataFeedback />
   if (result.status === 'error')
     return result.error instanceof RepositoryError &&

@@ -19,7 +19,7 @@ export function LightTimerCard({ plantId }: { plantId: string }) {
       : undefined
     return { timer, owner }
   }, [repositories])
-  const { result, reload } = useRepositoryQuery(query)
+  const { result, reload } = useRepositoryQuery(query, true, 'light-timer')
   const [now, setNow] = useState(Date.now)
   const [busy, setBusy] = useState(false)
   const [errorMessage, setError] = useState('')

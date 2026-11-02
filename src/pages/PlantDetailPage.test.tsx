@@ -149,6 +149,23 @@ describe('식물 상세 화면', () => {
 })
 
 describe('재사용 기록 컴포넌트', () => {
+  it.each([true, false])(
+    'hash 진입과 저장된 사진 탭 복귀를 구분한다: return=%s',
+    (returning) => {
+      render(
+        <PlantRecordTabs
+          entries={[]}
+          anchorHash="#care-event-old"
+          initialTab="photos"
+          preserveScrollOnReturn={returning}
+        />,
+      )
+      expect(
+        screen.getByRole('tab', { name: returning ? '사진' : '타임라인' }),
+      ).toHaveAttribute('aria-selected', 'true')
+    },
+  )
+
   it('기록과 사진이 비어 있을 때 빈 상태를 표시한다', async () => {
     const user = userEvent.setup()
     render(<PlantRecordTabs entries={[]} />)

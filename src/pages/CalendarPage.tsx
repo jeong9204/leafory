@@ -19,7 +19,7 @@ import './calendar.css'
 export function CalendarPage() {
   const { repositories } = useRepositories()
   const query = useCallback(() => loadCalendar(repositories), [repositories])
-  const { result, reload } = useRepositoryQuery(query)
+  const { result, reload } = useRepositoryQuery(query, true, 'calendar')
   const [params, setParams] = useSearchParams()
   const [today, setToday] = useState(localDateKey)
   useEffect(() => {
