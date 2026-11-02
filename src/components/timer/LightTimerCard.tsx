@@ -124,6 +124,7 @@ export function LightTimerCard({ plantId }: { plantId: string }) {
       className="light-timer-card surface"
       aria-label="식물등 타이머"
       aria-busy={busy}
+      data-layout-pending={result.status === 'loading' || undefined}
     >
       <div className="light-timer-heading">
         <h2>

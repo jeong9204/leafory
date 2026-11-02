@@ -17,14 +17,20 @@ export function PlantRecordTabs({
   photos: photoEntries,
   anchorHash = '',
   anchorNavigationKey = '',
+  preserveScrollOnReturn = false,
+  initialTab = 'timeline',
 }: {
   plantId?: string
   entries: PlantTimelineEntry[]
   photos?: PlantTimelineEntry[]
   anchorHash?: string
   anchorNavigationKey?: string
+  preserveScrollOnReturn?: boolean
+  initialTab?: 'timeline' | 'photos'
 }) {
-  const [active, setActive] = useState<'timeline' | 'photos'>('timeline')
+  const [active, setActive] = useState<'timeline' | 'photos'>(
+    anchorHash ? 'timeline' : initialTab,
+  )
   const targetId = anchorHash.startsWith('#care-event-')
     ? anchorHash.slice('#care-event-'.length)
     : undefined
@@ -33,7 +39,7 @@ export function PlantRecordTabs({
     targetId !== undefined &&
     entries.some((entry) => entry.careEventId === targetId)
   useEffect(() => {
-    if (!targetExists || active !== 'timeline') return
+    if (preserveScrollOnReturn || !targetExists || active !== 'timeline') return
     const key = `${anchorNavigationKey}:${anchorHash}`
     if (handled.current === key) return
     const frame = requestAnimationFrame(() => {
@@ -50,7 +56,13 @@ export function PlantRecordTabs({
       })
     })
     return () => cancelAnimationFrame(frame)
-  }, [anchorHash, anchorNavigationKey, targetExists, active])
+  }, [
+    anchorHash,
+    anchorNavigationKey,
+    targetExists,
+    active,
+    preserveScrollOnReturn,
+  ])
   const refs = useRef<(HTMLButtonElement | null)[]>([])
   function handleKey(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let next: number

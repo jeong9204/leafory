@@ -22,6 +22,7 @@ import { loadPlant } from '../app/plant-service'
 import { useRepositoryQuery } from '../hooks/useRepositoryQuery'
 import { RepositoryError } from '../domain/errors'
 import { LightTimerCard } from '../components/timer/LightTimerCard'
+import { usePlantDetailScroll } from '../hooks/usePlantDetailScroll'
 import './plant-detail.css'
 
 export function PlantDetailPage() {
@@ -33,6 +34,8 @@ export function PlantDetailPage() {
     [repositories, id],
   )
   const { result, reload } = useRepositoryQuery(query)
+  const page = useRef<HTMLDivElement>(null)
+  const scroll = usePlantDetailScroll(result.status === 'success', page)
   const [menu, setMenu] = useState(false)
   const [confirm, setConfirm] = useState(false)
   const menuButton = useRef<HTMLButtonElement>(null)
@@ -54,7 +57,7 @@ export function PlantDetailPage() {
   const view = result.data
   const { plant } = view
   return (
-    <div className="detail-page">
+    <div className="detail-page" ref={page} onClickCapture={scroll.beforeLink}>
       <header className="detail-header">
         <BackLink
           fallback="/"
@@ -131,6 +134,8 @@ export function PlantDetailPage() {
         plantId={plant.id}
         anchorHash={hash}
         anchorNavigationKey={navigationKey}
+        preserveScrollOnReturn={scroll.restoring}
+        initialTab={scroll.initialTab}
         entries={view.entries}
         photos={view.gallery}
       />
