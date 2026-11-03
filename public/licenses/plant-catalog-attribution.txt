@@ -9,8 +9,8 @@ Kew Names and Taxonomic Backbone:
 Licensed under Creative Commons Attribution 3.0 Unported (CC BY 3.0):
 https://creativecommons.org/licenses/by/3.0/
 
-Leafory selected 32 accepted species names and a subset of their synonyms,
-checked on 2026-10-26. Korean search labels and short candidate notes were
+Leafory selected 38 accepted species names and a subset of their synonyms,
+checked on 2026-10-26 and 2026-11-03. Korean search labels and short candidate notes were
 written for Leafory; they are not official taxonomic names or identification
 results. Source descriptions and photographs are not reproduced.
 

@@ -334,5 +334,65 @@
     "note": "오베숨과 다른 아데니움속의 종이에요. 사막의 장미는 속 수준 검색을 위한 이름이며 이 종이나 특정 품종을 확정하는 이름이 아니에요.",
     "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:76366-1",
     "checkedAt": "2026-10-26"
+  },
+  {
+    "id": "senna-meridionalis",
+    "commonName": "세나 메리디오날리스",
+    "scientificName": "Senna meridionalis",
+    "aliases": ["세나", "세나메리디오날리스"],
+    "synonyms": ["Cassia meridionalis"],
+    "note": "세나속의 한 종이에요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:984197-1",
+    "checkedAt": "2026-11-03"
+  },
+  {
+    "id": "ocimum-basilicum",
+    "commonName": "바질",
+    "scientificName": "Ocimum basilicum",
+    "aliases": ["스위트바질", "스위트 바질", "basil"],
+    "synonyms": [],
+    "note": "스위트 바질로도 검색할 수 있어요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:452874-1",
+    "checkedAt": "2026-11-03"
+  },
+  {
+    "id": "salvia-rosmarinus",
+    "commonName": "로즈마리",
+    "scientificName": "Salvia rosmarinus",
+    "aliases": ["rosemary"],
+    "synonyms": ["Rosmarinus officinalis"],
+    "note": "이전 학명으로도 검색할 수 있어요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:457138-1",
+    "checkedAt": "2026-11-03"
+  },
+  {
+    "id": "mentha-spicata",
+    "commonName": "스피어민트",
+    "scientificName": "Mentha spicata",
+    "aliases": ["민트", "spearmint"],
+    "synonyms": [],
+    "note": "민트속의 한 종이에요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:451162-1",
+    "checkedAt": "2026-11-03"
+  },
+  {
+    "id": "thymus-vulgaris",
+    "commonName": "타임",
+    "scientificName": "Thymus vulgaris",
+    "aliases": ["커먼 타임", "thyme"],
+    "synonyms": [],
+    "note": "커먼 타임으로도 검색할 수 있어요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:461765-1",
+    "checkedAt": "2026-11-03"
+  },
+  {
+    "id": "petroselinum-crispum",
+    "commonName": "파슬리",
+    "scientificName": "Petroselinum crispum",
+    "aliases": ["parsley"],
+    "synonyms": [],
+    "note": "파슬리의 학명 후보예요.",
+    "sourceUrl": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:60442790-2",
+    "checkedAt": "2026-11-03"
   }
 ]

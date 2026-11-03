@@ -12,6 +12,11 @@ export function plantArt(plant: Pick<Plant, 'name' | 'species'>) {
       ))
   )
     return 'euphorbia-bupleurifolia'
+  if (species === 'senna meridionalis') return 'senna-meridionalis'
+  if (species === 'ocimum basilicum') return 'basil'
+  if (species === 'mentha spicata') return 'spearmint'
+  if (species === 'thymus vulgaris') return 'thyme'
+  if (species === 'petroselinum crispum') return 'parsley'
   if (/monstera|몬스테라/.test(text)) return 'monstera'
   if (/adenium|아데니움|사막의 장미/.test(text)) return 'adenium'
   if (/sansevieria|dracaena trifasciata|스투키|산세베리아/.test(text))

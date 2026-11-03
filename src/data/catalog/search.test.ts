@@ -5,19 +5,32 @@ const names = (query: string) =>
   searchPlantCatalog(query).map((p) => p.scientificName)
 
 describe('로컬 식물 카탈로그 검색', () => {
-  it('32종의 고유 후보와 개별 분류 출처·확인 날짜를 제공한다', () => {
-    expect(plantCatalog).toHaveLength(32)
-    expect(new Set(plantCatalog.map((p) => p.id)).size).toBe(32)
-    expect(new Set(plantCatalog.map((p) => p.scientificName)).size).toBe(32)
+  it('38종의 고유 후보와 개별 분류 출처·확인 날짜를 제공한다', () => {
+    expect(plantCatalog).toHaveLength(38)
+    expect(new Set(plantCatalog.map((p) => p.id)).size).toBe(38)
+    expect(new Set(plantCatalog.map((p) => p.scientificName)).size).toBe(38)
     for (const plant of plantCatalog) {
       expect(plant.commonName).not.toBe('')
       expect(plant.sourceUrl).toMatch(
         /^https:\/\/powo.science.kew.org\/taxon\/urn:lsid:ipni.org:names:\d+-\d$/,
       )
-      expect(plant.checkedAt).toBe('2026-10-26')
+      expect(plant.checkedAt).toMatch(/^\d{4}-\d{2}-\d{2}$/)
     }
   })
   it.each([
+    ['세나', 'Senna meridionalis'],
+    ['세나메리디오날리스', 'Senna meridionalis'],
+    ['Cassia meridionalis', 'Senna meridionalis'],
+    ['스위트바질', 'Ocimum basilicum'],
+    ['스위트 바질', 'Ocimum basilicum'],
+    ['basil', 'Ocimum basilicum'],
+    ['rosemary', 'Salvia rosmarinus'],
+    ['Rosmarinus officinalis', 'Salvia rosmarinus'],
+    ['민트', 'Mentha spicata'],
+    ['spearmint', 'Mentha spicata'],
+    ['커먼 타임', 'Thymus vulgaris'],
+    ['thyme', 'Thymus vulgaris'],
+    ['parsley', 'Petroselinum crispum'],
     ['괴마옥', 'Euphorbia bupleurifolia'],
     ['나비란', 'Chlorophytum comosum'],
     ['제이드플랜트', 'Crassula ovata'],

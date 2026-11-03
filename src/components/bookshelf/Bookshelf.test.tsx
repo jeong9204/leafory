@@ -7,6 +7,7 @@ import {
 } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, it, expect } from 'vitest'
+import { savePlant } from '../../app/plant-service'
 import { renderApp, testDatabase } from '../../test/render-app'
 let context: ReturnType<typeof testDatabase>
 beforeEach(() => {
@@ -28,11 +29,42 @@ describe('책장 홈 데이터와 접근성', () => {
     ).toHaveAttribute('href', `/plants/${plant.id}`)
     expect(screen.getAllByRole('img')).toHaveLength(1)
     expect(
+      screen.getByRole('img', { name: `${name} 픽셀 화분` }),
+    ).toHaveAttribute('src', '/pixel/refined/default.webp')
+    expect(
       screen.queryByText(/말랐|물주기 필요|건강하지/),
     ).not.toBeInTheDocument()
     const user = userEvent.setup()
     await user.click(screen.getByRole('link', { name: `${name} 상세 보기` }))
     expect(await screen.findByRole('heading', { name, level: 1 })).toBeVisible()
+  })
+  it('대표 사진이 있는 화분은 홈에서 종 도트를, 상세에서 대표 사진을 표시한다', async () => {
+    await savePlant(
+      context.repos,
+      {
+        name: '사진 있는 바질',
+        species: 'Ocimum basilicum',
+        status: 'healthy',
+      },
+      {
+        type: 'replace',
+        photo: {
+          blob: new Blob(['photo'], { type: 'image/jpeg' }),
+          mimeType: 'image/jpeg',
+          capturedAt: '2026-10-26T12:00:00Z',
+        },
+      },
+    )
+    renderApp(context.repos)
+    expect(
+      await screen.findByRole('img', { name: '사진 있는 바질 픽셀 화분' }),
+    ).toHaveAttribute('src', '/pixel/basil.svg')
+    await userEvent.click(
+      screen.getByRole('link', { name: '사진 있는 바질 상세 보기' }),
+    )
+    expect(
+      await screen.findByRole('img', { name: '사진 있는 바질 대표 사진' }),
+    ).toHaveAttribute('src', expect.stringMatching(/^blob:/))
   })
   it('새 에셋 로딩 실패 시 기본 화분으로 대체하고 상세 링크를 유지한다', async () => {
     const plant = await context.repos.plants.create({

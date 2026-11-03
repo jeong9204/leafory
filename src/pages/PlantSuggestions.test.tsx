@@ -17,6 +17,75 @@ async function editor() {
 }
 
 describe('등록·수정 학명 추천', () => {
+  it.each([
+    [
+      '세나 메리디오날리스',
+      'Cassia meridionalis',
+      'Senna meridionalis',
+      '/pixel/senna-meridionalis.svg',
+    ],
+    ['바질', '바질', 'Ocimum basilicum', '/pixel/basil.svg'],
+    [
+      '로즈마리',
+      '로즈마리',
+      'Salvia rosmarinus',
+      '/pixel/refined/rosemary.webp',
+    ],
+    ['스피어민트', '스피어민트', 'Mentha spicata', '/pixel/spearmint.svg'],
+    ['타임', '타임', 'Thymus vulgaris', '/pixel/thyme.svg'],
+    ['파슬리', '파슬리', 'Petroselinum crispum', '/pixel/parsley.svg'],
+  ])(
+    '%s 추천을 등록하면 저장된 학명의 화분이 홈에 표시된다',
+    async (commonName, query, scientificName, sprite) => {
+      const user = userEvent.setup()
+      const name = await editor()
+      fireEvent.change(name, { target: { value: query } })
+      await user.click(
+        screen.getByRole('button', {
+          name: `${commonName} · ${scientificName} 학명 선택`,
+        }),
+      )
+      expect(screen.getByLabelText(/학명 또는 품종/)).toHaveValue(
+        scientificName,
+      )
+      expect(name).toHaveValue(query)
+      await user.click(screen.getByRole('button', { name: '식물 등록' }))
+      await screen.findByRole('heading', { name: query })
+      expect(await context.repos.plants.list()).toEqual([
+        expect.objectContaining({ name: query, species: scientificName }),
+      ])
+
+      await user.click(screen.getByRole('link', { name: '홈' }))
+      expect(
+        await screen.findByRole('img', { name: `${query} 픽셀 화분` }),
+      ).toHaveAttribute('src', sprite)
+
+      if (scientificName === 'Senna meridionalis') {
+        await user.click(
+          screen.getByRole('link', { name: `${query} 상세 보기` }),
+        )
+        await user.click(
+          await screen.findByRole('button', { name: '식물 관리 메뉴' }),
+        )
+        await user.click(screen.getByRole('link', { name: '정보 수정' }))
+        fireEvent.change(await screen.findByLabelText(/식물 이름/), {
+          target: { value: '우리집 세나' },
+        })
+        await user.click(screen.getByRole('button', { name: '수정 저장' }))
+        await screen.findByRole('heading', { name: '우리집 세나' })
+        expect(await context.repos.plants.list()).toEqual([
+          expect.objectContaining({
+            name: '우리집 세나',
+            species: scientificName,
+          }),
+        ])
+        await user.click(screen.getByRole('link', { name: '홈' }))
+        expect(
+          await screen.findByRole('img', { name: '우리집 세나 픽셀 화분' }),
+        ).toHaveAttribute('src', sprite)
+      }
+    },
+  )
   it('후보는 자동 선택하지 않고 키보드 선택 시 학명만 채우며 직접 고쳐 저장할 수 있다', async () => {
     const user = userEvent.setup()
     const name = await editor()
@@ -54,6 +123,10 @@ describe('등록·수정 학명 추천', () => {
     const plants = await context.repos.plants.list()
     expect(plants).toHaveLength(1)
     expect(plants[0].species).toBeUndefined()
+    await user.click(screen.getByRole('link', { name: '홈' }))
+    expect(
+      await screen.findByRole('img', { name: '몬스테라 픽셀 화분' }),
+    ).toHaveAttribute('src', '/pixel/refined/monstera.webp')
   })
   it('후보가 없는 이름은 직접 입력 가능하며 저장 실패 시 선택한 학명과 입력을 유지한다', async () => {
     const user = userEvent.setup()
